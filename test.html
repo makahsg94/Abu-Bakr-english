@@ -1,0 +1,614 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>English Level Test | Abu Bakr Mukhtar</title>
+<meta name="description" content="Take a free 25-question English level test and get your estimated level instantly. From Abu Bakr Mukhtar — English Teacher & Language Coach.">
+<meta name="robots" content="index, follow">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%230F1B2E'/%3E%3Ctext x='32' y='43' font-family='Georgia,serif' font-size='32' fill='%23B8873F' text-anchor='middle'%3EA%3C/text%3E%3C/svg%3E">
+<meta name="theme-color" content="#0F1B2E">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,500&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+:root{
+  --navy: #0F1B2E;
+  --paper: #FBF9F5;
+  --line: #E4E0D6;
+  --ink: #17212F;
+  --muted: #5B6472;
+  --gold: #B8873F;
+  --white: #ffffff;
+  --ease: cubic-bezier(.25,.8,.35,1);
+}
+
+*{margin:0;padding:0;box-sizing:border-box;}
+
+body{
+  min-height:100vh;
+  display:flex;
+  flex-direction:column;
+  font-family:'Inter', sans-serif;
+  color:var(--ink);
+  line-height:1.6;
+  -webkit-font-smoothing:antialiased;
+  background:
+    radial-gradient(900px 520px at 85% -10%, rgba(184,135,63,0.12), transparent 60%),
+    radial-gradient(700px 480px at 0% 110%, rgba(15,27,46,0.06), transparent 55%),
+    var(--paper);
+}
+
+/* ===== TOP BAR ===== */
+.topbar{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:16px;
+  padding:18px clamp(20px, 5vw, 48px);
+}
+.logo{
+  font-family:'Fraunces', serif;
+  font-weight:600;
+  font-size:1.15rem;
+  color:var(--navy);
+  text-decoration:none;
+  letter-spacing:-0.01em;
+}
+.logo em{color:var(--gold); font-style:normal;}
+.top-actions{display:flex; align-items:center; gap:14px;}
+.home-link{
+  font-size:.85rem;
+  font-weight:600;
+  color:var(--navy);
+  text-decoration:none;
+  border-bottom:2px solid rgba(184,135,63,.5);
+  padding-bottom:2px;
+}
+.home-link:hover{border-color:var(--gold);}
+
+/* ===== LANGUAGE SWITCHER ===== */
+.lang-switcher{
+  display:inline-flex;
+  background:var(--white);
+  border:1px solid var(--line);
+  border-radius:999px;
+  padding:4px;
+  gap:2px;
+}
+.lang-switcher button{
+  border:0;
+  background:transparent;
+  font-family:'Inter', sans-serif;
+  font-weight:600;
+  font-size:.78rem;
+  padding:7px 14px;
+  border-radius:999px;
+  cursor:pointer;
+  color:var(--muted);
+  transition:all .25s var(--ease);
+}
+.lang-switcher button.active{background:var(--navy); color:var(--white);}
+.lang-switcher button:not(.active):hover{color:var(--navy);}
+
+/* ===== QUIZ LAYOUT ===== */
+main{
+  flex:1;
+  width:100%;
+  max-width:760px;
+  margin:0 auto;
+  padding:12px clamp(20px, 5vw, 32px) 64px;
+}
+.card{
+  background:var(--white);
+  border:1px solid var(--line);
+  border-radius:26px;
+  padding:clamp(28px, 6vw, 52px);
+  box-shadow:0 30px 70px -35px rgba(15,27,46,0.35);
+}
+.screen{display:none;}
+.screen.active{display:block; animation:cardIn .5s var(--ease) both;}
+@keyframes cardIn{
+  from{opacity:0; transform:translateY(16px);}
+  to{opacity:1; transform:none;}
+}
+
+.eyebrow{
+  display:inline-block;
+  font-size:.75rem;
+  font-weight:700;
+  letter-spacing:.14em;
+  text-transform:uppercase;
+  color:var(--gold);
+  margin-bottom:14px;
+}
+h1{
+  font-family:'Fraunces', serif;
+  font-weight:600;
+  color:var(--navy);
+  font-size:clamp(1.8rem, 5vw, 2.5rem);
+  letter-spacing:-0.01em;
+  line-height:1.12;
+  margin-bottom:16px;
+}
+.intro-text{
+  color:var(--muted);
+  font-size:1rem;
+  max-width:520px;
+  margin-bottom:26px;
+}
+.meta-chips{
+  display:flex;
+  flex-wrap:wrap;
+  gap:10px;
+  margin-bottom:34px;
+}
+.chip{
+  font-size:.78rem;
+  font-weight:600;
+  color:var(--navy);
+  background:rgba(184,135,63,0.09);
+  border:1px solid rgba(184,135,63,0.25);
+  padding:7px 15px;
+  border-radius:999px;
+}
+
+/* ===== BUTTONS ===== */
+.btn{
+  display:inline-flex;
+  align-items:center;
+  gap:10px;
+  font-family:'Inter', sans-serif;
+  font-size:.95rem;
+  font-weight:600;
+  padding:15px 30px;
+  border-radius:999px;
+  cursor:pointer;
+  text-decoration:none;
+  border:1px solid transparent;
+  transition:all .3s var(--ease);
+}
+.btn-gold{
+  background:linear-gradient(135deg, #C99547, var(--gold));
+  color:var(--white);
+  box-shadow:0 14px 28px -12px rgba(184,135,63,.65);
+}
+.btn-gold:hover{transform:translateY(-2px); box-shadow:0 20px 34px -12px rgba(184,135,63,.75);}
+.btn-navy{background:var(--navy); color:var(--white);}
+.btn-navy:hover{transform:translateY(-2px); box-shadow:0 16px 30px -14px rgba(15,27,46,.6);}
+.btn-ghost{background:transparent; color:var(--navy); border-color:var(--line);}
+.btn-ghost:hover{border-color:var(--gold); color:var(--gold);}
+.btn:disabled{
+  opacity:.45;
+  cursor:not-allowed;
+  transform:none !important;
+  box-shadow:none;
+}
+.result-actions{display:flex; gap:14px; flex-wrap:wrap;}
+
+/* ===== PROGRESS ===== */
+.progress-head{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:12px;
+  margin-bottom:12px;
+}
+.qcount{font-size:.85rem; font-weight:600; color:var(--muted);}
+.progress-track{
+  height:6px;
+  background:rgba(15,27,46,0.08);
+  border-radius:999px;
+  overflow:hidden;
+  margin-bottom:30px;
+}
+.progress-fill{
+  height:100%;
+  width:0%;
+  background:linear-gradient(90deg, #C99547, var(--gold));
+  border-radius:999px;
+  transition:width .35s var(--ease);
+}
+
+/* ===== QUESTION ===== */
+.question{
+  font-family:'Fraunces', serif;
+  font-weight:500;
+  color:var(--navy);
+  font-size:clamp(1.2rem, 3.6vw, 1.5rem);
+  line-height:1.35;
+  margin-bottom:26px;
+}
+.options{display:grid; gap:12px;}
+.option{
+  display:flex;
+  align-items:center;
+  gap:14px;
+  width:100%;
+  text-align:start;
+  font-family:'Inter', sans-serif;
+  font-size:.98rem;
+  font-weight:500;
+  color:var(--ink);
+  background:var(--paper);
+  border:1.5px solid var(--line);
+  border-radius:14px;
+  padding:15px 18px;
+  cursor:pointer;
+  transition:all .25s var(--ease);
+}
+.option:hover{border-color:var(--gold); transform:translateX(4px);}
+[dir="rtl"] .option:hover{transform:translateX(-4px);}
+.option .letter{
+  flex-shrink:0;
+  width:32px; height:32px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  border-radius:50%;
+  background:var(--white);
+  border:1.5px solid var(--line);
+  font-size:.8rem;
+  font-weight:700;
+  color:var(--gold);
+  transition:all .25s var(--ease);
+}
+.option.selected{
+  background:var(--navy);
+  border-color:var(--navy);
+  color:var(--white);
+}
+.option.selected .letter{
+  background:var(--gold);
+  border-color:var(--gold);
+  color:var(--white);
+}
+.quiz-next{margin-top:28px;}
+
+/* ===== RESULT ===== */
+.score-circle{
+  width:150px; height:150px;
+  margin:6px auto 20px;
+  border-radius:50%;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  background:radial-gradient(circle at 30% 25%, #16304F, var(--navy));
+  box-shadow:0 22px 44px -18px rgba(15,27,46,.55);
+  animation:pop .6s var(--ease) both;
+}
+@keyframes pop{
+  from{opacity:0; transform:scale(.7);}
+  to{opacity:1; transform:scale(1);}
+}
+.score-circle b{
+  font-family:'Fraunces', serif;
+  font-size:2.4rem;
+  font-weight:600;
+  color:var(--white);
+  line-height:1;
+}
+.score-circle span{font-size:.85rem; color:#C99547; font-weight:600;}
+.result-sub{text-align:center; color:var(--muted); font-size:.95rem; margin-bottom:24px;}
+.level-badge{
+  display:block;
+  width:fit-content;
+  margin:0 auto 18px;
+  font-family:'Fraunces', serif;
+  font-size:1.25rem;
+  font-weight:600;
+  color:var(--white);
+  padding:12px 30px;
+  border-radius:999px;
+  box-shadow:0 12px 26px -12px rgba(15,27,46,.45);
+}
+.level-badge.lv1{background:#5B8C5A;}
+.level-badge.lv2{background:#3F7D8C;}
+.level-badge.lv3{background:#3B6EA5;}
+.level-badge.lv4{background:#8A6BB5;}
+.level-badge.lv5{background:linear-gradient(135deg, #C99547, var(--gold));}
+.result-msg{
+  max-width:520px;
+  margin:0 auto 32px;
+  text-align:center;
+  color:var(--muted);
+  font-size:.97rem;
+}
+.result-label{
+  display:block;
+  text-align:center;
+  font-size:.78rem;
+  font-weight:700;
+  letter-spacing:.12em;
+  text-transform:uppercase;
+  color:var(--gold);
+  margin-bottom:10px;
+}
+
+/* ===== FOOTER ===== */
+footer{
+  text-align:center;
+  padding:26px 20px 34px;
+  color:var(--muted);
+  font-size:.82rem;
+}
+footer a{color:var(--navy); font-weight:600; text-decoration:none; border-bottom:1px solid rgba(184,135,63,.5);}
+
+@media (max-width:480px){
+  .logo{font-size:1rem;}
+  .home-link{font-size:.8rem;}
+  .option{padding:13px 14px; font-size:.92rem;}
+  .result-actions .btn{width:100%; justify-content:center;}
+}
+</style>
+</head>
+<body>
+
+<header class="topbar">
+  <a class="logo" href="index.html">Abu Bakr <em>Mukhtar</em></a>
+  <div class="top-actions">
+    <div class="lang-switcher" id="langSwitcher" aria-label="Language switcher">
+      <button type="button" data-lang="en" class="active">EN</button>
+      <button type="button" data-lang="ar">AR</button>
+    </div>
+    <a class="home-link" href="index.html">Home</a>
+  </div>
+</header>
+
+<main>
+  <div class="card">
+
+    <!-- START SCREEN -->
+    <section class="screen active" id="startScreen">
+      <span class="eyebrow">Free Online English Level Test</span>
+      <h1>Test Your English</h1>
+      <p class="intro-text">Answer 25 quick questions and find out your approximate English level in about five minutes — instant results, no sign-up.</p>
+      <div class="meta-chips">
+        <span class="chip">25 Questions</span>
+        <span class="chip">~5 minutes</span>
+        <span class="chip">Instant result</span>
+      </div>
+      <button class="btn btn-gold" id="startBtn" type="button">
+        Start the Test
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+      </button>
+    </section>
+
+    <!-- QUIZ SCREEN -->
+    <section class="screen" id="quizScreen">
+      <div class="progress-head">
+        <span class="qcount" id="qCount"></span>
+      </div>
+      <div class="progress-track"><div class="progress-fill" id="progressFill"></div></div>
+      <h2 class="question" id="questionText"></h2>
+      <div class="options" id="optionsBox"></div>
+      <button class="btn btn-navy quiz-next" id="nextBtn" type="button" disabled>Next Question</button>
+    </section>
+
+    <!-- RESULT SCREEN -->
+    <section class="screen" id="resultScreen">
+      <div class="score-circle"><b id="scoreNum"></b><span>/ 25</span></div>
+      <p class="result-sub" id="resultSub"></p>
+      <span class="result-label" id="levelLabel"></span>
+      <div class="level-badge" id="levelBadge"></div>
+      <p class="result-msg" id="resultMsg"></p>
+      <div class="result-actions">
+        <a class="btn btn-gold" id="bookBtn" href="#" target="_blank" rel="noopener">Book a Trial Lesson</a>
+        <button class="btn btn-ghost" id="retakeBtn" type="button">Retake the Test</button>
+      </div>
+    </section>
+
+  </div>
+</main>
+
+<footer>© 2026 Mahmoud Atef · <a href="index.html">abubakrmukhtar.com</a></footer>
+
+<script>
+(function(){
+  const QUESTIONS = [
+    {q:"She ___ a teacher.", o:["am","is","are","be"], a:1},
+    {q:"They ___ from Egypt.", o:["is","am","are","be"], a:2},
+    {q:"I ___ coffee every morning.", o:["drink","drinks","drinking","drank"], a:0},
+    {q:"There ___ two books on the table.", o:["is","are","am","be"], a:1},
+    {q:"We ___ to school yesterday.", o:["go","goes","gone","went"], a:3},
+    {q:"___ you like pizza?", o:["Do","Does","Is","Are"], a:0},
+    {q:"She is ___ than her brother.", o:["tall","taller","tallest","more tall"], a:1},
+    {q:"I have lived here ___ 2019.", o:["for","since","from","at"], a:1},
+    {q:"He ___ finished the project yet.", o:["didn't","doesn't","hasn't","isn't"], a:2},
+    {q:"If it rains tomorrow, we ___ stay at home.", o:["would","will","had","would have"], a:1},
+    {q:"I'm looking forward to ___ you soon.", o:["meet","met","meeting","to meet"], a:2},
+    {q:"By this time next year, she ___ her degree.", o:["finishes","will finish","will have finished","finished"], a:2},
+    {q:"The report ___ by the manager yesterday.", o:["wrote","was written","is written","writes"], a:1},
+    {q:"He suggested ___ a taxi.", o:["take","to take","taking","took"], a:2},
+    {q:"Neither of the answers ___ correct.", o:["are","is","were","be"], a:1},
+    {q:"If I ___ more time, I would travel more often.", o:["have","had","will have","would have"], a:1},
+    {q:"She's used to ___ up early.", o:["wake","woke","waking","awake"], a:2},
+    {q:"Hardly ___ the office when the phone rang.", o:["I had left","had I left","I left","did I left"], a:1},
+    {q:"The project was approved ___ the delays.", o:["despite","although","however","because"], a:0},
+    {q:"I'd rather you ___ smoke in here.", o:["don't","didn't","won't","not"], a:1},
+    {q:"No sooner had he arrived ___ the meeting started.", o:["when","than","then","that"], a:1},
+    {q:"The company is committed to ___ sustainable growth.", o:["pursue","pursuing","pursued","pursuit"], a:1},
+    {q:"Had I known about the delay, I ___ differently.", o:["would act","would have acted","will act","had acted"], a:1},
+    {q:"It's high time we ___ this issue seriously.", o:["take","took","will take","taking"], a:1},
+    {q:"The proposal needs ___ before Friday.", o:["revising","to revising","revised","revise"], a:0}
+  ];
+
+  const LEVELS = [
+    {min:0,  cls:"lv1", en:"Beginner (A1–A2)",            ar:"مبتدئ (A1–A2)",
+     men:"Great start! You know the basics. With regular lessons you will improve quickly — book a trial lesson and let us build your foundation together.",
+     ar:"بداية جيدة! أنت تعرف الأساسيات، ومع دروس منتظمة ستتحسن بسرعة — احجز درسًا تجريبيًا ولنبنِ أساسك معًا."},
+    {min:9,  cls:"lv2", en:"Elementary (A2–B1)",          ar:"ما قبل المتوسط (A2–B1)",
+     men:"Solid foundation! You can handle everyday situations. A focused course will take you to the next level — book a trial lesson to plan your path.",
+     ar:"أساس جيد! تستطيع التعامل مع المواقف اليومية، ودورة مركزة ستنقلك للمستوى التالي — احجز درسًا تجريبيًا لنخطط طريقك."},
+    {min:15, cls:"lv3", en:"Intermediate (B1–B2)",        ar:"متوسط (B1–B2)",
+     men:"Well done! You communicate confidently in most situations. Now it is time to refine your accuracy and fluency — book a trial lesson to reach mastery.",
+     ar:"أحسنت! تتواصل بثقة في معظم المواقف، والآن حان وقت صقل الدقة والطلاقة — احجز درسًا تجريبيًا للوصول إلى الاحتراف."},
+    {min:20, cls:"lv4", en:"Upper-Intermediate (B2–C1)",  ar:"فوق المتوسط (B2–C1)",
+     men:"Impressive! Your English is strong. Fine-tuning exam techniques and advanced usage will make you fully fluent — book a trial lesson to polish your skills.",
+     ar:"مستوى مثير للإعجاب! لغتك قوية، والتركيز على تقنيات الامتحانات والمهارات المتقدمة سيجعلها طليقة تمامًا — احجز درسًا تجريبيًا لتلميع مهاراتك."},
+    {min:24, cls:"lv5", en:"Advanced (C1+)",              ar:"متقدم (C1+)",
+     men:"Excellent work! You are operating at an advanced level. Specialized coaching for exams or professional English will unlock your final percent — book a trial lesson.",
+     ar:"عمل ممتاز! أنت تعمل على مستوى متقدم، والتدريب المتخصص للامتحانات أو الإنجليزية المهنية سيكمل الصورة — احجز درسًا تجريبيًا."}
+  ];
+
+  const UI = {
+    en:{q:"Question", of:"of", next:"Next Question", see:"Show My Result",
+        sub:"You answered {s} of 25 correctly ({p}%)", lvlLabel:"Your estimated level",
+        retake:"Retake the Test", book:"Book a Trial Lesson"},
+    ar:{q:"السؤال", of:"من", next:"السؤال التالي", see:"اعرض نتيجتي",
+        sub:"أجبت إجابة صحيحة عن {s} من أصل 25 بنسبة {p}%", lvlLabel:"مستواك التقريبي",
+        retake:"أعد الاختبار", book:"احجز درسًا تجريبيًا"}
+  };
+
+  function getLang(){ try { return localStorage.getItem('siteLanguage') || 'en'; } catch(e){ return 'en'; } }
+  function setLang(l){ try { localStorage.setItem('siteLanguage', l); } catch(e){} }
+
+  const LETTERS = ["A","B","C","D"];
+  let idx = 0, score = 0, selected = null;
+
+  const $ = (id) => document.getElementById(id);
+
+  function showScreen(name){
+    ['startScreen','quizScreen','resultScreen'].forEach(s => $(s).classList.toggle('active', s === name));
+  }
+
+  function renderQuestion(){
+    const l = getLang(), t = UI[l];
+    const item = QUESTIONS[idx];
+    selected = null;
+    $('qCount').textContent = t.q + " " + (idx + 1) + " " + t.of + " 25";
+    $('progressFill').style.width = (idx / QUESTIONS.length * 100) + "%";
+    $('questionText').textContent = item.q;
+    const box = $('optionsBox');
+    box.innerHTML = "";
+    item.o.forEach((optText, i) => {
+      const b = document.createElement('button');
+      b.type = 'button';
+      b.className = 'option';
+      const span = document.createElement('span');
+      span.className = 'letter';
+      span.textContent = LETTERS[i];
+      b.appendChild(span);
+      b.appendChild(document.createTextNode(optText));
+      b.addEventListener('click', () => selectOption(b, i));
+      box.appendChild(b);
+    });
+    const nb = $('nextBtn');
+    nb.textContent = (idx === QUESTIONS.length - 1) ? t.see : t.next;
+    nb.disabled = true;
+  }
+
+  function selectOption(btn, i){
+    document.querySelectorAll('.option').forEach(o => o.classList.remove('selected'));
+    btn.classList.add('selected');
+    selected = i;
+    $('nextBtn').disabled = false;
+  }
+
+  function advance(){
+    if (selected === null) return;
+    if (selected === QUESTIONS[idx].a) score++;
+    idx++;
+    if (idx < QUESTIONS.length) renderQuestion(); else showResult();
+  }
+
+  function levelIndex(){
+    for (let i = LEVELS.length - 1; i >= 0; i--) { if (score >= LEVELS[i].min) return i; }
+    return 0;
+  }
+
+  function showResult(){
+    const l = getLang(), t = UI[l], lv = LEVELS[levelIndex()];
+    $('progressFill').style.width = "100%";
+    $('scoreNum').textContent = score;
+    const pct = Math.round(score / QUESTIONS.length * 100);
+    $('resultSub').textContent = t.sub.replace("{s}", score).replace("{p}", pct);
+    $('levelLabel').textContent = t.lvlLabel;
+    const badge = $('levelBadge');
+    badge.textContent = lv[l];
+    badge.className = 'level-badge ' + lv.cls;
+    $('resultMsg').textContent = lv.men;
+    $('bookBtn').href = "https://wa.me/201014416415?text=" +
+      encodeURIComponent("Hello Abu Bakr, I scored " + score + "/25 (" + lv.en + ") on your English level test. I'd like to book a trial lesson.");
+    $('retakeBtn').textContent = t.retake;
+    $('bookBtn').childNodes[$('bookBtn').childNodes.length - 1].textContent = t.book;
+    showScreen('resultScreen');
+  }
+
+  $('startBtn').addEventListener('click', () => {
+    idx = 0; score = 0;
+    renderQuestion();
+    showScreen('quizScreen');
+  });
+  $('nextBtn').addEventListener('click', advance);
+  $('retakeBtn').addEventListener('click', () => showScreen('startScreen'));
+
+  // Re-render dynamic text if visitor switches language mid-test
+  document.querySelectorAll('#langSwitcher button').forEach(btn => {
+    btn.addEventListener('click', () => {
+      if ($('quizScreen').classList.contains('active')) renderQuestion();
+      if ($('resultScreen').classList.contains('active')) { idx = QUESTIONS.length; showResult(); }
+    });
+  });
+})();
+</script>
+
+<script>
+(function(){
+  const dict = {
+    "Free Online English Level Test": "اختبار مستوى مجاني أونلاين",
+    "Test Your English": "اختبر لغتك الإنجليزية",
+    "Answer 25 quick questions and find out your approximate English level in about five minutes — instant results, no sign-up.": "أجب عن 25 سؤالًا سريعًا واعرف مستواك التقريبي في الإنجليزية خلال خمس دقائق تقريبًا — النتيجة فورية وبدون تسجيل.",
+    "25 Questions": "25 سؤالًا",
+    "~5 minutes": "~5 دقائق",
+    "Instant result": "نتيجة فورية",
+    "Start the Test": "ابدأ الاختبار",
+    "Home": "الرئيسية"
+  };
+
+  const originals = new WeakMap();
+
+  function applyLangToStatic(){
+    const walker = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT, null, false);
+    let node;
+    while ((node = walker.nextNode())) {
+      if (!originals.has(node)) originals.set(node, node.nodeValue);
+      const key = originals.get(node).trim();
+      const parent = node.parentElement;
+      if (parent && (parent.tagName === 'SCRIPT' || parent.tagName === 'STYLE')) continue;
+      if (key && Object.prototype.hasOwnProperty.call(dict, key)) {
+        node.nodeValue = originals.get(node).replace(key, dict[key]);
+      } else {
+        node.nodeValue = originals.get(node);
+      }
+    }
+  }
+
+  function setLangUI(l){
+    document.documentElement.lang = l;
+    document.documentElement.dir = (l === 'ar') ? 'rtl' : 'ltr';
+    document.querySelectorAll('#langSwitcher button').forEach(b =>
+      b.classList.toggle('active', b.getAttribute('data-lang') === l));
+  }
+
+  document.querySelectorAll('#langSwitcher button').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const l = btn.getAttribute('data-lang');
+      setLang(l);
+      setLangUI(l);
+      applyLangToStatic();
+    });
+  });
+
+  let saved = 'en';
+  try { saved = localStorage.getItem('siteLanguage') || 'en'; } catch(e){}
+  setLangUI(saved);
+  if (saved === 'ar') applyLangToStatic();
+})();
+</script>
+
+</body>
+</html>
