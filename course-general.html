@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>General English | Abu Bakr Mukhtar</title>
+<meta name="description" content="Personalized General English lessons: speaking, listening, reading, writing, vocabulary, and grammar — online, 1-to-1 with Abu Bakr Mukhtar.">
+<meta name="robots" content="index, follow">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%230F1B2E'/%3E%3Ctext x='32' y='43' font-family='Georgia,serif' font-size='32' fill='%23B8873F' text-anchor='middle'%3EA%3C/text%3E%3C/svg%3E">
+<meta name="theme-color" content="#0F1B2E">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,500&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+:root{
+  --navy: #0F1B2E;
+  --paper: #FBF9F5;
+  --line: #E4E0D6;
+  --ink: #17212F;
+  --muted: #5B6472;
+  --gold: #B8873F;
+  --white: #ffffff;
+  --ease: cubic-bezier(.25,.8,.35,1);
+}
+
+*{margin:0;padding:0;box-sizing:border-box;}
+
+body{
+  min-height:100vh;
+  display:flex;
+  flex-direction:column;
+  font-family:'Inter', sans-serif;
+  color:var(--ink);
+  line-height:1.6;
+  -webkit-font-smoothing:antialiased;
+  background:
+    radial-gradient(900px 520px at 85% -10%, rgba(184,135,63,0.12), transparent 60%),
+    radial-gradient(700px 480px at 0% 110%, rgba(15,27,46,0.06), transparent 55%),
+    var(--paper);
+}
+
+/* ===== TOP BAR ===== */
+.topbar{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:16px;
+  padding:18px clamp(20px, 5vw, 48px);
+}
+.logo{
+  font-family:'Fraunces', serif;
+  font-weight:600;
+  font-size:1.15rem;
+  color:var(--navy);
+  text-decoration:none;
+  letter-spacing:-0.01em;
+}
+.logo em{color:var(--gold); font-style:normal;}
+.top-actions{display:flex; align-items:center; gap:14px;}
+.home-link{
+  font-size:.85rem;
+  font-weight:600;
+  color:var(--navy);
+  text-decoration:none;
+  border-bottom:2px solid rgba(184,135,63,.5);
+  padding-bottom:2px;
+}
+.home-link:hover{border-color:var(--gold);}
+
+/* ===== LANGUAGE SWITCHER ===== */
+.lang-switcher{
+  display:inline-flex;
+  background:var(--white);
+  border:1px solid var(--line);
+  border-radius:999px;
+  padding:4px;
+  gap:2px;
+}
+.lang-switcher button{
+  border:0;
+  background:transparent;
+  font-family:'Inter', sans-serif;
+  font-weight:600;
+  font-size:.78rem;
+  padding:7px 14px;
+  border-radius:999px;
+  cursor:pointer;
+  color:var(--muted);
+  transition:all .25s var(--ease);
+}
+.lang-switcher button.active{background:var(--navy); color:var(--white);}
+.lang-switcher button:not(.active):hover{color:var(--navy);}
+
+/* ===== PAGE ===== */
+main{
+  flex:1;
+  width:100%;
+  max-width:820px;
+  margin:0 auto;
+  padding:12px clamp(20px, 5vw, 32px) 64px;
+}
+.card{
+  background:var(--white);
+  border:1px solid var(--line);
+  border-radius:26px;
+  padding:clamp(28px, 6vw, 52px);
+  box-shadow:0 30px 70px -35px rgba(15,27,46,0.35);
+  animation:cardIn .6s var(--ease) both;
+}
+@keyframes cardIn{
+  from{opacity:0; transform:translateY(16px);}
+  to{opacity:1; transform:none;}
+}
+
+.eyebrow{
+  display:inline-block;
+  font-size:.75rem;
+  font-weight:700;
+  letter-spacing:.14em;
+  text-transform:uppercase;
+  color:var(--gold);
+  margin-bottom:14px;
+}
+h1{
+  font-family:'Fraunces', serif;
+  font-weight:600;
+  color:var(--navy);
+  font-size:clamp(1.9rem, 5vw, 2.6rem);
+  letter-spacing:-0.01em;
+  line-height:1.12;
+  margin-bottom:16px;
+}
+.intro-text{
+  color:var(--muted);
+  font-size:1.02rem;
+  margin-bottom:26px;
+}
+.meta-chips{
+  display:flex;
+  flex-wrap:wrap;
+  gap:10px;
+  margin-bottom:32px;
+}
+.chip{
+  font-size:.78rem;
+  font-weight:600;
+  color:var(--navy);
+  background:rgba(184,135,63,0.09);
+  border:1px solid rgba(184,135,63,0.25);
+  padding:7px 15px;
+  border-radius:999px;
+}
+
+.learn-title{
+  font-family:'Fraunces', serif;
+  font-weight:600;
+  color:var(--navy);
+  font-size:1.3rem;
+  margin-bottom:18px;
+}
+.learn-list{list-style:none; display:grid; gap:12px; margin-bottom:36px;}
+.learn-list li{
+  display:flex;
+  align-items:flex-start;
+  gap:12px;
+  font-size:.97rem;
+  color:var(--ink);
+  background:var(--paper);
+  border:1px solid var(--line);
+  border-radius:14px;
+  padding:13px 16px;
+}
+.learn-list li::before{
+  content:"✓";
+  flex-shrink:0;
+  width:24px; height:24px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  border-radius:50%;
+  background:var(--gold);
+  color:var(--white);
+  font-size:.75rem;
+  font-weight:700;
+}
+
+/* ===== BUTTONS ===== */
+.btn{
+  display:inline-flex;
+  align-items:center;
+  gap:10px;
+  font-family:'Inter', sans-serif;
+  font-size:.95rem;
+  font-weight:600;
+  padding:15px 30px;
+  border-radius:999px;
+  cursor:pointer;
+  text-decoration:none;
+  border:1px solid transparent;
+  transition:all .3s var(--ease);
+}
+.btn-gold{
+  background:linear-gradient(135deg, #C99547, var(--gold));
+  color:var(--white);
+  box-shadow:0 14px 28px -12px rgba(184,135,63,.65);
+}
+.btn-gold:hover{transform:translateY(-2px); box-shadow:0 20px 34px -12px rgba(184,135,63,.75);}
+.btn-ghost{background:transparent; color:var(--navy); border-color:var(--line);}
+.btn-ghost:hover{border-color:var(--gold); color:var(--gold);}
+.cta{display:flex; gap:14px; flex-wrap:wrap; align-items:center;}
+.back{margin-top:34px; display:inline-block; font-size:.88rem; color:var(--muted); text-decoration:none;}
+.back:hover{color:var(--gold);}
+
+/* ===== FOOTER ===== */
+footer{
+  text-align:center;
+  padding:26px 20px 34px;
+  color:var(--muted);
+  font-size:.82rem;
+}
+footer a{color:var(--navy); font-weight:600; text-decoration:none; border-bottom:1px solid rgba(184,135,63,.5);}
+
+@media (max-width:480px){
+  .logo{font-size:1rem;}
+  .home-link{font-size:.8rem;}
+  .cta .btn{width:100%; justify-content:center;}
+}
+</style>
+</head>
+<body>
+
+<header class="topbar">
+  <a class="logo" href="index.html">Abu Bakr <em>Mukhtar</em></a>
+  <div class="top-actions">
+    <div class="lang-switcher" id="langSwitcher" aria-label="Language switcher">
+      <button type="button" data-lang="en" class="active">EN</button>
+      <button type="button" data-lang="ar">AR</button>
+    </div>
+    <a class="home-link" href="index.html">Back to Home</a>
+  </div>
+</header>
+
+<main>
+  <div class="card">
+    <span class="eyebrow">General English</span>
+    <h1>General English</h1>
+    <p class="intro-text">Improve your overall English — speaking, listening, reading, writing, vocabulary, and grammar — with a personalized plan built around your level and goals.</p>
+    <div class="meta-chips">
+      <span class="chip">Online Lessons</span>
+      <span class="chip">1-to-1 Coaching</span>
+      <span class="chip">Live via Zoom</span>
+    </div>
+    <h2 class="learn-title">What You'll Learn</h2>
+    <ul class="learn-list">
+      <li>Speak with clearer pronunciation and natural fluency</li>
+      <li>Understand everyday conversation and media</li>
+      <li>Read with better comprehension and speed</li>
+      <li>Write clear, correct messages and emails</li>
+      <li>Build practical vocabulary you actually use</li>
+      <li>Master grammar through real communication</li>
+    </ul>
+    <div class="cta">
+      <a class="btn btn-gold" href="https://wa.me/201014416415?text=Hello%20Abu%20Bakr%2C%20I%27m%20interested%20in%20General%20English%20lessons." target="_blank" rel="noopener">Book via WhatsApp</a>
+      <a class="btn btn-ghost" href="test.html">Take the Level Test</a>
+    </div>
+    <a class="back" href="index.html">&larr; Back to Home</a>
+  </div>
+</main>
+
+<footer><a href="index.html">© 2026 Abu Bakr Mukhtar</a> · Online English Lessons</footer>
+
+<script>
+(function(){
+  const dict = {
+    "Back to Home": "العودة للرئيسية",
+    "General English": "الإنجليزية العامة",
+    "Improve your overall English — speaking, listening, reading, writing, vocabulary, and grammar — with a personalized plan built around your level and goals.": "حسّن لغتك الإنجليزية بشكل شامل — التحدث والاستماع والقراءة والكتابة والمفردات والقواعد — من خلال خطة شخصية مبنية على مستواك وأهدافك.",
+    "Online Lessons": "دروس أونلاين",
+    "1-to-1 Coaching": "تدريب فردي",
+    "Live via Zoom": "مباشرة عبر Zoom",
+    "What You'll Learn": "ماذا ستتعلم؟",
+    "Speak with clearer pronunciation and natural fluency": "تحدّث بنطق أوضح وطلاقة طبيعية",
+    "Understand everyday conversation and media": "افهم المحادثات اليومية ووسائل الإعلام",
+    "Read with better comprehension and speed": "اقرأ بفهم أسرع وتركيز أعلى",
+    "Write clear, correct messages and emails": "اكتب رسائل وإيميلات واضحة وصحيحة",
+    "Build practical vocabulary you actually use": "بنِ مفردات عملية تستخدمها فعلًا",
+    "Master grammar through real communication": "أتقن القواعد عبر التواصل الحقيقي",
+    "Book via WhatsApp": "احجز عبر واتساب",
+    "Take the Level Test": "اختبر مستواك الأول",
+    "© 2026 Abu Bakr Mukhtar": "© 2026 أبو بكر مختار",
+    "Online English Lessons": "دروس إنجليزية أونلاين"
+  };
+  const originals = new WeakMap();
+  function applyLang(){
+    const walker = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT, null, false);
+    let node;
+    while ((node = walker.nextNode())) {
+      if (!originals.has(node)) originals.set(node, node.nodeValue);
+      const key = originals.get(node).trim();
+      const parent = node.parentElement;
+      if (parent && (parent.tagName === 'SCRIPT' || parent.tagName === 'STYLE')) continue;
+      if (key && Object.prototype.hasOwnProperty.call(dict, key)) {
+        node.nodeValue = originals.get(node).replace(key, dict[key]);
+      } else {
+        node.nodeValue = originals.get(node);
+      }
+    }
+  }
+  function setLangUI(l){
+    document.documentElement.lang = l;
+    document.documentElement.dir = (l === 'ar') ? 'rtl' : 'ltr';
+    document.querySelectorAll('#langSwitcher button').forEach(b => b.classList.toggle('active', b.getAttribute('data-lang') === l));
+  }
+  document.querySelectorAll('#langSwitcher button').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const l = btn.getAttribute('data-lang');
+      try { localStorage.setItem('siteLanguage', l); } catch(e){}
+      setLangUI(l);
+      applyLang();
+    });
+  });
+  let saved = 'en';
+  try { saved = localStorage.getItem('siteLanguage') || 'en'; } catch(e){}
+  setLangUI(saved);
+  if (saved === 'ar') applyLang();
+})();
+</script>
+
+</body>
+</html>
