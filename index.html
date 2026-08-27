@@ -607,8 +607,8 @@ header.scrolled{
 /* ===== GALLERIES ===== */
 .results-grid{
   display:grid;
-  grid-template-columns:repeat(3,1fr);
-  gap:22px;
+  grid-template-columns:repeat(auto-fit,minmax(270px,1fr));
+  gap:24px;
 }
 .photo-card{
   background:var(--white);
@@ -622,10 +622,13 @@ header.scrolled{
 .photo-card a{display:block;}
 .photo-card img{width:100%; display:block; background:#fff;}
 .photo-cap{padding:15px 18px; font-size:.92rem; font-weight:600; color:var(--navy);}
-.cert-grid{display:grid; grid-template-columns:repeat(auto-fit,minmax(190px,1fr)); gap:18px;}
+.cert-grid{display:grid; grid-template-columns:repeat(auto-fit,minmax(250px,1fr)); gap:20px;}
 .cert-card{background:#fff; border:1px solid var(--line); border-radius:var(--radius-m); padding:10px; transition:transform .4s var(--ease); box-shadow:0 10px 26px -20px rgba(15,27,46,0.25);}
 .cert-card:hover{transform:translateY(-5px);}
-.cert-card img{width:100%; height:270px; object-fit:contain; display:block; background:#fff;}
+.cert-card a{display:block; cursor:zoom-in;}
+.cert-card a img{transition:transform .45s var(--ease);}
+.cert-card:hover a img{transform:scale(1.03);}
+.cert-card img{width:100%; height:360px; object-fit:contain; display:block; background:#fff;}
 .gallery-feature{display:grid; grid-template-columns:1.05fr .95fr; gap:44px; align-items:center;}
 .gallery-feature figure{margin:0;}
 .gallery-feature img{width:100%; border-radius:var(--radius-m); border:1px solid var(--line); box-shadow:0 26px 56px -28px rgba(15,27,46,0.4); display:block;}
@@ -1443,12 +1446,13 @@ html[dir="rtl"] .plan-features li::before{margin-left:10px;margin-right:0}
       <span class="eyebrow">Credentials &amp; Certificates</span>
       <h2>TEFL-Certified English Teacher</h2>
       <p>A certified educator with internationally recognized teaching credentials.</p>
+      <p style="font-size:.9rem; opacity:.85; margin-top:10px;">Click any image to view it in full size.</p>
     </div>
     <div class="cert-grid reveal-stagger">
-      <figure class="cert-card"><img src="assets/gallery/cert-delta2-p1.jpg" alt="DELTA 2" loading="lazy"><figcaption class="photo-cap">DELTA 2</figcaption></figure>
-      <figure class="cert-card"><img src="assets/gallery/cert-assessment-p1.jpg" alt="Certificate of Assessment" loading="lazy"><figcaption class="photo-cap">Certificate of Assessment</figcaption></figure>
-      <figure class="cert-card"><img src="assets/gallery/cert-tefl-ielts-p1.jpg" alt="How to Teach IELTS" loading="lazy"><figcaption class="photo-cap">How to Teach IELTS</figcaption></figure>
-      <figure class="cert-card"><img src="assets/gallery/cert-tefl-p1.jpg" alt="TEFL" loading="lazy"><figcaption class="photo-cap">TEFL</figcaption></figure>
+      <figure class="cert-card"><a href="assets/gallery/cert-delta2-p1.jpg" target="_blank" rel="noopener"><img src="assets/gallery/cert-delta2-p1.jpg" alt="DELTA 2" loading="lazy"></a><figcaption class="photo-cap">DELTA 2</figcaption></figure>
+      <figure class="cert-card"><a href="assets/gallery/cert-assessment-p1.jpg" target="_blank" rel="noopener"><img src="assets/gallery/cert-assessment-p1.jpg" alt="Certificate of Assessment" loading="lazy"></a><figcaption class="photo-cap">Certificate of Assessment</figcaption></figure>
+      <figure class="cert-card"><a href="assets/gallery/cert-tefl-ielts-p1.jpg" target="_blank" rel="noopener"><img src="assets/gallery/cert-tefl-ielts-p1.jpg" alt="How to Teach IELTS" loading="lazy"></a><figcaption class="photo-cap">How to Teach IELTS</figcaption></figure>
+      <figure class="cert-card"><a href="assets/gallery/cert-tefl-p1.jpg" target="_blank" rel="noopener"><img src="assets/gallery/cert-tefl-p1.jpg" alt="TEFL" loading="lazy"></a><figcaption class="photo-cap">TEFL</figcaption></figure>
     </div>
   </div>
 </section>
@@ -1528,6 +1532,7 @@ html[dir="rtl"] .plan-features li::before{margin-left:10px;margin-right:0}
       <span class="eyebrow">Student Results &amp; Reviews</span>
       <h2>Real results from real learners</h2>
       <p>Progress that speaks for itself — a few of the recent results students have shared.</p>
+      <p style="font-size:.9rem; opacity:.85; margin-top:10px;">Click any image to view it in full size.</p>
     </div>
     <div class="results-grid reveal-stagger">
       <figure class="photo-card"><a href="assets/gallery/mona-ielts7.png" target="_blank" rel="noopener"><img src="assets/gallery/mona-ielts7.png" alt="Mona IELTS 7 result" loading="lazy"></a><figcaption class="photo-cap">Mona — IELTS 7</figcaption></figure>
@@ -2230,6 +2235,7 @@ document.querySelectorAll('.faq-item').forEach(item => {
 
     "Helping non-native English speakers communicate with confidence.": "نساعد غير الناطقين بالإنجليزية على التواصل بثقة.",
     "Navigate": "التنقل",
+    "Click any image to view it in full size.": "اضغط على أي صورة لعرضها بالحجم الكامل.",
     "Student Results & Reviews": "نتائج الطلاب وآراؤهم",
     "Real results from real learners": "نتائج حقيقية من طلاب حقيقيين",
     "Progress that speaks for itself — a few of the recent results students have shared.": "نتائج تتكلم عن نفسها — نماذج من نتائج حديثة شاركها الطلاب.",
