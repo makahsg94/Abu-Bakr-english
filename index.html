@@ -603,6 +603,38 @@ header.scrolled{
 @media (max-width:600px){ .courses-grid{grid-template-columns:1fr;} }
 
 
+
+/* ===== GALLERIES ===== */
+.results-grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:22px;
+}
+.photo-card{
+  background:var(--white);
+  border:1px solid var(--line);
+  border-radius:var(--radius-m);
+  overflow:hidden;
+  box-shadow:0 10px 30px -18px rgba(15,27,46,0.25);
+  transition:transform .4s var(--ease), box-shadow .4s var(--ease);
+}
+.photo-card:hover{transform:translateY(-6px); box-shadow:0 22px 40px -20px rgba(15,27,46,0.3);}
+.photo-card a{display:block;}
+.photo-card img{width:100%; display:block; background:#fff;}
+.photo-cap{padding:15px 18px; font-size:.92rem; font-weight:600; color:var(--navy);}
+.cert-grid{display:grid; grid-template-columns:repeat(auto-fit,minmax(190px,1fr)); gap:18px;}
+.cert-card{background:#fff; border:1px solid var(--line); border-radius:var(--radius-m); padding:10px; transition:transform .4s var(--ease); box-shadow:0 10px 26px -20px rgba(15,27,46,0.25);}
+.cert-card:hover{transform:translateY(-5px);}
+.cert-card img{width:100%; height:270px; object-fit:contain; display:block; background:#fff;}
+.gallery-feature{display:grid; grid-template-columns:1.05fr .95fr; gap:44px; align-items:center;}
+.gallery-feature figure{margin:0;}
+.gallery-feature img{width:100%; border-radius:var(--radius-m); border:1px solid var(--line); box-shadow:0 26px 56px -28px rgba(15,27,46,0.4); display:block;}
+.gallery-feature figcaption{margin-top:12px; font-size:.88rem; color:var(--muted);}
+.cert-link-note{margin-top:14px; font-size:.82rem; color:var(--muted);}
+@media (max-width:900px){ .results-grid{grid-template-columns:1fr 1fr;} }
+@media (max-width:860px){ .gallery-feature{grid-template-columns:1fr; gap:26px;} }
+@media (max-width:600px){ .results-grid{grid-template-columns:1fr;} }
+
 /* ===== LEARNING PLANS ===== */
 .plans-wrap{
   background:var(--paper);
@@ -1403,6 +1435,24 @@ html[dir="rtl"] .plan-features li::before{margin-left:10px;margin-right:0}
   </div>
 </section>
 
+
+<!-- ===== CREDENTIALS ===== -->
+<section class="section section-tight" id="credentials">
+  <div class="container">
+    <div class="section-head">
+      <span class="eyebrow">Credentials &amp; Certificates</span>
+      <h2>TEFL-Certified English Teacher</h2>
+      <p>A certified educator with internationally recognized teaching credentials.</p>
+    </div>
+    <div class="cert-grid reveal-stagger">
+      <figure class="cert-card"><img src="assets/gallery/cert-delta2-p1.jpg" alt="DELTA 2" loading="lazy"><figcaption class="photo-cap">DELTA 2</figcaption></figure>
+      <figure class="cert-card"><img src="assets/gallery/cert-assessment-p1.jpg" alt="Certificate of Assessment" loading="lazy"><figcaption class="photo-cap">Certificate of Assessment</figcaption></figure>
+      <figure class="cert-card"><img src="assets/gallery/cert-tefl-ielts-p1.jpg" alt="How to Teach IELTS" loading="lazy"><figcaption class="photo-cap">How to Teach IELTS</figcaption></figure>
+      <figure class="cert-card"><img src="assets/gallery/cert-tefl-p1.jpg" alt="TEFL" loading="lazy"><figcaption class="photo-cap">TEFL</figcaption></figure>
+    </div>
+  </div>
+</section>
+
 <!-- ===== INTRO VIDEO ===== -->
 <section class="section-tight" id="video">
   <div class="container">
@@ -1469,6 +1519,23 @@ html[dir="rtl"] .plan-features li::before{margin-left:10px;margin-right:0}
   </div>
 </section>
 
+
+
+<!-- ===== STUDENT RESULTS ===== -->
+<section class="section section-tight" id="results">
+  <div class="container">
+    <div class="section-head">
+      <span class="eyebrow">Student Results &amp; Reviews</span>
+      <h2>Real results from real learners</h2>
+      <p>Progress that speaks for itself — a few of the recent results students have shared.</p>
+    </div>
+    <div class="results-grid reveal-stagger">
+      <figure class="photo-card"><a href="assets/gallery/mona-ielts7.png" target="_blank" rel="noopener"><img src="assets/gallery/mona-ielts7.png" alt="Mona IELTS 7 result" loading="lazy"></a><figcaption class="photo-cap">Mona — IELTS 7</figcaption></figure>
+      <figure class="photo-card"><a href="assets/gallery/heba-toefl.png" target="_blank" rel="noopener"><img src="assets/gallery/heba-toefl.png" alt="Heba TOEFL result" loading="lazy"></a><figcaption class="photo-cap">Heba — Passed TOEFL</figcaption></figure>
+      <figure class="photo-card"><a href="assets/gallery/youssef-ielts.png" target="_blank" rel="noopener"><img src="assets/gallery/youssef-ielts.png" alt="Youssef IELTS result" loading="lazy"></a><figcaption class="photo-cap">Youssef — Targeted score in IELTS</figcaption></figure>
+    </div>
+  </div>
+</section>
 
 <!-- ===== LEARNING PLANS ===== -->
 <section class="section plans-wrap" id="plans">
@@ -1584,6 +1651,24 @@ html[dir="rtl"] .plan-features li::before{margin-left:10px;margin-right:0}
       <div class="method-step"><div class="method-dot">02</div><h3>Speak</h3><p>Come to class ready, so we can spend more time speaking instead of listening to lectures.</p></div>
       <div class="method-step"><div class="method-dot">03</div><h3>Practice</h3><p>Use real conversations and practical tasks to turn English knowledge into a real skill.</p></div>
       <div class="method-step"><div class="method-dot">04</div><h3>Improve</h3><p>Get focused feedback and keep building fluency, confidence, and accuracy.</p></div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ===== TEACHING & LIVE SESSIONS ===== -->
+<section class="section section-tight" style="background:var(--paper-2);">
+  <div class="container">
+    <div class="gallery-feature">
+      <div>
+        <span class="eyebrow">Teaching &amp; Live Sessions</span>
+        <h2 style="font-size:clamp(1.9rem,3.4vw,2.7rem); margin-top:14px;">Learning happening in real time</h2>
+        <p style="margin-top:16px; color:var(--muted); font-size:1.05rem; max-width:520px;">From 1-to-1 lessons to live training sessions and workshops.</p>
+      </div>
+      <figure>
+        <img src="assets/gallery/webinar-aue.jpg" alt="Live training session with educators" loading="lazy">
+        <figcaption>Training session with educators</figcaption>
+      </figure>
     </div>
   </div>
 </section>
@@ -2145,6 +2230,21 @@ document.querySelectorAll('.faq-item').forEach(item => {
 
     "Helping non-native English speakers communicate with confidence.": "نساعد غير الناطقين بالإنجليزية على التواصل بثقة.",
     "Navigate": "التنقل",
+    "Student Results & Reviews": "نتائج الطلاب وآراؤهم",
+    "Real results from real learners": "نتائج حقيقية من طلاب حقيقيين",
+    "Progress that speaks for itself — a few of the recent results students have shared.": "نتائج تتكلم عن نفسها — نماذج من نتائج حديثة شاركها الطلاب.",
+    "Mona — IELTS 7": "منى — أيلتس 7",
+    "Heba — Passed TOEFL": "هبة — نجحت في التويفل",
+    "Youssef — Targeted score in IELTS": "يوسف — وصل للدرجة المستهدفة في الأيلتس",
+    "Teaching & Live Sessions": "التدريب والجلسات المباشرة",
+    "Learning happening in real time": "التعلم يحدث مباشرة",
+    "From 1-to-1 lessons to live training sessions and workshops.": "من الدروس الفردية إلى الجلسات التدريبية والورش المباشرة.",
+    "Training session with educators": "جلسة تدريبية مع مدرسين",
+    "Credentials & Certificates": "المؤهلات والشهادات",
+    "TEFL-Certified English Teacher": "مدرس إنجليزية معتمد TEFL",
+    "A certified educator with internationally recognized teaching credentials.": "مربي معتمد بحاصل على مؤهلات تدريس معترف بها دولياً.",
+    "Certificate of Assessment": "شهادة تقييم",
+    "How to Teach IELTS": "كيفية تدريس IELTS",
     "More": "المزيد",
     "© 2026 Abu Bakr Mukhtar. All rights reserved.": "© 2026 Mahmoud Atef. جميع الحقوق محفوظة."
   };
