@@ -293,38 +293,35 @@ footer a{color:var(--navy); font-weight:600; text-decoration:none; border-bottom
     "Online English Lessons": "دروس إنجليزية أونلاين"
   };
   const originals = new WeakMap();
-  function applyLang(){
-    const walker = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT, null, false);
-    let node;
-    while ((node = walker.nextNode())) {
-      if (!originals.has(node)) originals.set(node, node.nodeValue);
-      const key = originals.get(node).trim();
-      const parent = node.parentElement;
-      if (parent && (parent.tagName === 'SCRIPT' || parent.tagName === 'STYLE')) continue;
-      if (key && Object.prototype.hasOwnProperty.call(dict, key)) {
-        node.nodeValue = originals.get(node).replace(key, dict[key]);
-      } else {
-        node.nodeValue = originals.get(node);
-      }
-    }
-  }
-  function setLangUI(l){
+  function applyLang(l){
     document.documentElement.lang = l;
     document.documentElement.dir = (l === 'ar') ? 'rtl' : 'ltr';
     document.querySelectorAll('#langSwitcher button').forEach(b => b.classList.toggle('active', b.getAttribute('data-lang') === l));
+    const walker = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT, null, false);
+    let node;
+    while ((node = walker.nextNode())) {
+      const parent = node.parentElement;
+      if (!parent || parent.tagName === 'SCRIPT' || parent.tagName === 'STYLE') continue;
+      if (!originals.has(node)) originals.set(node, node.nodeValue);
+      const en = originals.get(node).trim();
+      if (!en) continue;
+      if (l === 'ar' && dict[en]) {
+        node.nodeValue = node.nodeValue.replace(en, dict[en]);
+      } else if (l === 'en') {
+        node.nodeValue = originals.get(node);
+      }
+    }
   }
   document.querySelectorAll('#langSwitcher button').forEach(btn => {
     btn.addEventListener('click', () => {
       const l = btn.getAttribute('data-lang');
       try { localStorage.setItem('siteLanguage', l); } catch(e){}
-      setLangUI(l);
-      applyLang();
+      applyLang(l);
     });
   });
   let saved = 'en';
   try { saved = localStorage.getItem('siteLanguage') || 'en'; } catch(e){}
-  setLangUI(saved);
-  if (saved === 'ar') applyLang();
+  applyLang(saved);
 })();
 </script>
 
