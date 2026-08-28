@@ -3,7 +3,7 @@
 
   var cv = document.createElement('canvas');
   cv.id = 'fw-canvas';
-  cv.style.cssText = 'position:fixed;inset:0;width:100%;height:100%;pointer-events:none;z-index:2147483000;opacity:.9';
+  cv.style.cssText = 'position:fixed;inset:0;width:100%;height:100%;pointer-events:none;z-index:2147483000;opacity:.9;transition:opacity 1.2s ease';
   var ctx = cv.getContext('2d');
   var W = 0, H = 0;
 
@@ -18,12 +18,13 @@
   var P = [];
   var R = [];
   var hueBase = Math.random() * 360;
+  var done = false;
 
-  function hue() { return (hueBase + Math.random() * 90 - 45 + 360) % 360; }
+  function hue() { return (hueBase + Math.random() * 100 - 50 + 360) % 360; }
 
   function burst(x, y) {
     var h = hue();
-    var n = 70 + Math.floor(Math.random() * 50);
+    var n = 80 + Math.floor(Math.random() * 50);
     for (var i = 0; i < n; i++) {
       var a = Math.random() * Math.PI * 2;
       var v = 1.6 + Math.random() * 3.2;
@@ -40,11 +41,15 @@
     }
   }
 
-  function fire(seedX) {
-    var x = seedX != null ? seedX : 60 + Math.random() * (W - 120);
-    var targetY = 30 + Math.random() * (H * 0.45);
-    var dy = (targetY - H) / 85;
-    R.push({ x: x, y: H + 4, vy: 5.5, targetY: targetY, dy: dy, h: hue(), trail: [] });
+  function fire(x, y) {
+    R.push({
+      x: x != null ? x : 70 + Math.random() * (W - 140),
+      y: y != null ? y : H + 8,
+      vy: -5.6 - Math.random() * 1.4,
+      g: 0.10 + Math.random() * 0.10,
+      h: hue(),
+      trail: []
+    });
   }
 
   function step() {
@@ -54,7 +59,7 @@
     var i;
     for (i = R.length - 1; i >= 0; i--) {
       var rk = R[i];
-      rk.vy -= rk.dy;
+      rk.vy += rk.g;
       rk.y += rk.vy;
       rk.trail.push([rk.x, rk.y]);
       if (rk.trail.length > 12) rk.trail.shift();
@@ -66,7 +71,7 @@
         ctx.lineTo(rk.trail[t + 1][0], rk.trail[t + 1][1]);
         ctx.stroke();
       }
-      if (rk.vy <= 0) {
+      if (rk.vy >= 0 || rk.y <= H * 0.22) {
         burst(rk.x, rk.y);
         R.splice(i, 1);
       } else {
@@ -95,34 +100,30 @@
     ctx.globalAlpha = 1;
     ctx.globalCompositeOperation = 'source-over';
 
-    if (window.__fwAuto <= 0) return;
-    window.__fwAuto -= 1;
-    if (window.__fwTick === undefined) window.__fwTick = 0;
-    window.__fwTick += 1;
-    if (window.__fwTick % 28 === 0) fire();
+    if (!done && !R.length && !P.length) {
+      done = true;
+      cv.style.opacity = '0';
+      setTimeout(function () { cv.parentNode && cv.parentNode.removeChild(cv); }, 1300);
+    }
   }
 
-  function loop() {
-    step();
-    requestAnimationFrame(loop);
-  }
+  function loop() { step(); requestAnimationFrame(loop); }
 
   window.__fwCanvas = true;
-  window.__fwAuto = 0;
-
-  document.addEventListener('click', function (e) {
-    burst(e.clientX, e.clientY);
-    if (Math.random() < 0.45) setTimeout(function () { fire(e.clientX); }, 220);
-  }, { passive: true });
 
   function welcome() {
-    window.__fwAuto = 6;
-    var t = 0;
-    var iv = setInterval(function () {
-      fire();
-      t += 1;
-      if (t >= 5) { clearInterval(iv); window.__fwAuto = 0; }
-    }, 900);
+    fire(W * 0.28, H + 8);
+    fire(W * 0.62, H + 8);
+    fire(W * 0.46, H + 8);
+    setTimeout(function () { fire(W * 0.20, H * 0.9); }, 350);
+    setTimeout(function () { fire(W * 0.74, H * 0.9); }, 600);
+    setTimeout(function () { fire(W * 0.38, H * 0.95); }, 950);
+    setTimeout(function () { fire(W * 0.58, H * 0.95); }, 1200);
+    setTimeout(function () { fire(W * 0.28, H + 8); }, 1500);
+    setTimeout(function () { fire(W * 0.66, H + 8); }, 1800);
+    setTimeout(function () { burst(W * 0.5, H * 0.18); }, 2300);
+    setTimeout(function () { fire(W * 0.42, H + 8); }, 2500);
+    setTimeout(function () { fire(W * 0.70, H + 8); }, 2900);
   }
   if (document.readyState === 'complete') welcome();
   else window.addEventListener('load', welcome, { once: true });
