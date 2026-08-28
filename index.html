@@ -1307,6 +1307,18 @@ html[dir="rtl"] .method-step,html[dir="rtl"] .faq-q{direction:rtl}
 html[dir="rtl"] .plan-features li{direction:rtl}
 html[dir="rtl"] .plan-features li::before{margin-left:10px;margin-right:0}
 
+
+/* RTL fix: fixed elements sized via left:0/right:0 explode to the scrollable
+   width in RTL; anchor them to the viewport instead. */
+html[dir="rtl"] header,
+html[dir="rtl"] .mobile-menu{
+  left:0;
+  right:auto;
+  width:100vw;
+}
+html[dir="rtl"] .skip-link{left:auto; right:-999px;}
+html[dir="rtl"] .skip-link:focus{right:20px; left:auto;}
+
 </style>
 </head>
 <body>

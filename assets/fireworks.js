@@ -3,7 +3,7 @@
 
   var cv = document.createElement('canvas');
   cv.id = 'fw-canvas';
-  cv.style.cssText = 'position:fixed;inset:0;width:100%;height:100%;pointer-events:none;z-index:2147483000;opacity:.95;transition:opacity 1.2s ease';
+  cv.style.cssText = 'position:fixed;inset:0;width:100vw;height:100vh;pointer-events:none;z-index:2147483000;opacity:.95;transition:opacity 1.2s ease';
   var ctx = cv.getContext('2d');
   var W = 0, H = 0;
 
