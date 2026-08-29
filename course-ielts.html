@@ -280,6 +280,7 @@ footer a{color:var(--navy); font-weight:600; text-decoration:none; border-bottom
 <script>
 (function(){
   const dict = {
+
     "Back to Home": "العودة للرئيسية",
     "IELTS Preparation": "التحضير لامتحان IELTS",
     "Targeted IELTS preparation taught by a former IELTS Speaking Examiner — you learn the strategy, the timing, and the exact skills each section rewards.": "تحضير مستهدف لامتحان IELTS على يد ممتحن سابق لمحادثة IELTS — تتعلم الاستراتيجية وإدارة الوقت والمهارات الدقيقة التي يكافئها كل قسم.",
@@ -298,37 +299,39 @@ footer a{color:var(--navy); font-weight:600; text-decoration:none; border-bottom
     "Take the Level Test": "اختبر مستواك الأول",
     "© 2026 Abu Bakr Mukhtar": "© 2026 أبو بكر مختار",
     "Online English Lessons": "دروس إنجليزية أونلاين"
+  
   };
-  const originals = new WeakMap();
-  function applyLang(l){
+  const original = new WeakMap();
+  const btns = document.querySelectorAll('#langSwitcher button');
+
+  function apply(l){
     document.documentElement.lang = l;
-    document.documentElement.dir = (l === 'ar') ? 'rtl' : 'ltr';
-    document.querySelectorAll('#langSwitcher button').forEach(b => b.classList.toggle('active', b.getAttribute('data-lang') === l));
-    const walker = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT, null, false);
-    let node;
-    while ((node = walker.nextNode())) {
-      const parent = node.parentElement;
-      if (!parent || parent.tagName === 'SCRIPT' || parent.tagName === 'STYLE') continue;
-      if (!originals.has(node)) originals.set(node, node.nodeValue);
-      const en = originals.get(node).trim();
-      if (!en) continue;
+    document.documentElement.dir = l === 'ar' ? 'rtl' : 'ltr';
+    btns.forEach(b => b.classList.toggle('active', b.dataset.lang === l));
+    const w = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT);
+    const nodes = [];
+    let n;
+    while ((n = w.nextNode())) nodes.push(n);
+    nodes.forEach(x => {
+      const p = x.parentElement;
+      if (!p || ['SCRIPT', 'STYLE'].includes(p.tagName)) return;
+      if (!original.has(x)) original.set(x, x.nodeValue);
+      const en = original.get(x).trim();
+      if (!en) return;
       if (l === 'ar' && dict[en]) {
-        node.nodeValue = node.nodeValue.replace(en, dict[en]);
+        x.nodeValue = x.nodeValue.replace(en, dict[en]);
       } else if (l === 'en') {
-        node.nodeValue = originals.get(node);
+        x.nodeValue = original.get(x);
       }
-    }
-  }
-  document.querySelectorAll('#langSwitcher button').forEach(btn => {
-    btn.addEventListener('click', () => {
-      const l = btn.getAttribute('data-lang');
-      try { localStorage.setItem('siteLanguage', l); } catch(e){}
-      applyLang(l);
     });
-  });
-  let saved = 'en';
-  try { saved = localStorage.getItem('siteLanguage') || 'en'; } catch(e){}
-  applyLang(saved);
+    try { localStorage.setItem('siteLanguage', l); } catch(e) {}
+  }
+
+  btns.forEach(b => b.addEventListener('click', () => apply(b.dataset.lang)));
+
+  let s = 'en';
+  try { s = localStorage.getItem('siteLanguage') || 'en'; } catch(e) {}
+  apply(s);
 })();
 </script>
 
