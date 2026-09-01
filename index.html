@@ -2302,8 +2302,12 @@ document.querySelectorAll('.faq-item').forEach(item => {
 
   btns.forEach(b => b.addEventListener('click', () => apply(b.dataset.lang)));
 
-  let s = 'en';
-  try { s = localStorage.getItem('siteLanguage') || 'en'; } catch(e) {}
+  let s = null;
+  try { s = localStorage.getItem('siteLanguage'); } catch(e) {}
+  if (!s) {
+    const nav = (navigator.language || navigator.userLanguage || '').toLowerCase();
+    s = nav.startsWith('ar') ? 'ar' : 'en';
+  }
   apply(s);
 })();
 </script>

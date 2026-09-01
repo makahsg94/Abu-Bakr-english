@@ -329,8 +329,12 @@ footer a{color:var(--navy); font-weight:600; text-decoration:none; border-bottom
 
   btns.forEach(b => b.addEventListener('click', () => apply(b.dataset.lang)));
 
-  let s = 'en';
-  try { s = localStorage.getItem('siteLanguage') || 'en'; } catch(e) {}
+  let s = null;
+  try { s = localStorage.getItem('siteLanguage'); } catch(e) {}
+  if (!s) {
+    const nav = (navigator.language || navigator.userLanguage || '').toLowerCase();
+    s = nav.startsWith('ar') ? 'ar' : 'en';
+  }
   apply(s);
 })();
 </script>
