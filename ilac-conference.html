@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Using Educational Data at ILAC | Abu Bakr Mukhtar</title>
+<meta name="description" content="Abu Bakr Mukhtar delivered a lecture at the ILAC international conference on using educational data, understanding it, and making data-driven decisions.">
+<meta name="robots" content="index, follow">
+<meta name="theme-color" content="#0F1B2E">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,500&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+:root{
+  --navy: #0F1B2E;
+  --paper: #FBF9F5;
+  --line: #E4E0D6;
+  --ink: #17212F;
+  --muted: #5B6472;
+  --gold: #B8873F;
+  --white: #ffffff;
+  --ease: cubic-bezier(.25,.8,.35,1);
+}
+
+*{margin:0;padding:0;box-sizing:border-box;}
+
+body{
+  min-height:100vh;
+  display:flex;
+  flex-direction:column;
+  font-family:'Inter', sans-serif;
+  color:var(--ink);
+  line-height:1.6;
+  -webkit-font-smoothing:antialiased;
+  background:
+    radial-gradient(900px 520px at 85% -10%, rgba(184,135,63,0.12), transparent 60%),
+    radial-gradient(700px 480px at 0% 110%, rgba(15,27,46,0.06), transparent 55%),
+    var(--paper);
+}
+
+/* ===== TOP BAR ===== */
+.topbar{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:16px;
+  padding:18px clamp(20px, 5vw, 48px);
+}
+.logo{
+  font-family:'Fraunces', serif;
+  font-weight:600;
+  font-size:1.15rem;
+  color:var(--navy);
+  text-decoration:none;
+  letter-spacing:-0.01em;
+}
+.logo em{color:var(--gold); font-style:normal;}
+.top-actions{display:flex; align-items:center; gap:14px;}
+.home-link{
+  font-size:.85rem;
+  font-weight:600;
+  color:var(--navy);
+  text-decoration:none;
+  border-bottom:2px solid rgba(184,135,63,.5);
+  padding-bottom:2px;
+}
+.home-link:hover{border-color:var(--gold);}
+
+/* ===== LANGUAGE SWITCHER ===== */
+.lang-switcher{
+  display:inline-flex;
+  background:var(--white);
+  border:1px solid var(--line);
+  border-radius:999px;
+  padding:4px;
+  gap:2px;
+}
+.lang-switcher button{
+  border:0;
+  background:transparent;
+  font-family:'Inter', sans-serif;
+  font-weight:600;
+  font-size:.78rem;
+  padding:7px 14px;
+  border-radius:999px;
+  cursor:pointer;
+  color:var(--muted);
+  transition:all .25s var(--ease);
+}
+.lang-switcher button.active{background:var(--navy); color:var(--white);}
+.lang-switcher button:not(.active):hover{color:var(--navy);}
+
+/* ===== PAGE ===== */
+main{
+  flex:1;
+  width:100%;
+  max-width:860px;
+  margin:0 auto;
+  padding:12px clamp(20px, 5vw, 32px) 64px;
+}
+.card{
+  background:var(--white);
+  border:1px solid var(--line);
+  border-radius:26px;
+  padding:clamp(28px, 6vw, 52px);
+  box-shadow:0 30px 70px -35px rgba(15,27,46,0.35);
+  animation:cardIn .6s var(--ease) both;
+}
+@keyframes cardIn{
+  from{opacity:0; transform:translateY(16px);}
+  to{opacity:1; transform:none;}
+}
+
+.eyebrow{
+  display:inline-block;
+  font-size:.75rem;
+  font-weight:700;
+  letter-spacing:.14em;
+  text-transform:uppercase;
+  color:var(--gold);
+  margin-bottom:14px;
+}
+h1{
+  font-family:'Fraunces', serif;
+  font-weight:600;
+  color:var(--navy);
+  font-size:clamp(1.9rem, 5vw, 2.6rem);
+  letter-spacing:-0.01em;
+  line-height:1.12;
+  margin-bottom:16px;
+}
+.intro-text{
+  color:var(--muted);
+  font-size:1.02rem;
+  margin-bottom:26px;
+}
+.meta-chips{
+  display:flex;
+  flex-wrap:wrap;
+  gap:10px;
+  margin-bottom:30px;
+}
+.chip{
+  font-size:.78rem;
+  font-weight:600;
+  color:var(--navy);
+  background:rgba(184,135,63,0.09);
+  border:1px solid rgba(184,135,63,0.25);
+  padding:7px 15px;
+  border-radius:999px;
+}
+
+/* ===== ARTICLE ===== */
+.article p{
+  color:var(--ink);
+  font-size:1rem;
+  margin-bottom:18px;
+}
+.learn-title{
+  font-family:'Fraunces', serif;
+  font-weight:600;
+  color:var(--navy);
+  font-size:1.35rem;
+  margin:34px 0 16px;
+}
+.pull-line{
+  border-left:3px solid var(--gold);
+  padding:14px 18px;
+  background:var(--paper);
+  border-radius:0 14px 14px 0;
+  color:var(--muted);
+  font-size:.98rem;
+  margin:24px 0;
+}
+.learn-list{list-style:none; display:grid; gap:12px; margin-bottom:28px;}
+.learn-list li{
+  display:flex;
+  align-items:flex-start;
+  gap:12px;
+  font-size:.97rem;
+  color:var(--ink);
+  background:var(--paper);
+  border:1px solid var(--line);
+  border-radius:14px;
+  padding:13px 16px;
+}
+.learn-list li::before{
+  content:"✓";
+  flex-shrink:0;
+  width:24px; height:24px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  border-radius:50%;
+  background:var(--gold);
+  color:var(--white);
+  font-size:.75rem;
+  font-weight:700;
+}
+
+/* ===== MEDIA ===== */
+.video-frame{margin:18px auto 30px; max-width:720px;}
+.video-frame video{width:100%; display:block; border-radius:14px; background:#000; box-shadow:0 16px 40px rgba(15,27,46,.16);}
+.portrait-video{max-width:420px;margin:0 auto 34px;}
+.portrait-video video{width:100%; max-height:76vh; object-fit:contain; background:#000; border-radius:14px; box-shadow:0 16px 40px rgba(15,27,46,.16);}
+.video-note{font-size:.9rem; color:var(--muted); margin:-14px auto 26px; text-align:center;}
+
+/* ===== GALLERY ===== */
+.results-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
+  gap:20px;
+}
+.photo-card{
+  background:var(--white);
+  border:1px solid var(--line);
+  border-radius:16px;
+  overflow:hidden;
+  box-shadow:0 10px 30px -18px rgba(15,27,46,0.25);
+  transition:transform .4s var(--ease), box-shadow .4s var(--ease);
+}
+.photo-card:hover{transform:translateY(-6px); box-shadow:0 22px 40px -20px rgba(15,27,46,0.3);}
+.photo-card a{display:block;}
+.photo-card a img{transition:transform .45s var(--ease);}
+.photo-card:hover a img{transform:scale(1.03);}
+.photo-card img{width:100%; display:block; background:#fff;}
+.photo-cap{padding:13px 16px; font-size:.88rem; font-weight:600; color:var(--navy);}
+.gallery-note{font-size:.9rem; color:var(--muted); margin:-6px auto 22px; text-align:center;}
+
+/* ===== BUTTONS ===== */
+.btn{
+  display:inline-flex;
+  align-items:center;
+  gap:10px;
+  font-family:'Inter', sans-serif;
+  font-size:.95rem;
+  font-weight:600;
+  padding:15px 30px;
+  border-radius:999px;
+  cursor:pointer;
+  text-decoration:none;
+  border:1px solid transparent;
+  transition:all .3s var(--ease);
+}
+.btn-gold{
+  background:linear-gradient(135deg, #C99547, var(--gold));
+  color:var(--white);
+  box-shadow:0 14px 28px -12px rgba(184,135,63,.65);
+}
+.btn-gold:hover{transform:translateY(-2px); box-shadow:0 20px 34px -12px rgba(184,135,63,.75);}
+.cta{display:flex; gap:14px; flex-wrap:wrap; align-items:center; margin-top:34px;}
+.back{margin-top:26px; display:inline-block; font-size:.88rem; color:var(--muted); text-decoration:none;}
+.back:hover{color:var(--gold);}
+
+/* ===== FOOTER ===== */
+footer{
+  text-align:center;
+  padding:26px 20px 34px;
+  color:var(--muted);
+  font-size:.82rem;
+}
+footer a{color:var(--navy); font-weight:600; text-decoration:none; border-bottom:1px solid rgba(184,135,63,.5);}
+
+@media (max-width:480px){
+  .logo{font-size:1rem;}
+  .home-link{font-size:.8rem;}
+  .cta .btn{width:100%; justify-content:center;}
+}
+</style>
+</head>
+<body>
+
+<header class="topbar">
+  <a class="logo" href="index.html">Abu Bakr <em>Mukhtar</em></a>
+  <div class="top-actions">
+    <div class="lang-switcher" id="langSwitcher" aria-label="Language switcher">
+      <button type="button" data-lang="en" class="active">EN</button>
+      <button type="button" data-lang="ar">AR</button>
+    </div>
+    <a class="home-link" href="index.html">Back to Home</a>
+  </div>
+</header>
+
+<main>
+  <div class="card">
+    <span class="eyebrow">ILAC International Conference</span>
+    <h1>Using Educational Data: Abu Bakr Mukhtar Speaks at ILAC</h1>
+    <p class="intro-text">A look inside an international conference where data meets teaching — and how one English coach made the case for evidence-based decisions in education.</p>
+    <div class="meta-chips">
+      <span class="chip">Conference Talk</span>
+      <span class="chip">Learning &amp; Development</span>
+      <span class="chip">Data-Driven Teaching</span>
+    </div>
+
+    <div class="article">
+      <h2 class="learn-title">About the conference</h2>
+      <p>The ILAC international conference brought together educators, trainers, and education leaders to explore how modern teaching is evolving. Sessions focused on practical strategies that improve real learning outcomes — from classroom tools to institutional decision-making.</p>
+
+      <h2 class="learn-title">Abu Bakr's role</h2>
+      <p>Abu Bakr Mukhtar joined as a speaker to share his perspective as an English teacher, a Learning &amp; Development and Quality Assurance specialist, and a trainer who helps other educators grow.</p>
+      <p>His talk centered on one core idea: educational data is only useful when it is understood. He walked the audience through how teachers can collect meaningful data from learners' performance, how to read that data accurately, and how to turn it into decisions that genuinely improve learning.</p>
+      <p>Because his lesson design is supported by AI-powered learning materials, he also showed how data can guide personalization — letting each learner move at the right pace with the right support.</p>
+      <div class="pull-line">Data is not about numbers. It is about understanding, then deciding with confidence.</div>
+
+      <h2 class="learn-title">Key themes of the lecture</h2>
+      <ul class="learn-list">
+        <li>Collecting meaningful data from learners' performance</li>
+        <li>Understanding what the data really says</li>
+        <li>Making decisions based on evidence, not guesswork</li>
+        <li>Using data to personalize lessons for each learner</li>
+      </ul>
+    </div>
+
+    <h2 class="learn-title">Lecture recordings</h2>
+    <p class="video-note">Watch the full session recordings from the conference.</p>
+    <div class="portrait-video">
+      <div class="video-frame"><video controls preload="metadata" playsinline src="assets/gallery/conference/lecture-01.mp4"></video></div>
+    </div>
+    <div class="portrait-video">
+      <div class="video-frame"><video controls preload="metadata" playsinline src="assets/gallery/conference/lecture-02.mp4"></video></div>
+    </div>
+    <div class="video-frame">
+      <video controls preload="metadata" playsinline src="assets/gallery/conference/lecture-03.mp4"></video>
+    </div>
+
+    <h2 class="learn-title">Photos from the conference</h2>
+    <p class="gallery-note">Click any image to view it in full size.</p>
+    <div class="results-grid">
+      <figure class="photo-card"><a href="assets/gallery/conference/ilac-01.jpg" target="_blank" rel="noopener"><img src="assets/gallery/conference/ilac-01.jpg" alt="Abu Bakr at the ILAC conference" loading="lazy"></a><figcaption class="photo-cap">ILAC International Conference</figcaption></figure>
+      <figure class="photo-card"><a href="assets/gallery/conference/ilac-02.jpg" target="_blank" rel="noopener"><img src="assets/gallery/conference/ilac-02.jpg" alt="Abu Bakr at the ILAC conference" loading="lazy"></a><figcaption class="photo-cap">ILAC International Conference</figcaption></figure>
+      <figure class="photo-card"><a href="assets/gallery/conference/ilac-03.jpg" target="_blank" rel="noopener"><img src="assets/gallery/conference/ilac-03.jpg" alt="Abu Bakr at the ILAC conference" loading="lazy"></a><figcaption class="photo-cap">ILAC International Conference</figcaption></figure>
+      <figure class="photo-card"><a href="assets/gallery/conference/ilac-04.jpg" target="_blank" rel="noopener"><img src="assets/gallery/conference/ilac-04.jpg" alt="Abu Bakr at the ILAC conference" loading="lazy"></a><figcaption class="photo-cap">ILAC International Conference</figcaption></figure>
+      <figure class="photo-card"><a href="assets/gallery/conference/ilac-05.jpg" target="_blank" rel="noopener"><img src="assets/gallery/conference/ilac-05.jpg" alt="Abu Bakr at the ILAC conference" loading="lazy"></a><figcaption class="photo-cap">ILAC International Conference</figcaption></figure>
+      <figure class="photo-card"><a href="assets/gallery/conference/ilac-06.jpg" target="_blank" rel="noopener"><img src="assets/gallery/conference/ilac-06.jpg" alt="Abu Bakr at the ILAC conference" loading="lazy"></a><figcaption class="photo-cap">ILAC International Conference</figcaption></figure>
+      <figure class="photo-card"><a href="assets/gallery/conference/ilac-07.jpg" target="_blank" rel="noopener"><img src="assets/gallery/conference/ilac-07.jpg" alt="Abu Bakr at the ILAC conference" loading="lazy"></a><figcaption class="photo-cap">ILAC International Conference</figcaption></figure>
+      <figure class="photo-card"><a href="assets/gallery/conference/ilac-08.jpg" target="_blank" rel="noopener"><img src="assets/gallery/conference/ilac-08.jpg" alt="Abu Bakr at the ILAC conference" loading="lazy"></a><figcaption class="photo-cap">ILAC International Conference</figcaption></figure>
+      <figure class="photo-card"><a href="assets/gallery/conference/ilac-09.jpg" target="_blank" rel="noopener"><img src="assets/gallery/conference/ilac-09.jpg" alt="Abu Bakr at the ILAC conference" loading="lazy"></a><figcaption class="photo-cap">ILAC International Conference</figcaption></figure>
+      <figure class="photo-card"><a href="assets/gallery/conference/ilac-10.jpg" target="_blank" rel="noopener"><img src="assets/gallery/conference/ilac-10.jpg" alt="Abu Bakr at the ILAC conference" loading="lazy"></a><figcaption class="photo-cap">ILAC International Conference</figcaption></figure>
+      <figure class="photo-card"><a href="assets/gallery/conference/ilac-11.jpg" target="_blank" rel="noopener"><img src="assets/gallery/conference/ilac-11.jpg" alt="Abu Bakr at the ILAC conference" loading="lazy"></a><figcaption class="photo-cap">ILAC International Conference</figcaption></figure>
+      <figure class="photo-card"><a href="assets/gallery/conference/ilac-12.jpg" target="_blank" rel="noopener"><img src="assets/gallery/conference/ilac-12.jpg" alt="Abu Bakr at the ILAC conference" loading="lazy"></a><figcaption class="photo-cap">ILAC International Conference</figcaption></figure>
+    </div>
+
+    <div class="cta">
+      <a class="btn btn-gold" href="https://wa.me/201014416415?text=Hello%20Abu%20Bakr%2C%20I%20just%20read%20about%20your%20ILAC%20conference%20talk." target="_blank" rel="noopener">Book via WhatsApp</a>
+    </div>
+    <a class="back" href="index.html">&larr; Back to Home</a>
+  </div>
+</main>
+
+<footer><a href="index.html">© 2026 Abu Bakr Mukhtar</a> · Online English Lessons</footer>
+
+<script>
+(function(){
+  const dict = {
+
+    "Back to Home": "العودة للرئيسية",
+    "ILAC International Conference": "مؤتمر ILAC الدولي",
+    "Using Educational Data: Abu Bakr Mukhtar Speaks at ILAC": "استخدام البيانات التعليمية: أبو بكر مختار يحاضر في مؤتمر ILAC",
+    "A look inside an international conference where data meets teaching — and how one English coach made the case for evidence-based decisions in education.": "نظرة داخل مؤتمر دولي تلتقي فيه البيانات بالتدريس — وكيف قدّم مدرب إنجليزية قضية القرارات المبنية على الأدلة في التعليم.",
+    "Conference Talk": "محاضرة مؤتمر",
+    "Learning & Development": "التعلم والتطوير",
+    "Data-Driven Teaching": "التدريس القائم على البيانات",
+    "About the conference": "عن المؤتمر",
+    "The ILAC international conference brought together educators, trainers, and education leaders to explore how modern teaching is evolving. Sessions focused on practical strategies that improve real learning outcomes — from classroom tools to institutional decision-making.": "جمع مؤتمر ILAC الدولي المعلمين والمدربين وقادة التعليم لاستكشاف كيف يتطور التدريس الحديث. ركزت الجلسات على استراتيجيات عملية تحسّن نتائج التعلم الفعلية — من أدوات الفصل إلى اتخاذ القرار المؤسسي.",
+    "Abu Bakr's role": "دور أبو بكر",
+    "Abu Bakr Mukhtar joined as a speaker to share his perspective as an English teacher, a Learning & Development and Quality Assurance specialist, and a trainer who helps other educators grow.": "شارك أبو بكر مختار كمتحدث ليشارك رؤيته كمدرس إنجليزية وأخصائي تعلم وتطوير وضمان جودة، وكمدرّب يساعد المعلمين الآخرين على النمو.",
+    "His talk centered on one core idea: educational data is only useful when it is understood. He walked the audience through how teachers can collect meaningful data from learners' performance, how to read that data accurately, and how to turn it into decisions that genuinely improve learning.": "ركّزت محاضرته على فكرة جوهرية واحدة: البيانات التعليمية لا تكون مفيدة إلا عندما تُفهم. صطحب الحضور في رحلة عن كيف يجمع المعلمون بيانات ذات معنى من أداء المتعلمين، وكيف يقرؤون تلك البيانات بدقة، وكيف يحولونها إلى قرارات تحسّن التعلم فعلًا.",
+    "Because his lesson design is supported by AI-powered learning materials, he also showed how data can guide personalization — letting each learner move at the right pace with the right support.": "ولأن تصميم دروسه مدعوم بمواد تعليمية مبنية على الذكاء الاصطناعي، أظهر أيضًا كيف يمكن للبيانات أن تقود التخصيص — مما يسمح لكل متعلم بالمضي بالوتيرة المناسبة مع الدعم المناسب.",
+    "Data is not about numbers. It is about understanding, then deciding with confidence.": "البيانات ليست أرقامًا فقط، بل فهمٌ، ثم قرارٌ واثق.",
+    "Key themes of the lecture": "أبرز محاور المحاضرة",
+    "Collecting meaningful data from learners' performance": "جمع بيانات ذات معنى من أداء المتعلمين",
+    "Understanding what the data really says": "فهم ما تقوله البيانات فعلًا",
+    "Making decisions based on evidence, not guesswork": "اتخاذ القرارات بناءً على الأدلة لا التخمين",
+    "Using data to personalize lessons for each learner": "استخدام البيانات لتخصيص الدروس لكل متعلم",
+    "Lecture recordings": "تسجيلات المحاضرة",
+    "Watch the full session recordings from the conference.": "شاهد تسجيلات الجلسة كاملة من المؤتمر.",
+    "Photos from the conference": "صور من المؤتمر",
+    "Click any image to view it in full size.": "اضغط على أي صورة لعرضها بالحجم الكامل.",
+    "Book via WhatsApp": "احجز عبر واتساب",
+    "© 2026 Abu Bakr Mukhtar": "© 2026 أبو بكر مختار",
+    "Online English Lessons": "دروس إنجليزية أونلاين"
+
+  };
+  const original = new WeakMap();
+  const btns = document.querySelectorAll('#langSwitcher button');
+
+  function apply(l){
+    document.documentElement.lang = l;
+    document.documentElement.dir = l === 'ar' ? 'rtl' : 'ltr';
+    btns.forEach(b => b.classList.toggle('active', b.dataset.lang === l));
+    const w = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT);
+    const nodes = [];
+    let n;
+    while ((n = w.nextNode())) nodes.push(n);
+    nodes.forEach(x => {
+      const p = x.parentElement;
+      if (!p || ['SCRIPT', 'STYLE'].includes(p.tagName)) return;
+      if (!original.has(x)) original.set(x, x.nodeValue);
+      const en = original.get(x).trim();
+      if (!en) return;
+      if (l === 'ar' && dict[en]) {
+        x.nodeValue = x.nodeValue.replace(en, dict[en]);
+      } else if (l === 'en') {
+        x.nodeValue = original.get(x);
+      }
+    });
+    try { localStorage.setItem('siteLanguage', l); } catch(e) {}
+  }
+
+  btns.forEach(b => b.addEventListener('click', () => apply(b.dataset.lang)));
+
+  let s = null;
+  try { s = localStorage.getItem('siteLanguage'); } catch(e) {}
+  if (!s) {
+    const nav = (navigator.language || navigator.userLanguage || '').toLowerCase();
+    s = nav.startsWith('ar') ? 'ar' : 'en';
+  }
+  apply(s);
+})();
+</script>
+
+</body>
+</html>
