@@ -637,10 +637,8 @@ header.scrolled{
 @media (max-width:900px){ .results-grid{grid-template-columns:1fr 1fr;} }
 @media (max-width:860px){ .gallery-feature{grid-template-columns:1fr; gap:26px;} }
 @media (max-width:600px){ .results-grid{grid-template-columns:1fr;} }
-.ilac-videos{display:grid;grid-template-columns:1fr 1fr;gap:24px;max-width:880px;margin:0 auto 30px;}
-.ilac-videos .video-frame{margin:0;}
-.ilac-videos video{width:100%; max-height:76vh; object-fit:contain; background:#000;}
-@media (max-width:800px){ .ilac-videos{grid-template-columns:1fr;} }
+.portrait-video{max-width:420px;margin:0 auto 10px;}
+.portrait-video video{width:100%; max-height:76vh; object-fit:contain; background:#000; border-radius:14px; box-shadow:0 16px 40px rgba(15,27,46,.16);}
 
 /* ===== LEARNING PLANS ===== */
 .plans-wrap{
@@ -1495,9 +1493,8 @@ html[dir="rtl"] .skip-link:focus{right:20px; left:auto;}
       <h2>Speaking at an international conference</h2>
       <p style="margin-left:auto;margin-right:auto;">Abu Bakr presented on using educational data, understanding it, and making decisions based on it.</p>
     </div>
-    <div class="ilac-videos reveal-stagger">
+    <div class="portrait-video reveal">
       <div class="video-frame"><video controls preload="metadata" playsinline src="assets/gallery/conference/lecture-01.mp4"></video></div>
-      <div class="video-frame"><video controls preload="metadata" playsinline src="assets/gallery/conference/lecture-02.mp4"></video></div>
     </div>
     <div class="section-head center" style="margin:60px auto 20px;">
       <h2>Photos from the conference</h2>
@@ -1721,7 +1718,10 @@ html[dir="rtl"] .skip-link:focus{right:20px; left:auto;}
         <figcaption>Training session with educators</figcaption>
       </figure>
     </div>
-    <div class="results-grid reveal-stagger" style="margin-top:48px;">
+    <div class="portrait-video reveal" style="margin-top:48px;">
+      <div class="video-frame"><video controls preload="metadata" playsinline src="assets/gallery/conference/lecture-02.mp4"></video></div>
+    </div>
+    <div class="results-grid reveal-stagger" style="margin-top:32px;">
       <figure class="photo-card"><a href="assets/gallery/conference/ilac-05.jpg" target="_blank" rel="noopener"><img src="assets/gallery/conference/ilac-05.jpg" alt="Abu Bakr at the ILAC conference" loading="lazy"></a><figcaption class="photo-cap">ILAC International Conference</figcaption></figure>
       <figure class="photo-card"><a href="assets/gallery/conference/ilac-06.jpg" target="_blank" rel="noopener"><img src="assets/gallery/conference/ilac-06.jpg" alt="Abu Bakr at the ILAC conference" loading="lazy"></a><figcaption class="photo-cap">ILAC International Conference</figcaption></figure>
       <figure class="photo-card"><a href="assets/gallery/conference/ilac-07.jpg" target="_blank" rel="noopener"><img src="assets/gallery/conference/ilac-07.jpg" alt="Abu Bakr at the ILAC conference" loading="lazy"></a><figcaption class="photo-cap">ILAC International Conference</figcaption></figure>
