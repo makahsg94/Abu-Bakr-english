@@ -637,6 +637,10 @@ header.scrolled{
 @media (max-width:900px){ .results-grid{grid-template-columns:1fr 1fr;} }
 @media (max-width:860px){ .gallery-feature{grid-template-columns:1fr; gap:26px;} }
 @media (max-width:600px){ .results-grid{grid-template-columns:1fr;} }
+.ilac-videos{display:grid;grid-template-columns:1fr 1fr;gap:24px;max-width:880px;margin:0 auto 30px;}
+.ilac-videos .video-frame{margin:0;}
+.ilac-videos video{width:100%; max-height:76vh; object-fit:contain; background:#000;}
+@media (max-width:800px){ .ilac-videos{grid-template-columns:1fr;} }
 
 /* ===== LEARNING PLANS ===== */
 .plans-wrap{
@@ -1483,6 +1487,39 @@ html[dir="rtl"] .skip-link:focus{right:20px; left:auto;}
   </div>
 </section>
 
+<!-- ===== ILAC INTERNATIONAL CONFERENCE ===== -->
+<section class="section section-tight" id="ilac" style="background:var(--paper-2);">
+  <div class="container">
+    <div class="section-head center" style="margin:0 auto 44px;">
+      <span class="eyebrow">ILAC International Conference</span>
+      <h2>Speaking at an international conference</h2>
+      <p style="margin-left:auto;margin-right:auto;">Abu Bakr presented on using educational data, understanding it, and making decisions based on it.</p>
+    </div>
+    <div class="ilac-videos reveal-stagger">
+      <div class="video-frame"><video controls preload="metadata" playsinline src="assets/gallery/conference/lecture-01.mp4"></video></div>
+      <div class="video-frame"><video controls preload="metadata" playsinline src="assets/gallery/conference/lecture-02.mp4"></video></div>
+    </div>
+    <div class="section-head center" style="margin:60px auto 20px;">
+      <h2>Photos from the conference</h2>
+    </div>
+    <p style="font-size:.9rem; opacity:.85; margin:0 auto 26px; text-align:center;">Click any image to view it in full size.</p>
+    <div class="results-grid reveal-stagger">
+      <figure class="photo-card"><a href="assets/gallery/conference/ilac-01.jpg" target="_blank" rel="noopener"><img src="assets/gallery/conference/ilac-01.jpg" alt="Abu Bakr at the ILAC conference" loading="lazy"></a></figure>
+      <figure class="photo-card"><a href="assets/gallery/conference/ilac-02.jpg" target="_blank" rel="noopener"><img src="assets/gallery/conference/ilac-02.jpg" alt="Abu Bakr at the ILAC conference" loading="lazy"></a></figure>
+      <figure class="photo-card"><a href="assets/gallery/conference/ilac-03.jpg" target="_blank" rel="noopener"><img src="assets/gallery/conference/ilac-03.jpg" alt="Abu Bakr at the ILAC conference" loading="lazy"></a></figure>
+      <figure class="photo-card"><a href="assets/gallery/conference/ilac-04.jpg" target="_blank" rel="noopener"><img src="assets/gallery/conference/ilac-04.jpg" alt="Abu Bakr at the ILAC conference" loading="lazy"></a></figure>
+      <figure class="photo-card"><a href="assets/gallery/conference/ilac-05.jpg" target="_blank" rel="noopener"><img src="assets/gallery/conference/ilac-05.jpg" alt="Abu Bakr at the ILAC conference" loading="lazy"></a></figure>
+      <figure class="photo-card"><a href="assets/gallery/conference/ilac-06.jpg" target="_blank" rel="noopener"><img src="assets/gallery/conference/ilac-06.jpg" alt="Abu Bakr at the ILAC conference" loading="lazy"></a></figure>
+      <figure class="photo-card"><a href="assets/gallery/conference/ilac-07.jpg" target="_blank" rel="noopener"><img src="assets/gallery/conference/ilac-07.jpg" alt="Abu Bakr at the ILAC conference" loading="lazy"></a></figure>
+      <figure class="photo-card"><a href="assets/gallery/conference/ilac-08.jpg" target="_blank" rel="noopener"><img src="assets/gallery/conference/ilac-08.jpg" alt="Abu Bakr at the ILAC conference" loading="lazy"></a></figure>
+      <figure class="photo-card"><a href="assets/gallery/conference/ilac-09.jpg" target="_blank" rel="noopener"><img src="assets/gallery/conference/ilac-09.jpg" alt="Abu Bakr at the ILAC conference" loading="lazy"></a></figure>
+      <figure class="photo-card"><a href="assets/gallery/conference/ilac-10.jpg" target="_blank" rel="noopener"><img src="assets/gallery/conference/ilac-10.jpg" alt="Abu Bakr at the ILAC conference" loading="lazy"></a></figure>
+      <figure class="photo-card"><a href="assets/gallery/conference/ilac-11.jpg" target="_blank" rel="noopener"><img src="assets/gallery/conference/ilac-11.jpg" alt="Abu Bakr at the ILAC conference" loading="lazy"></a></figure>
+      <figure class="photo-card"><a href="assets/gallery/conference/ilac-12.jpg" target="_blank" rel="noopener"><img src="assets/gallery/conference/ilac-12.jpg" alt="Abu Bakr at the ILAC conference" loading="lazy"></a></figure>
+    </div>
+  </div>
+</section>
+
 <!-- ===== WHY LEARN WITH ABU BAKR ===== -->
 <section class="section section-tight" style="background:var(--paper-2);">
   <div class="container">
@@ -2099,6 +2136,11 @@ document.querySelectorAll('.faq-item').forEach(item => {
     "Watch": "شاهد",
     "A quick introduction": "تعريف سريع",
     "Press play to meet Abu Bakr and hear about his teaching approach.": "اضغط زر التشغيل للتعرّف على أبو بكر والاستماع إلى أسلوبه في التدريس.",
+
+    "ILAC International Conference": "مؤتمر ILAC الدولي",
+    "Speaking at an international conference": "مشاركة في مؤتمر دولي",
+    "Abu Bakr presented on using educational data, understanding it, and making decisions based on it.": "قدّم أبو بكر محاضرة حول استخدام البيانات التعليمية وفهمها واتخاذ القرارات بناءً عليها.",
+    "Photos from the conference": "صور من المؤتمر",
 
     "Why Learn With Abu Bakr": "لماذا تتعلم مع أبو بكر",
     "A coaching approach built on experience": "منهج تدريبي مبني على الخبرة",
