@@ -1759,71 +1759,7 @@ html.dark .book-cta .btn-ghost{color:#FFFFFF; border-color:rgba(255,255,255,.35)
         <span class="eyebrow">Word of the Day</span>
         <h2>A new word every day — listen, understand, then use it.</h2>
       </div>
-      <div class="wotd-board">
-        <div class="wotd-card" data-day="0">
-          <div class="wotd-top">
-            <span class="wotd-word">confidence</span>
-            <span class="wotd-pos">noun</span>
-            <button type="button" class="wotd-play" data-src="assets/audio/wotd-confidence.mp3" aria-label="Listen"><svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></button>
-          </div>
-          <p class="wotd-def">The feeling that you can trust your own abilities.</p>
-          <p class="wotd-ex"><b>Example</b>Practice every day until your confidence grows.</p>
-        </div>
-        <div class="wotd-card" data-day="1">
-          <div class="wotd-top">
-            <span class="wotd-word">fluency</span>
-            <span class="wotd-pos">noun</span>
-            <button type="button" class="wotd-play" data-src="assets/audio/wotd-fluency.mp3" aria-label="Listen"><svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></button>
-          </div>
-          <p class="wotd-def">The ability to speak smoothly, easily, and without too much hesitation.</p>
-          <p class="wotd-ex"><b>Example</b>Speaking regularly builds real fluency.</p>
-        </div>
-        <div class="wotd-card" data-day="2">
-          <div class="wotd-top">
-            <span class="wotd-word">goal</span>
-            <span class="wotd-pos">noun</span>
-            <button type="button" class="wotd-play" data-src="assets/audio/wotd-goal.mp3" aria-label="Listen"><svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></button>
-          </div>
-          <p class="wotd-def">Something that you aim for and work to achieve.</p>
-          <p class="wotd-ex"><b>Example</b>Set a clear goal for your English journey.</p>
-        </div>
-        <div class="wotd-card" data-day="3">
-          <div class="wotd-top">
-            <span class="wotd-word">feedback</span>
-            <span class="wotd-pos">noun</span>
-            <button type="button" class="wotd-play" data-src="assets/audio/wotd-feedback.mp3" aria-label="Listen"><svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></button>
-          </div>
-          <p class="wotd-def">Comments that help you understand what to improve.</p>
-          <p class="wotd-ex"><b>Example</b>Teacher feedback shows you exactly what to work on.</p>
-        </div>
-        <div class="wotd-card" data-day="4">
-          <div class="wotd-top">
-            <span class="wotd-word">strategy</span>
-            <span class="wotd-pos">noun</span>
-            <button type="button" class="wotd-play" data-src="assets/audio/wotd-strategy.mp3" aria-label="Listen"><svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></button>
-          </div>
-          <p class="wotd-def">A careful plan for reaching a goal.</p>
-          <p class="wotd-ex"><b>Example</b>A good strategy saves time in the exam.</p>
-        </div>
-        <div class="wotd-card" data-day="5">
-          <div class="wotd-top">
-            <span class="wotd-word">progress</span>
-            <span class="wotd-pos">noun</span>
-            <button type="button" class="wotd-play" data-src="assets/audio/wotd-progress.mp3" aria-label="Listen"><svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></button>
-          </div>
-          <p class="wotd-def">Movement toward a better or more advanced level.</p>
-          <p class="wotd-ex"><b>Example</b>Track your progress to stay motivated.</p>
-        </div>
-        <div class="wotd-card" data-day="6">
-          <div class="wotd-top">
-            <span class="wotd-word">opportunity</span>
-            <span class="wotd-pos">noun</span>
-            <button type="button" class="wotd-play" data-src="assets/audio/wotd-opportunity.mp3" aria-label="Listen"><svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></button>
-          </div>
-          <p class="wotd-def">A chance to do something useful or valuable.</p>
-          <p class="wotd-ex"><b>Example</b>English opens new opportunities around the world.</p>
-        </div>
-      </div>
+      <div class="wotd-board" id="wotdRoot"></div>
       <div class="wotd-foot">
         <a class="wotd-link" href="flashcards.html">Study today's 20 flashcards <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
       </div>
@@ -2348,18 +2284,72 @@ document.querySelectorAll('.faq-item').forEach(item => {
 
 <script>
 (function(){
-  var d = new Date().getDay();
-  var cards = document.querySelectorAll('.wotd-card');
-  for (var i = 0; i < cards.length; i++) cards[i].hidden = (i !== d);
-  var a = null;
-  var plays = document.querySelectorAll('.wotd-play');
-  for (var k = 0; k < plays.length; k++) {
-    plays[k].addEventListener('click', function(){
-      if (a) { a.pause(); a = null; }
-      a = new Audio(this.getAttribute('data-src'));
-      a.play();
-    });
+  var WOTD_DAILY = [
+    {day:1, word:"persistent", pos:"adjective", def:"Continuing with determination, not giving up.", ar:"مُصرّ — ثابت لا يستسلم.", ex:"Persistence helps you reach difficult goals.", exAr:"الإصرار يساعدك على بلوغ الأهداف الصعبة.", audio:"assets/audio/wotd/01.mp3"},
+    {day:2, word:"gratitude", pos:"noun", def:"The feeling of being thankful.", ar:"امتنان.", ex:"She showed gratitude to her teacher.", exAr:"أظهرت امتنانًا لمعلمها.", audio:"assets/audio/wotd/02.mp3"},
+    {day:3, word:"determine", pos:"verb", def:"To decide firmly to do something.", ar:"يُصرّ — يحدد.", ex:"He is determined to learn English.", exAr:"إنه مصمم على تعلم الإنجليزية.", audio:"assets/audio/wotd/03.mp3"},
+    {day:4, word:"brief", pos:"adjective", def:"Short in time or length.", ar:"موجز وقصير.", ex:"Please keep your answer brief.", exAr:"أبقِ إجابتك موجزة من فضلك.", audio:"assets/audio/wotd/04.mp3"},
+    {day:5, word:"predict", pos:"verb", def:"To say what will happen in the future.", ar:"يتنبأ.", ex:"Scientists predict warmer summers.", exAr:"يتنبأ العلماء بصيف أكثر دفئًا.", audio:"assets/audio/wotd/05.mp3"},
+    {day:6, word:"common", pos:"adjective", def:"Happening often, or shared by many.", ar:"شائع.", ex:"This mistake is very common.", exAr:"هذا الخطأ شائع جدًا.", audio:"assets/audio/wotd/06.mp3"},
+    {day:7, word:"require", pos:"verb", def:"To need something.", ar:"يتطلب.", ex:"Good English requires daily practice.", exAr:"الإنجليزية الجيدة تتطلب تدريبًا يوميًا.", audio:"assets/audio/wotd/07.mp3"},
+    {day:8, word:"improve", pos:"verb", def:"To make or become better.", ar:"يحسّن.", ex:"Daily reading improves your skills.", exAr:"القراءة اليومية تحسّن مهاراتك.", audio:"assets/audio/wotd/08.mp3"},
+    {day:9, word:"habit", pos:"noun", def:"Something you do regularly without thinking.", ar:"عادة.", ex:"Morning reading became a good habit.", exAr:"القراءة الصباحية أصبحت عادة جيدة.", audio:"assets/audio/wotd/09.mp3"},
+    {day:10, word:"success", pos:"noun", def:"The result of achieving a goal.", ar:"نجاح.", ex:"Success comes from small steps.", exAr:"النجاح يأتي من خطوات صغيرة.", audio:"assets/audio/wotd/10.mp3"},
+    {day:11, word:"polite", pos:"adjective", def:"Showing good manners.", ar:"مهذب.", ex:"He is always polite to guests.", exAr:"إنه مهذب دائمًا مع الضيوف.", audio:"assets/audio/wotd/11.mp3"},
+    {day:12, word:"courage", pos:"noun", def:"The ability to face fear.", ar:"شجاعة.", ex:"It takes courage to speak first.", exAr:"يتطلب الأمر شجاعة لتبدأ الكلام.", audio:"assets/audio/wotd/12.mp3"},
+    {day:13, word:"generous", pos:"adjective", def:"Giving more than expected.", ar:"كريم.", ex:"She is generous with her time.", exAr:"إنها كريمة بوقتها.", audio:"assets/audio/wotd/13.mp3"},
+    {day:14, word:"accurate", pos:"adjective", def:"Exactly correct.", ar:"دقيق وصحيح تمامًا.", ex:"Make sure your answer is accurate.", exAr:"تأكد من أن إجابتك دقيقة.", audio:"assets/audio/wotd/14.mp3"},
+    {day:15, word:"attempt", pos:"verb", def:"To try to do something.", ar:"يحاول.", ex:"I will attempt the hard question.", exAr:"سأحاول حل السؤال الصعب.", audio:"assets/audio/wotd/15.mp3"},
+    {day:16, word:"curious", pos:"adjective", def:"Wanting to know or learn something.", ar:"فضولي.", ex:"Curious students ask great questions.", exAr:"الطلاب الفضوليون يطرحون أسئلة رائعة.", audio:"assets/audio/wotd/16.mp3"},
+    {day:17, word:"decide", pos:"verb", def:"To choose after thinking carefully.", ar:"يقرر.", ex:"You should decide your next goal.", exAr:"عليك أن تقرر هدفك القادم.", audio:"assets/audio/wotd/17.mp3"},
+    {day:18, word:"effort", pos:"noun", def:"Energy you use to do something.", ar:"جهد.", ex:"Success needs daily effort.", exAr:"النجاح يحتاج جهدًا يوميًا.", audio:"assets/audio/wotd/18.mp3"},
+    {day:19, word:"flexible", pos:"adjective", def:"Able to change easily.", ar:"مرن.", ex:"Be flexible with your schedule.", exAr:"كن مرنًا في جدولك.", audio:"assets/audio/wotd/19.mp3"},
+    {day:20, word:"manage", pos:"verb", def:"To succeed in doing something.", ar:"يتمكن من.", ex:"You can manage your time well.", exAr:"يمكنك تنظيم وقتك جيدًا.", audio:"assets/audio/wotd/20.mp3"},
+    {day:21, word:"patient", pos:"adjective", def:"Able to wait calmly.", ar:"صبور.", ex:"Be patient with yourself.", exAr:"كن صبورًا مع نفسك.", audio:"assets/audio/wotd/21.mp3"},
+    {day:22, word:"prepare", pos:"verb", def:"To get ready.", ar:"يستعد.", ex:"Prepare before every lesson.", exAr:"استعد قبل كل درس.", audio:"assets/audio/wotd/22.mp3"},
+    {day:23, word:"reliable", pos:"adjective", def:"Can be trusted.", ar:"موثوق.", ex:"He is a reliable classmate.", exAr:"إنه زميل موثوق.", audio:"assets/audio/wotd/23.mp3"},
+    {day:24, word:"settle", pos:"verb", def:"To calmly decide or finish something.", ar:"يحسم.", ex:"Let's settle this question now.", exAr:"دعنا نحسم هذا السؤال الآن.", audio:"assets/audio/wotd/24.mp3"},
+    {day:25, word:"avoid", pos:"verb", def:"To stay away from something.", ar:"يتجنب.", ex:"Avoid long silent pauses.", exAr:"تجنب التوقفات الصامتة الطويلة.", audio:"assets/audio/wotd/25.mp3"},
+    {day:26, word:"suggest", pos:"verb", def:"To offer an idea.", ar:"يقترح.", ex:"I suggest a short break.", exAr:"أقترح استراحة قصيرة.", audio:"assets/audio/wotd/26.mp3"},
+    {day:27, word:"welcome", pos:"verb", def:"To greet with pleasure.", ar:"يرحب.", ex:"We welcome new learners.", exAr:"نحن نرحب بالمتعلمين الجدد.", audio:"assets/audio/wotd/27.mp3"},
+    {day:28, word:"clear", pos:"adjective", def:"Easy to understand.", ar:"واضح.", ex:"Speak in a clear voice.", exAr:"تحدث بصوت واضح.", audio:"assets/audio/wotd/28.mp3"},
+    {day:29, word:"careful", pos:"adjective", def:"Giving attention to avoid mistakes.", ar:"حريص ومتأنٍّ.", ex:"Be careful with your answers.", exAr:"كن متأنيًا في إجاباتك.", audio:"assets/audio/wotd/29.mp3"},
+    {day:30, word:"connect", pos:"verb", def:"To join or link things together.", ar:"يربط.", ex:"Connect ideas with linking words.", exAr:"اربط الأفكار بكلمات الربط.", audio:"assets/audio/wotd/30.mp3"},
+    {day:31, word:"respect", pos:"verb", def:"To treat someone with honor.", ar:"يحترم.", ex:"Respect different opinions.", exAr:"احترم الآراء المختلفة.", audio:"assets/audio/wotd/31.mp3"}
+  ];
+  var POS_AR = {noun: "اسم", verb: "فعل", adjective: "صفة"};
+  var root = document.getElementById('wotdRoot');
+  var audioEl = null;
+
+  function renderWotd(l){
+    var ar = l === 'ar';
+    var max = WOTD_DAILY.length;
+    var date = new Date();
+    var idx = Math.min(max - 1, Math.max(0, date.getDate() - 1));
+    var item = WOTD_DAILY[idx];
+    if (!root) return;
+    root.innerHTML =
+      '<div class="wotd-card">' +
+        '<div class="wotd-top">' +
+          '<span class="wotd-word">' + item.word + '</span>' +
+          '<span class="wotd-pos">' + (POS_AR[item.pos] || item.pos) + '</span>' +
+          '<button type="button" class="wotd-play" data-src="' + item.audio + '" aria-label="Listen"><svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></button>' +
+        '</div>' +
+        '<p class="wotd-def">' + (ar ? item.ar : item.def) + '</p>' +
+        '<p class="wotd-ex"><b>' + (ar ? 'مثال' : 'Example') + '</b>' + (ar ? item.exAr : item.ex) + '</p>' +
+      '</div>';
+    var btn = root.querySelector('.wotd-play');
+    if (btn) {
+      btn.addEventListener('click', function(){
+        if (audioEl) { audioEl.pause(); audioEl = null; }
+        audioEl = new Audio(btn.getAttribute('data-src'));
+        audioEl.play();
+      });
+    }
   }
+
+  window.wotdRender = renderWotd;
+  window.WOTD_DAILY = WOTD_DAILY;
 })();
 </script>
 
@@ -2673,6 +2663,7 @@ document.querySelectorAll('.faq-item').forEach(item => {
     nodes.forEach(x => {
       const p = x.parentElement;
       if (!p || ['SCRIPT', 'STYLE'].includes(p.tagName)) return;
+      if (p.closest && p.closest('#wotdRoot')) return;
       if (!original.has(x)) original.set(x, x.nodeValue);
       const en = original.get(x).trim();
       if (!en) return;
@@ -2683,6 +2674,7 @@ document.querySelectorAll('.faq-item').forEach(item => {
       }
     });
     try { localStorage.setItem('siteLanguage', l); } catch(e) {}
+    if (typeof window.wotdRender === 'function') window.wotdRender(l);
   }
 
   btns.forEach(b => b.addEventListener('click', () => apply(b.dataset.lang)));
