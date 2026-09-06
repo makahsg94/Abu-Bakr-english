@@ -494,10 +494,6 @@ html.dark .board-row.top .board-rank{color:#FFFFFF;}
         <span class="meta-label">Time</span>
         <span class="meta-value">20 minutes</span>
       </div>
-      <div class="meta-item">
-        <span class="meta-label">Deadline</span>
-        <span class="meta-value" id="deadlineValue"></span>
-      </div>
     </div>
 
     <div class="start-wrap">
@@ -555,20 +551,6 @@ html.dark .board-row.top .board-rank{color:#FFFFFF;}
   function dayDiffDays(a, b){ return Math.round((a - b) / 86400000); }
   function today(){ var n = new Date(); n.setHours(0,0,0,0); return n; }
   var weekIndex = Math.max(0, Math.floor(dayDiffDays(today(), WEEK_EPOCH) / 7));
-
-  function nextMondayDeadline(){
-    var now = new Date();
-    var d = new Date(now.getFullYear(), now.getMonth(), now.getDate(), 18, 0, 0); // 6 PM today
-    var day = now.getDay(); // 0 Sun ... 6 Sat
-    var add = (day === 1) ? 7 : (8 - day) % 7;
-    d.setDate(d.getDate() + add);
-    return d;
-  }
-  function countdownTo(t){
-    var diff = t - new Date();
-    if (diff <= 0) return {d:0,h:0,m:0};
-    return {d: Math.floor(diff/86400000), h: Math.floor(diff%86400000/3600000), m: Math.floor(diff%3600000/60000)};
-  }
 
   function mulberry32(a){
     return function(){
@@ -911,10 +893,10 @@ html.dark .board-row.top .board-rank{color:#FFFFFF;}
     var html = '';
     state.sections.forEach(function(sec){
       if (sec.type === 'listen') {
-        html += '<div class="q-section-title"><span class="section-chip">' + (LANG==='ar'?'استماع':'Listening') + '</span> ' + sec.sec.title[LANG] + '</div>';
+        html += '<div class="q-section-title"><span class="section-chip">Listening</span> ' + sec.sec.title.en + '</div>';
         html += '<button type="button" class="listen-btn" data-audio="' + sec.sec.audio + '">' +
           '<svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>' +
-          (LANG==='ar' ? 'استمع إلى المقطع' : 'Listen to the clip') + '</button>';
+          'Listen to the clip</button>';
         sec.sec.qs.forEach(function(q){
           var key = qKey(i);
           state.qKeys.push(key);
@@ -922,8 +904,8 @@ html.dark .board-row.top .board-rank{color:#FFFFFF;}
           i++;
         });
       } else if (sec.type === 'read') {
-        html += '<div class="q-section-title"><span class="section-chip">' + (LANG==='ar'?'قراءة':'Reading') + '</span> ' + sec.sec.title[LANG] + '</div>';
-        html += '<div class="passage">' + esc(sec.sec.text[LANG]) + '</div>';
+        html += '<div class="q-section-title"><span class="section-chip">Reading</span> ' + sec.sec.title.en + '</div>';
+        html += '<div class="passage">' + esc(sec.sec.text.en) + '</div>';
         sec.sec.qs.forEach(function(q){
           var key = qKey(i);
           state.qKeys.push(key);
@@ -964,9 +946,9 @@ html.dark .board-row.top .board-rank{color:#FFFFFF;}
     var sel = state.answers[key];
     var opts = q.choices.map(function(c, j){
       return '<button type="button" class="option' + (sel === j ? ' selected' : '') + '" data-key="' + key + '" data-opt="' + j + '">' +
-        '<span class="letter">' + choicesLetter[j] + '</span><span>' + esc(c[LANG]) + '</span></button>';
+        '<span class="letter">' + choicesLetter[j] + '</span><span>' + esc(c.en) + '</span></button>';
     }).join('');
-    return '<div class="q"><p class="q-text">' + (idx + 1) + '. ' + esc(q[LANG]) + '</p><div class="q-options">' + opts + '</div></div>';
+    return '<div class="q"><p class="q-text">' + (idx + 1) + '. ' + esc(q.en) + '</p><div class="q-options">' + opts + '</div></div>';
   }
 
   function refreshFinish(){
@@ -1114,7 +1096,6 @@ html.dark .board-row.top .board-rank{color:#FFFFFF;}
       "Week": "الأسبوع",
       "Questions": "الأسئلة",
       "Time": "الوقت",
-      "Deadline": "الموعد النهائي",
       "Start the Exam": "ابدأ الامتحان",
       "Finish & See Result": "إنهاء وعرض النتيجة",
       "Time left": "الوقت المتبقي",
@@ -1169,21 +1150,6 @@ html.dark .board-row.top .board-rank{color:#FFFFFF;}
 
   function updateStatic(){
     document.getElementById('weekBadge').textContent = (LANG === 'ar' ? 'أسبوع ' : 'Week ') + (weekIndex + 1);
-    setDeadline();
-  }
-
-  function setDeadline(){
-    var dl = document.getElementById('deadlineValue');
-    var target = nextMondayDeadline();
-    var c = countdownTo(target);
-    var days = c.d;
-    var label = '';
-    if (LANG === 'ar') {
-      label = days === 0 ? 'اليوم' : 'بعد ' + days + ' يوم' + (c.h > 0 ? ' و' + c.h + ' ساعة' : '');
-    } else {
-      label = days === 0 ? 'today' : 'in ' + days + ' day' + (days > 1 ? 's' : '') + (c.h > 0 ? ' ' + c.h + 'h' : '');
-    }
-    dl.textContent = target.toDateString().split(' ')[0] + ', ' + label;
   }
 
   document.getElementById('startBtn').addEventListener('click', startExam);

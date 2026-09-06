@@ -428,7 +428,7 @@ html.dark .book-cta .btn-ghost{color:#FFFFFF; border-color:rgba(255,255,255,.35)
   <div class="card">
     <span class="eyebrow">Vocabulary Cards</span>
     <h1>Vocabulary Cards</h1>
-    <p class="intro-text">Flip the card, listen to the word, and repeat it aloud — meanings and examples in both English and Arabic.</p>
+    <p class="intro-text">Flip the card, listen to the word, and repeat it aloud — meanings and examples in both English and Arabic. A fresh set of 20 cards every single day.</p>
 
     <div id="deckRoot"></div>
 
@@ -528,6 +528,11 @@ html.dark .book-cta .btn-ghost{color:#FFFFFF; border-color:rgba(255,255,255,.35)
     }
   };
 
+  const ALL_CARDS = [];
+  Object.keys(DECK_DATA).forEach(function (k) {
+    DECK_DATA[k].cards.forEach(function (c) { ALL_CARDS.push(c); });
+  });
+
   const root = document.getElementById('deckRoot');
   const flashInner = document.createElement('div');
   flashInner.className = 'flash-inner';
@@ -546,10 +551,6 @@ html.dark .book-cta .btn-ghost{color:#FFFFFF; border-color:rgba(255,255,255,.35)
       '<p class="flash-ex" id="fEx"></p>' +
     '</div>';
 
-  const tabsWrap = document.createElement('div');
-  tabsWrap.className = 'tabs';
-  tabsWrap.id = 'fTabs';
-
   const flashZone = document.createElement('div');
   flashZone.className = 'flash-zone';
   const flash3d = document.createElement('div');
@@ -567,7 +568,6 @@ html.dark .book-cta .btn-ghost{color:#FFFFFF; border-color:rgba(255,255,255,.35)
   flashZone.appendChild(controls);
   flashZone.appendChild(track);
 
-  root.appendChild(tabsWrap);
   root.appendChild(flashZone);
 
   const el = {
@@ -582,32 +582,35 @@ html.dark .book-cta .btn-ghost{color:#FFFFFF; border-color:rgba(255,255,255,.35)
   };
 
   let LANG = 'en';
-  let deckKey = 'general';
   let index = 0;
   let order = [];
+
+  function daySeed() {
+    var now = new Date();
+    return now.getFullYear() * 10000 + (now.getMonth() + 1) * 100 + now.getDate();
+  }
+  function mulberry32(a) {
+    return function () {
+      a |= 0; a = a + 0x6D2B79F5 | 0;
+      var t = Math.imul(a ^ a >>> 15, 1 | a);
+      t = t + Math.imul(t ^ t >>> 7, 61 | t) ^ t;
+      return ((t ^ t >>> 14) >>> 0) / 4294967296;
+    };
+  }
+  function todaysDeck() {
+    var pool = ALL_CARDS.map(function (_, i) { return i; });
+    var rnd = mulberry32(daySeed() + 7);
+    for (var i = pool.length - 1; i > 0; i--) {
+      var j = Math.floor(rnd() * (i + 1));
+      var tmp = pool[i]; pool[i] = pool[j]; pool[j] = tmp;
+    }
+    var pick = pool.slice(0, 20);
+    return pick.map(function (i) { return ALL_CARDS[i]; });
+  }
 
   function labels(l) {
     return {prev: l === 'ar' ? 'السابق' : 'Previous', next: l === 'ar' ? 'التالي' : 'Next',
             shuffle: l === 'ar' ? 'خلط' : 'Shuffle', hint: l === 'ar' ? 'اضغط على البطاقة لرؤية المعنى' : 'Tap the card to see the meaning'};
-  }
-
-  function buildTabs() {
-    tabsWrap.innerHTML = '';
-    Object.keys(DECK_DATA).forEach(function (key) {
-      const b = document.createElement('button');
-      b.type = 'button';
-      b.className = 'tab-btn' + (key === deckKey ? ' active' : '');
-      b.textContent = DECK_DATA[key].label[LANG];
-      b.setAttribute('data-deck', key);
-      b.addEventListener('click', function () {
-        deckKey = key;
-        index = 0;
-        order = [];
-        buildTabs();
-        renderCard();
-      });
-      tabsWrap.appendChild(b);
-    });
   }
 
   function buildControls() {
@@ -644,7 +647,7 @@ html.dark .book-cta .btn-ghost{color:#FFFFFF; border-color:rgba(255,255,255,.35)
   }
 
   function currentDeck() {
-    if (!order.length) order = DECK_DATA[deckKey].cards.map(function (_, i) { return i; });
+    if (!order.length) order = todaysDeck();
     return order;
   }
 
@@ -652,7 +655,7 @@ html.dark .book-cta .btn-ghost{color:#FFFFFF; border-color:rgba(255,255,255,.35)
     const deck = currentDeck();
     const total = deck.length;
     if (index >= total) index = 0;
-    const card = DECK_DATA[deckKey].cards[deck[index]];
+    const card = deck[index];
     el.word.textContent = card.w;
     el.pos.textContent = card.pos;
     el.hint.textContent = labels(LANG).hint;
@@ -699,7 +702,6 @@ html.dark .book-cta .btn-ghost{color:#FFFFFF; border-color:rgba(255,255,255,.35)
   });
 
   function renderAll() {
-    buildTabs();
     buildControls();
     renderCard();
   }
@@ -711,6 +713,7 @@ html.dark .book-cta .btn-ghost{color:#FFFFFF; border-color:rgba(255,255,255,.35)
       "Back to Home": "العودة للرئيسية",
       "Vocabulary Cards": "بطاقات المفردات",
       "Flip the card, listen to the word, and repeat it aloud — meanings and examples in both English and Arabic.": "اقلب البطاقة، استمع إلى الكلمة، وكررها بصوت عالٍ — المعاني والأمثلة بالإنجليزية والعربية.",
+      "A fresh set of 20 cards every single day.": "مجموعة جديدة من 20 بطاقة كل يوم.",
       "© 2026 Abu Bakr Mukhtar": "© 2026 أبو بكر مختار",
       "Online English Lessons": "دروس إنجليزية أونلاين"
     };
