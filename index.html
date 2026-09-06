@@ -1364,6 +1364,47 @@ html.dark .wotd-ex b{color:var(--gold-light);}
 .wotd-link:hover{border-color:var(--gold);}
 .wotd-card[hidden]{display:none;}
 
+/* ===== PRACTICE TOOLS ===== */
+.practice-wrap{background:var(--paper-2);}
+.practice-inner{max-width:860px;margin:0 auto;}
+.practice-grid{display:grid;gap:16px;margin-top:8px;}
+@media (min-width:720px){.practice-grid{grid-template-columns:1fr 1fr 1fr;}}
+.practice-card{
+  display:flex;flex-direction:column;gap:8px;
+  background:var(--white);
+  border:1px solid var(--line);
+  border-radius:var(--radius-l);
+  padding:24px;
+  text-decoration:none;color:inherit;
+  transition:transform .3s var(--ease),border-color .3s var(--ease),box-shadow .3s var(--ease);
+}
+.practice-card:hover{transform:translateY(-3px);border-color:var(--gold);box-shadow:var(--shadow-card);}
+.practice-num{
+  width:38px;height:38px;border-radius:50%;
+  background:var(--navy);color:#fff;
+  display:inline-flex;align-items:center;justify-content:center;
+  font-weight:800;font-size:.9rem;margin-bottom:6px;
+}
+html.dark .practice-num{color:#F5F6F8;}
+.practice-card h3{font-family:'Fraunces',serif;font-weight:600;font-size:1.12rem;color:var(--navy);letter-spacing:-0.01em;}
+html.dark .practice-card h3{color:var(--ink);}
+.practice-card p{font-size:.86rem;color:var(--muted);flex:1;}
+.practice-go{
+  font-size:.82rem;font-weight:700;color:var(--gold);
+  display:inline-flex;align-items:center;gap:8px;
+}
+.practice-go svg{display:block;transition:transform .3s var(--ease);}
+.practice-card:hover .practice-go svg{transform:translateX(3px);}
+html[dir="rtl"] .practice-card:hover .practice-go svg{transform:translateX(-3px) rotate(180deg);}
+.practice-foot{margin-top:26px;text-align:center;}
+.practice-all{
+  display:inline-flex;align-items:center;gap:8px;
+  font-size:.95rem;font-weight:600;color:var(--ink);
+  border-bottom:2px solid rgba(184,135,63,.5);padding-bottom:3px;
+  transition:border-color .3s var(--ease);
+}
+.practice-all:hover{border-color:var(--gold);}
+
 /* ===== DARK MODE ===== */
 html.dark{
   --paper:#0D1117;
@@ -1785,6 +1826,61 @@ html.dark .book-cta .btn-ghost{color:#FFFFFF; border-color:rgba(255,255,255,.35)
       </div>
       <div class="wotd-foot">
         <a class="wotd-link" href="flashcards.html">Study all 60 vocabulary cards <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ===== PRACTICE TOOLS ===== -->
+<section class="section section-tight practice-wrap" id="practice">
+  <div class="container">
+    <div class="practice-inner">
+      <div class="section-head center" style="margin:0 auto;">
+        <span class="eyebrow">Practice Tools</span>
+        <h2>Five tools to train your English every day</h2>
+        <p>Flashcards, shadowing, a weekly exam, a daily challenge, and a focus timer.</p>
+      </div>
+      <div class="practice-grid">
+        <a class="practice-card" href="flashcards.html">
+          <span class="practice-num">1</span>
+          <h3>Vocabulary Flashcards</h3>
+          <p>60 word cards with meanings, examples, and pronunciation.</p>
+          <span class="practice-go">Open tool <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+        </a>
+        <a class="practice-card" href="speaking.html">
+          <span class="practice-num">2</span>
+          <h3>Shadowing Practice</h3>
+          <p>Listen to natural phrases, record your voice, and compare.</p>
+          <span class="practice-go">Open tool <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+        </a>
+        <a class="practice-card" href="weekly-exam.html">
+          <span class="practice-num">3</span>
+          <h3>Weekly English Exam</h3>
+          <p>A fresh 15-question exam every week across all four skills.</p>
+          <span class="practice-go">Open tool <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+        </a>
+        <a class="practice-card" href="daily-challenge.html">
+          <span class="practice-num">4</span>
+          <h3>Daily Challenge</h3>
+          <p>Three quick questions a day. Keep your streak alive.</p>
+          <span class="practice-go">Open tool <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+        </a>
+        <a class="practice-card" href="focus.html">
+          <span class="practice-num">5</span>
+          <h3>Focus Timer &amp; Exam Countdown</h3>
+          <p>Pomodoro blocks plus a live countdown to your exam.</p>
+          <span class="practice-go">Open tool <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+        </a>
+        <a class="practice-card" href="tools.html">
+          <span class="practice-num">6</span>
+          <h3>All Tools in One Place</h3>
+          <p>Every practice page together on a single hub.</p>
+          <span class="practice-go">Open tool <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+        </a>
+      </div>
+      <div class="practice-foot">
+        <a class="practice-all" href="tools.html">See all tools <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
       </div>
     </div>
   </div>
@@ -2300,6 +2396,23 @@ document.querySelectorAll('.faq-item').forEach(item => {
     "Study all 60 vocabulary cards": "ادرس كل بطاقات المفردات الستين",
     "Vocabulary": "المفردات",
     "Tools": "الأدوات",
+    "Practice Tools": "أدوات التدريب",
+    "Five tools to train your English every day": "خمس أدوات لتدريب الإنجليزية كل يوم",
+    "Flashcards, shadowing, a weekly exam, a daily challenge, and a focus timer.": "بطاقات، تحدث ظلي، امتحان أسبوعي، تحدي يومي، ومؤقّت تركيز.",
+    "Vocabulary Flashcards": "بطاقات المفردات",
+    "60 word cards with meanings, examples, and pronunciation.": "60 بطاقة كلمات مع المعاني والأمثلة والنطق.",
+    "Shadowing Practice": "التحدث الظلي",
+    "Listen to natural phrases, record your voice, and compare.": "استمع لجمل طبيعية، سجّل صوتك وقارن.",
+    "Weekly English Exam": "الامتحان الأسبوعي",
+    "A fresh 15-question exam every week across all four skills.": "امتحان جديد من 15 سؤالًا كل أسبوع في المهارات الأربع.",
+    "Daily Challenge": "التحدي اليومي",
+    "Three quick questions a day. Keep your streak alive.": "3 أسئلة سريعة يوميًا. حافظ على سلسلة أيامك.",
+    "Focus Timer & Exam Countdown": "مؤقّت التركيز وعدّاد الامتحان",
+    "Pomodoro blocks plus a live countdown to your exam.": "جلسات بومودورو مع عدّاد حي لامتحانك.",
+    "All Tools in One Place": "كل الأدوات في صفحة واحدة",
+    "Every practice page together on a single hub.": "كل صفحات التدريب مجمّعة في مكان واحد.",
+    "Open tool": "افتح الأداة",
+    "See all tools": "شاهد كل الأدوات",
 
     "Skip to main content": "تخطَّ إلى المحتوى الرئيسي",
     "Home": "الرئيسية",
