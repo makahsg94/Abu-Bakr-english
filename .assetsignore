@@ -1,0 +1,10 @@
+.git
+node_modules/
+.wrangler/
+*.log
+.env
+.env.*
+Thumbs.db
+Desktop.ini
+index.backup.html
+.assetsignore
