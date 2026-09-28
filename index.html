@@ -31,6 +31,7 @@
   --muted-light: #8891A0;
   --gold: #B8873F;
   --gold-light: #D6B372;
+  --gold-deep: #8A6428;
   --white: #ffffff;
   --radius-s: 8px;
   --radius-m: 14px;
@@ -793,6 +794,500 @@ header.scrolled{
   color:var(--navy);
 }
 .featured .plan-cta:hover{background:var(--gold-light);}
+
+/* ===== ROADMAP BUTTON ===== */
+.plan-roadmap{
+  margin-top:10px;
+  width:100%;
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  gap:8px;
+  padding:13px 18px;
+  border-radius:var(--radius-s);
+  background:transparent;
+  border:1px solid var(--line);
+  color:var(--navy);
+  font-size:.86rem;
+  font-weight:700;
+  transition:transform .25s var(--ease), border-color .25s var(--ease), color .25s var(--ease), background .25s var(--ease);
+}
+.plan-roadmap svg{transition:transform .25s var(--ease);}
+.plan-roadmap:hover{transform:translateY(-2px); border-color:var(--gold); color:var(--gold);}
+.plan-roadmap:hover svg{transform:translateX(4px);}
+.featured .plan-roadmap{
+  background:rgba(255,255,255,.08);
+  border-color:rgba(255,255,255,.26);
+  color:var(--white);
+}
+.featured .plan-roadmap:hover{
+  background:rgba(255,255,255,.16);
+  border-color:var(--gold-light);
+  color:var(--gold-light);
+}
+.plans-hint{
+  margin-top:30px;
+  text-align:center;
+  color:var(--muted);
+  font-size:.92rem;
+  max-width:720px;
+  margin-inline:auto;
+  position:relative;
+  z-index:1;
+}
+.plans-hint b{color:var(--navy);}
+.plan-levels{
+  display:flex;
+  flex-wrap:wrap;
+  align-items:center;
+  gap:10px 11px;
+  margin-top:16px;
+  padding-top:15px;
+  border-top:1px dashed var(--line);
+  font-size:.78rem;
+  line-height:1.4;
+  color:var(--muted);
+}
+.plan-levels b{color:var(--gold-deep); font-weight:700;}
+.plan-pips{display:flex; flex:none; gap:3px;}
+.plan-pips i{
+  width:7px;
+  height:7px;
+  border-radius:50%;
+  background:rgba(16,42,67,.07);
+  border:1px solid var(--line);
+}
+.plan-pips i.gr{margin-inline-end:5px;}
+.plan-pips i.on{
+  background:var(--gold);
+  border-color:var(--gold);
+  box-shadow:0 2px 7px rgba(184,135,63,.4);
+}
+
+/* ===== ROADMAP MODAL (animated journey sheet) ===== */
+.rm-modal{
+  position:fixed;
+  inset:0;
+  z-index:2000;
+  display:none;
+  align-items:center;
+  justify-content:center;
+  padding:clamp(12px,3vw,34px);
+}
+.rm-modal.open{display:flex;}
+.rm-modal.closing{pointer-events:none;}
+.rm-backdrop{
+  position:absolute;
+  inset:0;
+  background:
+    radial-gradient(760px 520px at 78% -12%, rgba(184,135,63,.30), transparent 62%),
+    radial-gradient(700px 520px at 10% 110%, rgba(56,102,168,.26), transparent 60%),
+    rgba(8,14,24,.86);
+  backdrop-filter:blur(10px);
+  -webkit-backdrop-filter:blur(10px);
+  animation:rmFade .3s var(--ease);
+}
+.rm-modal.closing .rm-backdrop{animation:rmFadeOut .26s var(--ease) forwards;}
+@keyframes rmFade{from{opacity:0;} to{opacity:1;}}
+@keyframes rmFadeOut{from{opacity:1;} to{opacity:0;}}
+.rm-dialog{
+  position:relative;
+  width:100%;
+  max-width:980px;
+  max-height:92vh;
+  overflow-y:auto;
+  overscroll-behavior:contain;
+  background:var(--white);
+  border:1px solid var(--line);
+  border-radius:26px;
+  box-shadow:0 50px 110px -45px rgba(8,14,24,.7);
+  animation:rmPop .42s var(--ease);
+}
+@keyframes rmPop{
+  from{opacity:0; transform:translateY(30px) scale(.97);}
+  to{opacity:1; transform:none;}
+}
+.rm-modal.closing .rm-dialog{animation:rmPopOut .26s var(--ease) forwards;}
+@keyframes rmPopOut{
+  from{opacity:1; transform:none;}
+  to{opacity:0; transform:translateY(18px) scale(.985);}
+}
+.rm-progress{
+  position:sticky;
+  top:0;
+  height:3px;
+  z-index:5;
+  background:rgba(184,135,63,.16);
+}
+.rm-progress span{
+  display:block;
+  height:100%;
+  transform:scaleX(0);
+  transform-origin:0 50%;
+  background:linear-gradient(90deg, var(--gold), var(--gold-light));
+  box-shadow:0 0 16px rgba(214,179,114,.65);
+  transition:transform .16s linear;
+}
+html[dir="rtl"] .rm-progress span{transform-origin:100% 50%;}
+.rm-panel[hidden]{display:none;}
+.rm-close{
+  position:absolute;
+  top:14px;
+  inset-inline-end:14px;
+  width:40px;
+  height:40px;
+  z-index:6;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  border-radius:50%;
+  border:1px solid rgba(255,255,255,.22);
+  background:rgba(255,255,255,.08);
+  color:var(--white);
+  backdrop-filter:blur(6px);
+  -webkit-backdrop-filter:blur(6px);
+  animation:rmPop .5s var(--ease) .2s both;
+  transition:transform .35s var(--ease), background .25s var(--ease), border-color .25s var(--ease);
+}
+.rm-close:hover{transform:rotate(90deg); background:rgba(255,255,255,.16); border-color:var(--gold-light);}
+.rm-head{
+  position:relative;
+  overflow:hidden;
+  padding:clamp(30px,5vw,46px) clamp(24px,4.5vw,46px) clamp(26px,4vw,36px);
+  background:
+    radial-gradient(700px 300px at 88% -30%, rgba(184,135,63,.34), transparent 62%),
+    linear-gradient(150deg, var(--navy) 0%, var(--navy-2) 62%, #10203A 100%);
+}
+.rm-head::after{
+  content:"";
+  position:absolute;
+  inset:auto 0 0 0;
+  height:1px;
+  background:linear-gradient(90deg, transparent, var(--gold), transparent);
+  transform:scaleX(0);
+  animation:rmDraw 1s var(--ease) .2s forwards;
+}
+html[dir="rtl"] .rm-head::after{transform-origin:100% 50%;}
+@keyframes rmDraw{to{transform:scaleX(1);}}
+.rm-head > *{animation:rmUp .62s var(--ease) both;}
+.rm-head > *:nth-child(1){animation-delay:.06s;}
+.rm-head > *:nth-child(2){animation-delay:.12s;}
+.rm-head > *:nth-child(3){animation-delay:.18s;}
+.rm-head > *:nth-child(4){animation-delay:.24s;}
+@keyframes rmUp{from{opacity:0; transform:translateY(18px);} to{opacity:1; transform:none;}}
+.rm-head .eyebrow{color:var(--gold-light);}
+.rm-head h2{color:var(--white); font-size:clamp(1.7rem,3.6vw,2.5rem); margin-top:12px;}
+.rm-lead{margin-top:12px; color:rgba(255,255,255,.74); font-size:1rem; max-width:64ch;}
+.rm-stats{
+  margin-top:26px;
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:10px;
+}
+.rm-stat{
+  position:relative;
+  overflow:hidden;
+  background:rgba(255,255,255,.07);
+  border:1px solid rgba(255,255,255,.14);
+  border-radius:12px;
+  padding:13px 15px;
+  backdrop-filter:blur(4px);
+  -webkit-backdrop-filter:blur(4px);
+}
+.rm-stat::after{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:linear-gradient(100deg, transparent 25%, rgba(255,255,255,.26) 50%, transparent 75%);
+  transform:translateX(-110%);
+  animation:rmShine 3.6s var(--ease) .7s infinite;
+}
+html[dir="rtl"] .rm-stat::after{transform:translateX(110%);}
+@keyframes rmShine{
+  0%{transform:translateX(-110%);}
+  40%,100%{transform:translateX(110%);}
+}
+.rm-stat:nth-child(2)::after{animation-delay:1.15s;}
+.rm-stat:nth-child(3)::after{animation-delay:1.6s;}
+.rm-stat:nth-child(4)::after{animation-delay:2.05s;}
+.rm-stat span{
+  display:block;
+  font-size:.68rem;
+  font-weight:700;
+  letter-spacing:.1em;
+  text-transform:uppercase;
+  color:var(--gold-light);
+}
+.rm-stat strong{position:relative; display:block; margin-top:5px; font-size:.9rem; color:var(--white); line-height:1.35;}
+.rm-levels{
+  margin-top:12px;
+  display:flex;
+  flex-wrap:wrap;
+  align-items:center;
+  gap:8px 14px;
+  padding:12px 15px;
+  border:1px dashed rgba(214,166,92,.34);
+  border-radius:12px;
+  background:rgba(255,255,255,.04);
+  animation:rmUp .62s var(--ease) .3s both;
+}
+.rm-levels-txt{font-size:.82rem; color:rgba(255,255,255,.82);}
+.rm-levels-txt b{color:var(--gold-light); font-weight:700;}
+.rm-levels-sub{font-size:.72rem; color:rgba(255,255,255,.48);}
+.rm-pips{display:flex; flex-wrap:wrap; gap:14px; margin-inline-start:auto;}
+.rm-band{display:flex; align-items:center; gap:5px;}
+.rm-band em{
+  font-style:normal;
+  margin-inline-start:4px;
+  font-size:.7rem;
+  font-weight:700;
+  letter-spacing:.08em;
+  color:rgba(255,255,255,.4);
+}
+.rm-band.on em{color:var(--gold-light);}
+.rm-pip{
+  position:relative;
+  width:26px;
+  height:26px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:.72rem;
+  font-weight:700;
+  color:rgba(255,255,255,.4);
+  border:1px solid rgba(255,255,255,.16);
+  border-radius:50%;
+  background:rgba(255,255,255,.04);
+}
+.rm-pip.on{
+  color:#1A1206;
+  background:linear-gradient(140deg, var(--gold-light), var(--gold));
+  border-color:transparent;
+  box-shadow:0 4px 14px rgba(184,135,63,.3);
+}
+.rm-pip.on::after{
+  content:"";
+  position:absolute;
+  inset:-4px;
+  border-radius:50%;
+  border:1px solid rgba(214,166,92,.5);
+  animation:rmPing 2.6s var(--ease) infinite;
+}
+@keyframes rmPing{
+  0%{transform:scale(.85); opacity:.9;}
+  70%,100%{transform:scale(1.3); opacity:0;}
+}
+.rm-body{padding:clamp(24px,4.5vw,36px) clamp(24px,4.5vw,46px) clamp(30px,4.5vw,44px);}
+.rm-track{list-style:none; position:relative; display:grid; gap:12px;}
+.rm-track::before{
+  content:"";
+  position:absolute;
+  inset-block:24px;
+  inset-inline-start:24px;
+  width:2px;
+  background:linear-gradient(180deg, rgba(184,135,63,.6), rgba(184,135,63,.12));
+  transform:scaleY(0);
+  transform-origin:50% 0;
+  animation:rmLine 1.2s var(--ease) .12s forwards;
+}
+@keyframes rmLine{to{transform:scaleY(1);}}
+.rm-stage{
+  position:relative;
+  display:grid;
+  grid-template-columns:auto 1fr;
+  gap:14px;
+  opacity:0;
+  transform:translateY(20px);
+  transition:opacity .55s var(--ease), transform .62s var(--ease);
+}
+.rm-stage.is-visible{opacity:1; transform:none;}
+.rm-rail{position:relative; display:flex; justify-content:center;}
+.rm-node{
+  position:relative;
+  z-index:2;
+  width:46px;
+  height:46px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  border-radius:15px;
+  background:var(--white);
+  border:1.5px solid rgba(184,135,63,.55);
+  color:var(--gold-deep);
+  font-family:'Fraunces',serif;
+  font-size:1rem;
+  font-weight:600;
+  transition:transform .35s var(--ease), background .35s var(--ease), color .35s var(--ease), box-shadow .35s var(--ease);
+}
+.rm-node::after{
+  content:"";
+  position:absolute;
+  inset:-1.5px;
+  border-radius:17px;
+  border:1.5px solid rgba(184,135,63,.5);
+  animation:rmPulse 3s var(--ease) infinite;
+}
+@keyframes rmPulse{
+  0%{transform:scale(1); opacity:.65;}
+  70%,100%{transform:scale(1.45); opacity:0;}
+}
+.rm-stage.open .rm-node{
+  background:var(--gold);
+  border-color:var(--gold);
+  color:#1A1206;
+  transform:scale(1.06);
+  box-shadow:0 12px 24px -10px rgba(184,135,63,.85);
+}
+.rm-card{
+  min-width:0;
+  background:var(--paper);
+  border:1px solid var(--line);
+  border-radius:var(--radius-m);
+  transition:transform .35s var(--ease), box-shadow .35s var(--ease), border-color .35s var(--ease), background .35s var(--ease);
+}
+.rm-card:hover{
+  transform:translateY(-3px);
+  border-color:rgba(184,135,63,.55);
+  box-shadow:0 18px 34px -22px rgba(15,27,46,.38);
+}
+.rm-stage.open .rm-card{
+  background:var(--white);
+  border-color:rgba(184,135,63,.6);
+  box-shadow:0 22px 44px -24px rgba(15,27,46,.42);
+}
+.rm-stage-head{margin:0; font-weight:inherit;}
+.rm-stage-btn{
+  width:100%;
+  min-width:0;
+  display:flex;
+  flex-wrap:wrap;
+  align-items:center;
+  gap:10px 12px;
+  padding:16px 18px;
+  text-align:start;
+}
+.rm-stage-title{flex:1 1 60%; min-width:0; font-size:1.1rem; font-weight:700; color:var(--navy);}
+.rm-tag{
+  flex:none;
+  font-size:.7rem;
+  font-weight:700;
+  letter-spacing:.06em;
+  text-transform:uppercase;
+  color:var(--gold-deep);
+  background:rgba(184,135,63,.1);
+  border:1px solid rgba(184,135,63,.28);
+  padding:5px 11px;
+  border-radius:999px;
+  white-space:nowrap;
+  transition:background .3s var(--ease), color .3s var(--ease);
+}
+.rm-stage.open .rm-tag{background:var(--gold); color:#1A1206; border-color:var(--gold);}
+.rm-lv{
+  flex:none;
+  display:inline-flex;
+  align-items:center;
+  gap:7px;
+  font-size:.7rem;
+  font-weight:700;
+  letter-spacing:.04em;
+  color:var(--navy);
+  background:linear-gradient(140deg, rgba(184,135,63,.18), rgba(184,135,63,.06));
+  border:1px solid rgba(184,135,63,.4);
+  padding:5px 12px;
+  border-radius:999px;
+  white-space:nowrap;
+  transition:background .3s var(--ease), color .3s var(--ease), border-color .3s var(--ease);
+}
+.rm-lv::before{
+  content:"";
+  flex:none;
+  width:6px;
+  height:6px;
+  border-radius:50%;
+  background:var(--gold);
+  box-shadow:0 0 0 3px rgba(184,135,63,.18);
+}
+.rm-stage.open .rm-lv{
+  color:var(--white);
+  background:linear-gradient(140deg, var(--navy), #16324F);
+  border-color:transparent;
+}
+.rm-stage.open .rm-lv::before{background:var(--gold-light); box-shadow:0 0 0 3px rgba(214,166,92,.25);}
+.rm-chevron{
+  flex:none;
+  display:flex;
+  color:var(--muted);
+  transition:transform .45s var(--ease), color .3s var(--ease);
+}
+html[dir="rtl"] .rm-chevron{transform:scaleX(-1);}
+html[dir="rtl"] .rm-stage.open .rm-chevron{transform:rotate(180deg) scaleX(-1);}
+.rm-stage.open .rm-chevron{transform:rotate(180deg); color:var(--gold-deep);}
+.rm-detail{
+  max-height:0;
+  opacity:0;
+  overflow:hidden;
+  transition:max-height .52s var(--ease), opacity .38s var(--ease);
+}
+.rm-stage.open .rm-detail{max-height:640px; opacity:1;}
+.rm-detail-inner{padding:2px 18px 18px;}
+.rm-stage-text{font-size:.93rem; color:var(--muted);}
+.rm-points{margin-top:13px; display:grid; gap:8px;}
+.rm-points li{position:relative; padding-inline-start:17px; font-size:.88rem; color:var(--muted);}
+.rm-points li::before{
+  content:"";
+  position:absolute;
+  inset-inline-start:0;
+  top:.6em;
+  width:6px;
+  height:6px;
+  border-radius:50%;
+  background:var(--gold);
+}
+.rm-points b{color:var(--ink); font-weight:700;}
+.rm-note{
+  position:relative;
+  margin-top:22px;
+  padding:15px 18px 15px 20px;
+  border-inline-start:3px solid var(--gold);
+  border-radius:0 var(--radius-s) var(--radius-s) 0;
+  background:rgba(184,135,63,.08);
+  font-size:.88rem;
+  color:var(--muted);
+}
+.rm-note b{color:var(--navy);}
+.rm-foot{margin-top:24px; display:flex; flex-wrap:wrap; gap:12px; align-items:center;}
+.rm-foot .btn{padding:13px 24px; font-size:.9rem;}
+.rm-foot .btn-gold{position:relative; overflow:hidden;}
+.rm-foot .btn-gold::after{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:linear-gradient(100deg, transparent 30%, rgba(255,255,255,.35) 50%, transparent 70%);
+  transform:translateX(-110%);
+  transition:transform .75s var(--ease);
+}
+.rm-foot .btn-gold:hover::after{transform:translateX(110%);}
+@media (max-width:760px){
+  .rm-stats{grid-template-columns:1fr 1fr;}
+}
+@media (max-width:520px){
+  .rm-stage{gap:10px;}
+  .rm-node{width:40px; height:40px; border-radius:13px; font-size:.9rem;}
+  .rm-track::before{inset-inline-start:21px;}
+  .rm-stage-btn{padding:14px 15px; gap:8px 10px;}
+  .rm-stage-title{flex:1 1 100%; font-size:1rem;}
+  .rm-detail-inner{padding:2px 15px 15px;}
+  .rm-pips{margin-inline-start:0; width:100%; justify-content:space-between;}
+  .rm-levels-txt,.rm-levels-sub{flex:1 1 100%;}
+}
+@media (max-width:360px){
+  .rm-stats{grid-template-columns:1fr;}
+  .rm-pips{gap:12px;}
+  .rm-band{gap:4px;}
+  .rm-pip{width:22px; height:22px; font-size:.56rem;}
+  .rm-band em{font-size:.58rem;}
+  .plan-pips i.gr{margin-inline-end:3px;}
+}
 .plans-note{
   margin:34px auto 0;
   max-width:760px;
@@ -1475,6 +1970,26 @@ html.dark .courses-wrap .section-head p{color:rgba(255,255,255,.78);}
 html.dark .book-head h2{color:#FFFFFF;}
 html.dark .book-cta .btn-ghost{color:#FFFFFF; border-color:rgba(255,255,255,.35);}
 
+/* ===== DARK MODE: ROADMAP ===== */
+html.dark .plan-roadmap{color:var(--ink);}
+html.dark .plan-levels b{color:var(--gold-light);}
+html.dark .plan-pips i{background:rgba(230,233,238,.07); border-color:rgba(230,233,238,.16);}
+html.dark .plan-roadmap:hover{background:rgba(230,233,238,.07); border-color:var(--gold-light); color:var(--gold-light);}
+html.dark .plans-hint b,
+html.dark .rm-stage-title,
+html.dark .rm-points b,
+html.dark .rm-note b{color:#F2F4F7;}
+html.dark .rm-card{background:#151B24;}
+html.dark .rm-stage.open .rm-card{background:#1C2532;}
+html.dark .rm-node{background:#151B24; border-color:rgba(214,166,92,.5); color:var(--gold-light);}
+html.dark .rm-node::after{border-color:rgba(214,166,92,.45);}
+html.dark .rm-tag{color:var(--gold-light); background:rgba(214,166,92,.12); border-color:rgba(214,166,92,.3);}
+html.dark .rm-stage.open .rm-tag{background:var(--gold); color:#14181F; border-color:var(--gold);}
+html.dark .rm-levels{border-color:rgba(214,166,92,.22); background:rgba(255,255,255,.03);}
+html.dark .rm-lv{color:var(--gold-light); background:rgba(214,166,92,.1); border-color:rgba(214,166,92,.3);}
+html.dark .rm-stage.open .rm-lv{color:#14181F; background:linear-gradient(140deg, var(--gold-light), var(--gold)); border-color:transparent;}
+html.dark .rm-progress{background:rgba(214,166,92,.14);}
+
 </style>
 <script>(function(){var t=null;try{t=localStorage.getItem('siteTheme')}catch(e){}if(!t){try{t=window.matchMedia&&window.matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light'}catch(e){t='light'}}if(t==='dark')document.documentElement.classList.add('dark')})();</script></head>
 <body>
@@ -1837,14 +2352,20 @@ html.dark .book-cta .btn-ghost{color:#FFFFFF; border-color:rgba(255,255,255,.35)
         <div class="plan-price">
           <strong>16,800</strong><span>EGP</span>
         </div>
-        <div class="plan-installments">Payable in 3 installments</div>
+        <div class="plan-installments">Payable in 4 installments</div>
+        <div class="plan-levels">
+          <span class="plan-pips" aria-hidden="true"><i class="on"></i><i class="on"></i><i class="on gr"></i><i class="on"></i><i class="on"></i><i class="on gr"></i><i class="on"></i><i class="on"></i><i class="on gr"></i><i class="on"></i><i class="on"></i><i class="on gr"></i></span>
+          <span><b>12 levels</b> in the A1 → B2 system</span>
+        </div>
         <ul class="plan-features">
-          <li>Private 1-to-1 lessons</li>
-          <li>Live online learning via Zoom</li>
-          <li>Personalized learning plan</li>
-          <li>Continuous progress follow-up</li>
+          <li>Speakout as the main book, plus other well-known books</li>
+          <li>Private live 1-to-1 lessons on Zoom</li>
+          <li>Homework from the book after every session</li>
+          <li>Correction and feedback on every task</li>
+          <li>Monthly progress report</li>
         </ul>
         <a href="#book" class="plan-cta">Choose This Path</a>
+        <button type="button" class="plan-roadmap" data-roadmap="path1" aria-haspopup="dialog">See the Roadmap <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg></button>
       </article>
 
       <article class="plan-card featured">
@@ -1855,14 +2376,20 @@ html.dark .book-cta .btn-ghost{color:#FFFFFF; border-color:rgba(255,255,255,.35)
         <div class="plan-price">
           <strong>11,200</strong><span>EGP</span>
         </div>
-        <div class="plan-installments">&nbsp;</div>
+        <div class="plan-installments">Payable in 3 installments</div>
+        <div class="plan-levels">
+          <span class="plan-pips" aria-hidden="true"><i class="on"></i><i class="on"></i><i class="on gr"></i><i class="on"></i><i class="on"></i><i class="on gr"></i><i class="on"></i><i class="on"></i><i class="on gr"></i><i></i><i></i><i class="gr"></i></span>
+          <span><b>9 levels</b> in the A1 → B2 system</span>
+        </div>
         <ul class="plan-features">
-          <li>Private 1-to-1 lessons</li>
-          <li>Live online learning via Zoom</li>
-          <li>Personalized learning plan</li>
-          <li>Continuous progress follow-up</li>
+          <li>Speakout as the main book, plus other well-known books</li>
+          <li>Private live 1-to-1 lessons on Zoom</li>
+          <li>Homework from the book after every session</li>
+          <li>Correction and feedback on every task</li>
+          <li>Monthly progress report</li>
         </ul>
         <a href="#book" class="plan-cta">Choose This Path</a>
+        <button type="button" class="plan-roadmap" data-roadmap="path2" aria-haspopup="dialog">See the Roadmap <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg></button>
       </article>
 
       <article class="plan-card">
@@ -1873,16 +2400,24 @@ html.dark .book-cta .btn-ghost{color:#FFFFFF; border-color:rgba(255,255,255,.35)
         <div class="plan-price">
           <strong>5,600</strong><span>EGP</span>
         </div>
-        <div class="plan-installments">&nbsp;</div>
+        <div class="plan-installments">Payable in 2 installments</div>
+        <div class="plan-levels">
+          <span class="plan-pips" aria-hidden="true"><i class="on"></i><i class="on"></i><i class="on gr"></i><i class="on"></i><i class="on"></i><i class="on gr"></i><i></i><i></i><i class="gr"></i><i></i><i></i><i class="gr"></i></span>
+          <span><b>6 levels</b> in the A1 → B2 system</span>
+        </div>
         <ul class="plan-features">
-          <li>Private 1-to-1 lessons</li>
-          <li>Live online learning via Zoom</li>
-          <li>Personalized learning plan</li>
-          <li>Continuous progress follow-up</li>
+          <li>Speakout as the main book, plus other well-known books</li>
+          <li>Private live 1-to-1 lessons on Zoom</li>
+          <li>Homework from the book after every session</li>
+          <li>Correction and feedback on every task</li>
+          <li>Monthly progress report</li>
         </ul>
         <a href="#book" class="plan-cta">Choose This Path</a>
+        <button type="button" class="plan-roadmap" data-roadmap="path3" aria-haspopup="dialog">See the Roadmap <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg></button>
       </article>
     </div>
+
+    <p class="plans-hint">Not sure which path is right for you? Open <b>See the Roadmap</b> under any path first — it shows every stage, the books you will work from, the homework, and what you finish at the end of each stage.</p>
 
     <p class="plans-note">
       Not sure which path is right for you? Contact Abu Bakr and choose the plan that best matches your current English level and goals.
@@ -2116,6 +2651,311 @@ html.dark .book-cta .btn-ghost{color:#FFFFFF; border-color:rgba(255,255,255,.35)
 </section>
 
 </main>
+
+<!-- ===== ROADMAP MODAL ===== -->
+<div class="rm-modal" id="rmModal" role="dialog" aria-modal="true" aria-labelledby="rmTitlePath1" hidden>
+  <div class="rm-backdrop" data-rm-close></div>
+  <div class="rm-dialog" role="document" tabindex="-1">
+    <div class="rm-progress"><span></span></div>
+    <button type="button" class="rm-close" data-rm-close aria-label="Close roadmap">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M18 6 6 18M6 6l12 12"/></svg>
+    </button>
+
+    <!-- ===== PATH 01 · A1 → B2 ===== -->
+    <section class="rm-panel" data-panel="path1" aria-labelledby="rmTitlePath1">
+      <div class="rm-head">
+        <span class="eyebrow">Path 01 · Beginner</span>
+        <h2 id="rmTitlePath1">Your roadmap from A1 to B2</h2>
+        <p class="rm-lead">Four Speakout levels, one clear path. You start with a speaking assessment, then move level by level until you reach — and prove — B2.</p>
+        <div class="rm-stats">
+          <div class="rm-stat"><span>Start Level</span><strong>A1</strong></div>
+          <div class="rm-stat"><span>Finish Level</span><strong>B2</strong></div>
+          <div class="rm-stat"><span>Main book</span><strong>Speakout Starter → Intermediate</strong></div>
+          <div class="rm-stat"><span>Payment</span><strong>16,800 EGP · 4 installments</strong></div>
+        </div>
+        <div class="rm-levels">
+          <span class="rm-levels-txt">This path is worth <b>12 levels</b> of the A1 → B2 system</span>
+          <span class="rm-levels-sub">3 levels for every CEFR level, the split courses use</span>
+          <div class="rm-pips" aria-hidden="true">
+            <span class="rm-band on"><span class="rm-pip on">1</span><span class="rm-pip on">2</span><span class="rm-pip on">3</span><em>A1</em></span>
+            <span class="rm-band on"><span class="rm-pip on">4</span><span class="rm-pip on">5</span><span class="rm-pip on">6</span><em>A2</em></span>
+            <span class="rm-band on"><span class="rm-pip on">7</span><span class="rm-pip on">8</span><span class="rm-pip on">9</span><em>B1</em></span>
+            <span class="rm-band on"><span class="rm-pip on">10</span><span class="rm-pip on">11</span><span class="rm-pip on">12</span><em>B2</em></span>
+          </div>
+        </div>
+      </div>
+      <div class="rm-body">
+        <ol class="rm-track">
+          <li class="rm-stage">
+            <div class="rm-rail"><span class="rm-node">01</span></div>
+            <div class="rm-card">
+              <h3 class="rm-stage-head"><button type="button" class="rm-stage-btn" aria-expanded="false"><span class="rm-stage-title">Assessment &amp; Your Plan</span><span class="rm-tag">Weeks 1–2</span><span class="rm-chevron" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg></span></button></h3>
+              <div class="rm-detail">
+                <div class="rm-detail-inner">
+                  <p class="rm-stage-text">A short speaking interview and a written test, then we agree on your goal and fix how many live sessions you need each week.</p>
+                  <ul class="rm-points">
+                    <li><b>We work from:</b> the level your test shows, plus other well-known books for extra practice.</li>
+                    <li><b>Homework:</b> A 20-minute reading and listening task, twice a week.</li>
+                    <li><b>You finish this stage able to:</b> Know exactly what to work on, and why.</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </li>
+          <li class="rm-stage">
+            <div class="rm-rail"><span class="rm-node">02</span></div>
+            <div class="rm-card">
+              <h3 class="rm-stage-head"><button type="button" class="rm-stage-btn" aria-expanded="false"><span class="rm-stage-title">Speakout Starter · A1</span><span class="rm-lv">Levels 1–3</span><span class="rm-tag">≈ 8 weeks</span><span class="rm-chevron" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg></span></button></h3>
+              <div class="rm-detail">
+                <div class="rm-detail-inner">
+                  <p class="rm-stage-text">The base of the language: greetings, introducing yourself, family, food, numbers, time, prices, and daily routines.</p>
+                  <ul class="rm-points">
+                    <li><b>We work from:</b> Speakout Starter, plus other well-known books for extra practice.</li>
+                    <li><b>Homework:</b> Book exercises, 10 minutes of listening a day, and one recorded speaking task every week.</li>
+                    <li><b>You finish this stage able to:</b> Hold a 5-minute conversation about your life, your work, and your day.</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </li>
+          <li class="rm-stage">
+            <div class="rm-rail"><span class="rm-node">03</span></div>
+            <div class="rm-card">
+              <h3 class="rm-stage-head"><button type="button" class="rm-stage-btn" aria-expanded="false"><span class="rm-stage-title">Speakout Elementary · A2</span><span class="rm-lv">Levels 4–6</span><span class="rm-tag">≈ 10 weeks</span><span class="rm-chevron" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg></span></button></h3>
+              <div class="rm-detail">
+                <div class="rm-detail-inner">
+                  <p class="rm-stage-text">Now the language starts paying off: past and future, shopping, travel, health, work and study, and describing people.</p>
+                  <ul class="rm-points">
+                    <li><b>We work from:</b> Speakout Elementary, plus other well-known books for extra practice.</li>
+                    <li><b>Homework:</b> Book exercises, plus one short writing task and one 2-minute speaking recording every week.</li>
+                    <li><b>You finish this stage able to:</b> Handle real situations in English without switching to Arabic.</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </li>
+          <li class="rm-stage">
+            <div class="rm-rail"><span class="rm-node">04</span></div>
+            <div class="rm-card">
+              <h3 class="rm-stage-head"><button type="button" class="rm-stage-btn" aria-expanded="false"><span class="rm-stage-title">Speakout Pre-Intermediate · B1</span><span class="rm-lv">Levels 7–9</span><span class="rm-tag">≈ 10 weeks</span><span class="rm-chevron" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg></span></button></h3>
+              <div class="rm-detail">
+                <div class="rm-detail-inner">
+                  <p class="rm-stage-text">This is the level that turns knowledge into fluency: storytelling, opinions and reasons, technology, environment, and longer conversations.</p>
+                  <ul class="rm-points">
+                    <li><b>We work from:</b> Speakout Pre-Intermediate, plus other well-known books for extra practice.</li>
+                    <li><b>Homework:</b> One 150-word text, one listening summary, and one recorded presentation every week.</li>
+                    <li><b>You finish this stage able to:</b> Speak for 10 minutes on any everyday topic with only a few mistakes.</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </li>
+          <li class="rm-stage">
+            <div class="rm-rail"><span class="rm-node">05</span></div>
+            <div class="rm-card">
+              <h3 class="rm-stage-head"><button type="button" class="rm-stage-btn" aria-expanded="false"><span class="rm-stage-title">Speakout Intermediate · B2</span><span class="rm-lv">Levels 10–12</span><span class="rm-tag">Final stage</span><span class="rm-chevron" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg></span></button></h3>
+              <div class="rm-detail">
+                <div class="rm-detail-inner">
+                  <p class="rm-stage-text">The last push: giving an opinion and defending it, formal writing, work and study language, plus exam-style tasks in all four skills.</p>
+                  <ul class="rm-points">
+                    <li><b>We work from:</b> Speakout Intermediate, plus other well-known books for extra practice.</li>
+                    <li><b>Homework:</b> A weekly mock task in speaking, writing, reading, and listening, corrected in detail.</li>
+                    <li><b>You finish this stage able to:</b> Reach B2 in a final assessment, and keep improving on your own.</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </li>
+        </ol>
+                    <p class="rm-note"><b>Typical pace:</b> you start with 1 live Zoom session a week and we build up to 4 as your level and your goal ask for it. The number of weeks depends on your pace and attendance, and every stage ends with a quick check so we know where you stand before moving to the next one.</p>
+        <div class="rm-foot">
+          <a class="btn btn-gold" href="https://wa.me/201014416415?text=Hello%20Abu%20Bakr%2C%20I%27d%20like%20to%20book%20Path%2001%20(A1%20to%20B2%2C%2016%2C800%20EGP%2C%204%20installments)." target="_blank" rel="noopener">Book This Path</a>
+          <a class="btn btn-ghost" href="test.html">Take the Level Test</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== PATH 02 · A2 → B2 ===== -->
+    <section class="rm-panel" data-panel="path2" aria-labelledby="rmTitlePath2" hidden>
+      <div class="rm-head">
+        <span class="eyebrow">Path 02 · Most Popular</span>
+        <h2 id="rmTitlePath2">Your roadmap from A2 to B2</h2>
+        <p class="rm-lead">You already have the basics, so we skip the foundation and take the faster route: three Speakout levels, one stage at a time.</p>
+        <div class="rm-stats">
+          <div class="rm-stat"><span>Start Level</span><strong>A2</strong></div>
+          <div class="rm-stat"><span>Finish Level</span><strong>B2</strong></div>
+          <div class="rm-stat"><span>Main book</span><strong>Speakout Elementary → Intermediate</strong></div>
+          <div class="rm-stat"><span>Payment</span><strong>11,200 EGP · 3 installments</strong></div>
+        </div>
+        <div class="rm-levels">
+          <span class="rm-levels-txt">This path is worth <b>9 levels</b> of the A1 → B2 system</span>
+          <span class="rm-levels-sub">Levels 4 to 12, 3 levels for every CEFR level</span>
+          <div class="rm-pips" aria-hidden="true">
+            <span class="rm-band"><span class="rm-pip">1</span><span class="rm-pip">2</span><span class="rm-pip">3</span><em>A1</em></span>
+            <span class="rm-band on"><span class="rm-pip on">4</span><span class="rm-pip on">5</span><span class="rm-pip on">6</span><em>A2</em></span>
+            <span class="rm-band on"><span class="rm-pip on">7</span><span class="rm-pip on">8</span><span class="rm-pip on">9</span><em>B1</em></span>
+            <span class="rm-band on"><span class="rm-pip on">10</span><span class="rm-pip on">11</span><span class="rm-pip on">12</span><em>B2</em></span>
+          </div>
+        </div>
+      </div>
+      <div class="rm-body">
+        <ol class="rm-track">
+          <li class="rm-stage">
+            <div class="rm-rail"><span class="rm-node">01</span></div>
+            <div class="rm-card">
+              <h3 class="rm-stage-head"><button type="button" class="rm-stage-btn" aria-expanded="false"><span class="rm-stage-title">Assessment &amp; Your Plan</span><span class="rm-tag">Weeks 1–2</span><span class="rm-chevron" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg></span></button></h3>
+              <div class="rm-detail">
+                <div class="rm-detail-inner">
+                  <p class="rm-stage-text">A short speaking interview and a written test, then we agree on your goal and fix how many live sessions you need each week.</p>
+                  <ul class="rm-points">
+                    <li><b>We work from:</b> the level your test shows, one level higher, plus other well-known books.</li>
+                    <li><b>Homework:</b> A 20-minute reading and listening task, twice a week.</li>
+                    <li><b>You finish this stage able to:</b> Know exactly what to work on, and why.</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </li>
+          <li class="rm-stage">
+            <div class="rm-rail"><span class="rm-node">02</span></div>
+            <div class="rm-card">
+              <h3 class="rm-stage-head"><button type="button" class="rm-stage-btn" aria-expanded="false"><span class="rm-stage-title">Speakout Elementary · A2</span><span class="rm-lv">Levels 4–6</span><span class="rm-tag">≈ 8 weeks</span><span class="rm-chevron" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg></span></button></h3>
+              <div class="rm-detail">
+                <div class="rm-detail-inner">
+                  <p class="rm-stage-text">Stronger basics first: past and future, shopping, travel, health, work and study, and describing people.</p>
+                  <ul class="rm-points">
+                    <li><b>We work from:</b> Speakout Elementary, plus other well-known books for extra practice.</li>
+                    <li><b>Homework:</b> Book exercises, plus one short writing task and one 2-minute speaking recording every week.</li>
+                    <li><b>You finish this stage able to:</b> Handle real situations in English without switching to Arabic.</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </li>
+          <li class="rm-stage">
+            <div class="rm-rail"><span class="rm-node">03</span></div>
+            <div class="rm-card">
+              <h3 class="rm-stage-head"><button type="button" class="rm-stage-btn" aria-expanded="false"><span class="rm-stage-title">Speakout Pre-Intermediate · B1</span><span class="rm-lv">Levels 7–9</span><span class="rm-tag">≈ 10 weeks</span><span class="rm-chevron" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg></span></button></h3>
+              <div class="rm-detail">
+                <div class="rm-detail-inner">
+                  <p class="rm-stage-text">This is the level that turns knowledge into fluency: storytelling, opinions and reasons, technology, environment, and longer conversations.</p>
+                  <ul class="rm-points">
+                    <li><b>We work from:</b> Speakout Pre-Intermediate, plus other well-known books for extra practice.</li>
+                    <li><b>Homework:</b> One 150-word text, one listening summary, and one recorded presentation every week.</li>
+                    <li><b>You finish this stage able to:</b> Speak for 10 minutes on any everyday topic with only a few mistakes.</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </li>
+          <li class="rm-stage">
+            <div class="rm-rail"><span class="rm-node">04</span></div>
+            <div class="rm-card">
+              <h3 class="rm-stage-head"><button type="button" class="rm-stage-btn" aria-expanded="false"><span class="rm-stage-title">Speakout Intermediate · B2</span><span class="rm-lv">Levels 10–12</span><span class="rm-tag">Final stage</span><span class="rm-chevron" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg></span></button></h3>
+              <div class="rm-detail">
+                <div class="rm-detail-inner">
+                  <p class="rm-stage-text">The last push: giving an opinion and defending it, formal writing, work and study language, plus exam-style tasks in all four skills.</p>
+                  <ul class="rm-points">
+                    <li><b>We work from:</b> Speakout Intermediate, plus other well-known books for extra practice.</li>
+                    <li><b>Homework:</b> A weekly mock task in speaking, writing, reading, and listening, corrected in detail.</li>
+                    <li><b>You finish this stage able to:</b> Reach B2 in a final assessment, and keep improving on your own.</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </li>
+        </ol>
+                    <p class="rm-note"><b>Typical pace:</b> you start with 1 live Zoom session a week and we build up to 4 as your level and your goal ask for it. The number of weeks depends on your pace and attendance, and every stage ends with a quick check so we know where you stand before moving to the next one.</p>
+        <div class="rm-foot">
+          <a class="btn btn-gold" href="https://wa.me/201014416415?text=Hello%20Abu%20Bakr%2C%20I%27d%20like%20to%20book%20Path%2002%20(A2%20to%20B2%2C%2011%2C200%20EGP%2C%203%20installments)." target="_blank" rel="noopener">Book This Path</a>
+          <a class="btn btn-ghost" href="test.html">Take the Level Test</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== PATH 03 · B1 → B2 ===== -->
+    <section class="rm-panel" data-panel="path3" aria-labelledby="rmTitlePath3" hidden>
+      <div class="rm-head">
+        <span class="eyebrow">Path 03 · Intermediate</span>
+        <h2 id="rmTitlePath3">Your roadmap from B1 to B2</h2>
+        <p class="rm-lead">A short, focused program: we fix accuracy and fluency where they break down, then finish with a real B2 assessment.</p>
+        <div class="rm-stats">
+          <div class="rm-stat"><span>Start Level</span><strong>B1</strong></div>
+          <div class="rm-stat"><span>Finish Level</span><strong>B2</strong></div>
+          <div class="rm-stat"><span>Main book</span><strong>Speakout Intermediate</strong></div>
+          <div class="rm-stat"><span>Payment</span><strong>5,600 EGP · 2 installments</strong></div>
+        </div>
+        <div class="rm-levels">
+          <span class="rm-levels-txt">This path is worth <b>6 levels</b> of the A1 → B2 system</span>
+          <span class="rm-levels-sub">Levels 7 to 12, 3 levels for every CEFR level</span>
+          <div class="rm-pips" aria-hidden="true">
+            <span class="rm-band"><span class="rm-pip">1</span><span class="rm-pip">2</span><span class="rm-pip">3</span><em>A1</em></span>
+            <span class="rm-band"><span class="rm-pip">4</span><span class="rm-pip">5</span><span class="rm-pip">6</span><em>A2</em></span>
+            <span class="rm-band on"><span class="rm-pip on">7</span><span class="rm-pip on">8</span><span class="rm-pip on">9</span><em>B1</em></span>
+            <span class="rm-band on"><span class="rm-pip on">10</span><span class="rm-pip on">11</span><span class="rm-pip on">12</span><em>B2</em></span>
+          </div>
+        </div>
+      </div>
+      <div class="rm-body">
+        <ol class="rm-track">
+          <li class="rm-stage">
+            <div class="rm-rail"><span class="rm-node">01</span></div>
+            <div class="rm-card">
+              <h3 class="rm-stage-head"><button type="button" class="rm-stage-btn" aria-expanded="false"><span class="rm-stage-title">Assessment &amp; Gap Check</span><span class="rm-lv">Levels 7–9</span><span class="rm-tag">Week 1</span><span class="rm-chevron" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg></span></button></h3>
+              <div class="rm-detail">
+                <div class="rm-detail-inner">
+                  <p class="rm-stage-text">A speaking interview plus one task in reading, writing, and listening, so we work on your actual weak points instead of repeating what you already know.</p>
+                  <ul class="rm-points">
+                    <li><b>We work from:</b> Speakout Intermediate at the level your test shows, plus other well-known books.</li>
+                    <li><b>Homework:</b> A short gap-fixing task from day one.</li>
+                    <li><b>You finish this stage able to:</b> Know exactly what to work on, and why.</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </li>
+          <li class="rm-stage">
+            <div class="rm-rail"><span class="rm-node">02</span></div>
+            <div class="rm-card">
+              <h3 class="rm-stage-head"><button type="button" class="rm-stage-btn" aria-expanded="false"><span class="rm-stage-title">Speakout Intermediate · B2</span><span class="rm-lv">Levels 10–12</span><span class="rm-tag">≈ 8 weeks</span><span class="rm-chevron" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg></span></button></h3>
+              <div class="rm-detail">
+                <div class="rm-detail-inner">
+                    <p class="rm-stage-text">Giving an opinion and defending it, formal writing, work and study language, and longer speaking under time pressure — the parts you need are chosen after your test.</p>
+                  <ul class="rm-points">
+                    <li><b>We work from:</b> Speakout Intermediate, plus other well-known books for extra practice.</li>
+                    <li><b>Homework:</b> A weekly mock task in speaking, writing, reading, and listening, corrected in detail.</li>
+                    <li><b>You finish this stage able to:</b> Reach B2 in a final assessment, and keep improving on your own.</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </li>
+          <li class="rm-stage">
+            <div class="rm-rail"><span class="rm-node">03</span></div>
+            <div class="rm-card">
+              <h3 class="rm-stage-head"><button type="button" class="rm-stage-btn" aria-expanded="false"><span class="rm-stage-title">Final Assessment &amp; Next Steps</span><span class="rm-tag">Last week</span><span class="rm-chevron" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg></span></button></h3>
+              <div class="rm-detail">
+                <div class="rm-detail-inner">
+                  <p class="rm-stage-text">A full mock in all four skills, a clear level report, and an honest recommendation for what to study next — an exam, an interview, or a workplace need.</p>
+                  <ul class="rm-points">
+                    <li><b>We work from:</b> your weak points from the mock, plus other well-known books.</li>
+                    <li><b>Homework:</b> Your weakest skill only, focused on the last two days.</li>
+                    <li><b>You finish this stage able to:</b> Prove B2 with a full mock result and a written level report.</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </li>
+        </ol>
+                    <p class="rm-note"><b>Typical pace:</b> you start with 1 live Zoom session a week and we build up to 4 as your level and your goal ask for it. The number of weeks depends on your pace and attendance, and every stage ends with a quick check so we know where you stand before moving to the next one.</p>
+        <div class="rm-foot">
+          <a class="btn btn-gold" href="https://wa.me/201014416415?text=Hello%20Abu%20Bakr%2C%20I%27d%20like%20to%20book%20Path%2003%20(B1%20to%20B2%2C%205%2C600%20EGP%2C%202%20installments)." target="_blank" rel="noopener">Book This Path</a>
+          <a class="btn btn-ghost" href="test.html">Take the Level Test</a>
+        </div>
+      </div>
+    </section>
+  </div>
+</div>
 
 <!-- ===== FOOTER ===== -->
 <footer>
@@ -2531,6 +3371,88 @@ document.querySelectorAll('.faq-item').forEach(item => {
     "Personalized learning plan": "خطة تعلم مخصصة",
     "Continuous progress follow-up": "متابعة مستمرة للتقدم",
     "Choose This Path": "اختر هذا المسار",
+    "Payable in 4 installments": "قابل للسداد على 4 أقساط",
+    "Payable in 2 installments": "قابل للسداد على 2 أقساط",
+    "Speakout as the main book, plus other well-known books": "Speakout ككتاب أساسي، مع كتب تانية مشهورة",
+    "Private live 1-to-1 lessons on Zoom": "دروس لايف فردية على Zoom",
+    "Homework from the book after every session": "واجب من الكتاب بعد كل حصة",
+    "Correction and feedback on every task": "تصحيح وملاحظات على كل مهمة",
+    "Monthly progress report": "تقرير تقدم شهري",
+    "Book This Path": "احجز هذا المسار",
+    "Not sure which path is right for you? Open": "غير متأكد من المسار المناسب؟ افتح",
+    "See the Roadmap": "شاهد رود ماب الرحلة",
+    "under any path first — it shows every stage, the books you will work from, the homework, and what you finish at the end of each stage.": "تحت أي مسار الأول — يوضح لك كل مرحلة، والكتب التي ستعمل عليها، والواجب، وما ستنتهي إليه في نهاية كل مرحلة.",
+    "Your roadmap from A1 to B2": "رود ماب رحلتك من A1 إلى B2",
+    "Your roadmap from A2 to B2": "رود ماب رحلتك من A2 إلى B2",
+    "Your roadmap from B1 to B2": "رود ماب رحلتك من B1 إلى B2",
+    "Four Speakout levels, one clear path. You start with a speaking assessment, then move level by level until you reach — and prove — B2.": "أربعة مستويات من كتب Speakout في مسار واحد واضح. تبدأ بتقييم في التحدث، ثم تنتقل مستوى بعد مستوى حتى تصل إلى B2 — وتثبته فعليًا.",
+    "You already have the basics, so we skip the foundation and take the faster route: three Speakout levels, one stage at a time.": "لديك الأساسيات بالفعل، لذلك نتخطى مرحلة التأسيس ونأخذ المسار الأسرع: ثلاثة مستويات من كتب Speakout، مرحلة في كل مرة.",
+    "A short, focused program: we fix accuracy and fluency where they break down, then finish with a real B2 assessment.": "برنامج قصير ومركّز: نصلح الدقة والطلاقة في مواضع ضعفهما، ثم ننهي بتقييم حقيقي لمستوى B2.",
+    "Start Level": "مستوى البداية",
+    "Finish Level": "مستوى النهاية",
+    "Main book": "الكتاب الأساسي",
+    "Payment": "السداد",
+    "16,800 EGP · 4 installments": "16,800 ج.م · 4 أقساط",
+    "11,200 EGP · 3 installments": "11,200 ج.م · 3 أقساط",
+    "5,600 EGP · 2 installments": "5,600 ج.م · 2 أقساط",
+    "A short speaking interview and a written test, then we agree on your goal and fix how many live sessions you need each week.": "مقابلة قصيرة في التحدث واختبار كتابي، ثم نتفق على هدفك ونحدد عدد الحصص لايف التي تحتاجها كل أسبوع.",
+    "A speaking interview plus one task in reading, writing, and listening, so we work on your actual weak points instead of repeating what you already know.": "مقابلة في التحدث بالإضافة إلى مهمة في القراءة والكتابة والاستماع، حتى نعمل على نقاط ضعفك الحقيقية بدلًا من تكرار ما تعرفه بالفعل.",
+    "We work from:": "بنشتغل من:",
+    "Homework:": "الواجب:",
+    "You finish this stage able to:": "تنتهي هذه المرحلة وأنت قادر على:",
+    "the level your test shows, plus other well-known books for extra practice.": "المستوى اللي بيظهر في الاختبار، مع كتب تانية مشهورة للتدريب الإضافي.",
+    "the level your test shows, one level higher, plus other well-known books.": "المستوى اللي بيظهر في الاختبار، مستوى أعلى، مع كتب تانية مشهورة.",
+    "Speakout Intermediate at the level your test shows, plus other well-known books.": "Speakout Intermediate للمستوى اللي بيظهر في الاختبار، مع كتب تانية مشهورة.",
+    "A 20-minute reading and listening task, twice a week.": "مهمة قراءة واستماع مدتها 20 دقيقة، مرتين في الأسبوع.",
+    "A 20-minute reading and listening task from the book.": "مهمة قراءة واستماع مدتها 20 دقيقة من الكتاب.",
+    "A short gap-fixing task from day one.": "مهمة قصيرة لسد الفجوات من اليوم الأول.",
+    "Your weakest skill only, focused on the last two days.": "أضعف مهارة لديك فقط، بتركيز في اليومين الأخيرين.",
+    "Know exactly what to work on, and why.": "تعرف تحديدًا على ما ستعمل عليه ولماذا.",
+    "Prove B2 with a full mock result and a written level report.": "تثبت مستواك B2 بنتيجة امتحان محاكٍ كامل وتقرير مكتوب عن مستواك.",
+    "Assessment & Your Plan": "التقييم وخطة التعلم",
+    "Assessment & Gap Check": "التقييم وتحديد نقاط الضعف",
+    "Final Assessment & Next Steps": "التقييم النهائي والخطوات التالية",
+    "Weeks 1–2": "الأسبوعان 1–2",
+    "Week 1": "الأسبوع الأول",
+    "≈ 8 weeks": "≈ 8 أسابيع",
+    "≈ 10 weeks": "≈ 10 أسابيع",
+    "Final stage": "المرحلة الأخيرة",
+    "Last week": "الأسبوع الأخير",
+    "The base of the language: greetings, introducing yourself, family, food, numbers, time, prices, and daily routines.": "أساس اللغة: التحيات، تقديم نفسك، العائلة، الطعام، الأرقام، الوقت، الأسعار، والروتين اليومي.",
+    "Now the language starts paying off: past and future, shopping, travel, health, work and study, and describing people.": "الآن تبدأ اللغة في أن تعطي ثمارها: الماضي والمستقبل، التسوق، السفر، الصحة، العمل والدراسة، ووصف الناس.",
+    "Stronger basics first: past and future, shopping, travel, health, work and study, and describing people.": "أساسيات أقوى أولًا: الماضي والمستقبل، التسوق، السفر، الصحة، العمل والدراسة، ووصف الناس.",
+    "This is the level that turns knowledge into fluency: storytelling, opinions and reasons, technology, environment, and longer conversations.": "هذه هي المرحلة التي تحوّل المعرفة إلى طلاقة: سرد القصص، الرأي والأسباب، التكنولوجيا، البيئة، ومحادثات أطول.",
+    "The last push: giving an opinion and defending it, formal writing, work and study language, plus exam-style tasks in all four skills.": "الدفعة الأخيرة: إعطاء رأي والدفاع عنه، الكتابة الرسمية، لغة العمل والدراسة، بالإضافة إلى مهام على نمط الامتحان في المهارات الأربع.",
+    "Giving an opinion and defending it, formal writing, work and study language, and longer speaking under time pressure — the parts you need are chosen after your test.": "إعطاء رأي والدفاع عنه، الكتابة الرسمية، لغة العمل والدراسة، وتحدث أطول تحت ضغط الوقت — والأجزاء التي تحتاجها تُختار بعد اختبارك.",
+    "A full mock in all four skills, a clear level report, and an honest recommendation for what to study next — an exam, an interview, or a workplace need.": "امتحان محاكٍ كامل في المهارات الأربع، وتقرير واضح عن مستواك، وتوصية صادقة بما تدرسه بعد ذلك — امتحان أو مقابلة أو حاجة في العمل.",
+    "Speakout Starter, plus other well-known books for extra practice.": "Speakout Starter، مع كتب تانية مشهورة للتدريب الإضافي.",
+    "Speakout Elementary, plus other well-known books for extra practice.": "Speakout Elementary، مع كتب تانية مشهورة للتدريب الإضافي.",
+    "Speakout Pre-Intermediate, plus other well-known books for extra practice.": "Speakout Pre-Intermediate، مع كتب تانية مشهورة للتدريب الإضافي.",
+    "Speakout Intermediate, plus other well-known books for extra practice.": "Speakout Intermediate، مع كتب تانية مشهورة للتدريب الإضافي.",
+    "your weak points from the mock, plus other well-known books.": "نقاط ضعفك من الامتحان، مع كتب تانية مشهورة.",
+    "Book exercises, 10 minutes of listening a day, and one recorded speaking task every week.": "تدريبات الكتاب، و10 دقائق استماع يوميًا، ومهمة speaking مسجلة كل أسبوع.",
+    "Book exercises, plus one short writing task and one 2-minute speaking recording every week.": "تدريبات الكتاب، بالإضافة إلى مهمة كتابة قصيرة وتسجيل speaking مدته دقيقتان كل أسبوع.",
+    "One 150-word text, one listening summary, and one recorded presentation every week.": "نص واحد من 150 كلمة، وملخص استماع واحد، وعرض مسجل واحد كل أسبوع.",
+    "A weekly mock task in speaking, writing, reading, and listening, corrected in detail.": "مهمة أسبوعية تحاكي الامتحان في التحدث والكتابة والقراءة والاستماع، تُصحَّح بالتفصيل.",
+    "Hold a 5-minute conversation about your life, your work, and your day.": "تُجري محادثة مدتها 5 دقائق عن حياتك، وعن عملك، وعن يومك.",
+    "Handle real situations in English without switching to Arabic.": "تتعامل مع المواقف الحقيقية بالإنجليزية دون التحوّل إلى العربية.",
+    "Speak for 10 minutes on any everyday topic with only a few mistakes.": "تتحدث لمدة 10 دقائق في أي موضوع يومي بأخطاء قليلة فقط.",
+    "Reach B2 in a final assessment, and keep improving on your own.": "تصل إلى B2 في تقييم نهائي، وتستمر في التطوير بنفسك.",
+    "Typical pace:": "الإيقاع المعتاد:",
+    "This path is worth": "المسار ده يساوي",
+    "of the A1 → B2 system": "من نظام A1 → B2",
+    "in the A1 → B2 system": "في نظام A1 → B2",
+    "12 levels": "12 مستوى",
+    "9 levels": "9 مستويات",
+    "6 levels": "6 مستويات",
+    "3 levels for every CEFR level, the split courses use": "3 مستويات لكل مستوى CEFR، زي التقسيم الشائع في الكورسات",
+    "Levels 4 to 12, 3 levels for every CEFR level": "المستويات 4 لـ 12، 3 مستويات لكل مستوى CEFR",
+    "Levels 7 to 12, 3 levels for every CEFR level": "المستويات 7 لـ 12، 3 مستويات لكل مستوى CEFR",
+    "Levels 1–3": "المستويات 1–3",
+    "Levels 4–6": "المستويات 4–6",
+    "Levels 7–9": "المستويات 7–9",
+    "Levels 10–12": "المستويات 10–12",
+    "you start with 1 live Zoom session a week and we build up to 4 as your level and your goal ask for it. The number of weeks depends on your pace and attendance, and every stage ends with a quick check so we know where you stand before moving to the next one.": "تبدأ بحصة لايف واحدة على Zoom أسبوعيًا، ونرفعها تدريجيًا إلى 4 حصص حسب مستواك وهدفك. عدد الأسابيع يعتمد على إيقاعك والتزامك، وتنتهي كل مرحلة بفحص سريع حتى نعرف مستواك قبل الانتقال إلى المرحلة التالية.",
     "Not sure which path is right for you? Contact Abu Bakr and choose the plan that best matches your current English level and goals.": "غير متأكد من المسار المناسب؟ تواصل مع أبو بكر لاختيار الخطة الأنسب لمستواك وأهدافك.",
     "Private Coaching": "تدريب خاص",
     "Full attention during your lessons": "اهتمام كامل خلال دروسك",
@@ -2686,6 +3608,121 @@ document.querySelectorAll('.faq-item').forEach(item => {
     s = nav.startsWith('ar') ? 'ar' : 'en';
   }
   apply(s);
+})();
+</script>
+<script>
+(function(){
+  const modal = document.getElementById('rmModal');
+  if (!modal) return;
+  const dialog = modal.querySelector('.rm-dialog');
+  const panels = Array.prototype.slice.call(modal.querySelectorAll('.rm-panel'));
+  const openers = document.querySelectorAll('[data-roadmap]');
+  const progress = modal.querySelector('.rm-progress span');
+  const stages = Array.prototype.slice.call(modal.querySelectorAll('.rm-stage'));
+  let lastFocus = null;
+  let closeTimer = null;
+
+  const stageObserver = 'IntersectionObserver' in window
+    ? new IntersectionObserver(entries => {
+        entries.forEach(e => {
+          if (!e.isIntersecting) return;
+          e.target.classList.add('is-visible');
+          stageObserver.unobserve(e.target);
+        });
+      }, { root: dialog, threshold: 0.2, rootMargin: '0px 0px -6% 0px' })
+    : null;
+
+  stages.forEach((stage, i) => {
+    const detail = stage.querySelector('.rm-detail');
+    const btn = stage.querySelector('.rm-stage-btn');
+    const id = 'rmDetail' + (i + 1);
+    detail.id = id;
+    btn.setAttribute('aria-controls', id);
+    btn.addEventListener('click', () => {
+      const isOpen = stage.classList.toggle('open');
+      btn.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+    });
+  });
+
+  function focusables(){
+    return Array.prototype.slice.call(
+      dialog.querySelectorAll('a[href], button:not([disabled]), [tabindex]:not([tabindex="-1"])')
+    ).filter(el => el.offsetWidth > 0 || el.offsetHeight > 0);
+  }
+
+  function updateProgress(){
+    const max = dialog.scrollHeight - dialog.clientHeight;
+    const ratio = max > 4 ? Math.min(1, Math.max(0, dialog.scrollTop / max)) : 1;
+    progress.style.transform = 'scaleX(' + ratio + ')';
+  }
+
+  function reveal(active, first){
+    stages.forEach(stage => {
+      const inPanel = active.contains(stage);
+      stage.classList.remove('is-visible', 'open');
+      stage.querySelector('.rm-stage-btn').setAttribute('aria-expanded', 'false');
+      if (!inPanel) return;
+      if (stageObserver) stageObserver.observe(stage);
+      else stage.classList.add('is-visible');
+    });
+    if (!first) return;
+    if (stageObserver) first.classList.add('is-visible');
+    first.classList.add('open');
+    first.querySelector('.rm-stage-btn').setAttribute('aria-expanded', 'true');
+  }
+
+  function open(key, opener){
+    let active = null;
+    panels.forEach(p => { if (p.dataset.panel === key) active = p; });
+    if (!active) return;
+    clearTimeout(closeTimer);
+    modal.classList.remove('closing');
+    panels.forEach(p => { p.hidden = p !== active; });
+    modal.setAttribute('aria-labelledby', active.querySelector('h2').id);
+    lastFocus = opener || document.activeElement;
+    modal.classList.add('open');
+    document.body.style.overflow = 'hidden';
+    dialog.scrollTop = 0;
+    updateProgress();
+    requestAnimationFrame(() => reveal(active, active.querySelector('.rm-stage')));
+    const f = focusables();
+    (f[0] || dialog).focus();
+  }
+
+  function close(){
+    if (!modal.classList.contains('open')) return;
+    modal.classList.add('closing');
+    if (stageObserver) stages.forEach(s => stageObserver.unobserve(s));
+    closeTimer = setTimeout(() => {
+      modal.classList.remove('open', 'closing');
+      document.body.style.overflow = '';
+      if (lastFocus) lastFocus.focus();
+    }, 260);
+  }
+
+  openers.forEach(btn => btn.addEventListener('click', () => open(btn.dataset.roadmap, btn)));
+  modal.addEventListener('click', e => { if (e.target.hasAttribute('data-rm-close')) close(); });
+  dialog.addEventListener('scroll', updateProgress, { passive: true });
+  window.addEventListener('resize', () => {
+    if (modal.classList.contains('open')) updateProgress();
+  });
+
+  document.addEventListener('keydown', e => {
+    if (!modal.classList.contains('open')) return;
+    if (e.key === 'Escape'){ close(); return; }
+    if (e.key !== 'Tab') return;
+    const f = focusables();
+    if (!f.length) return;
+    const first = f[0];
+    const last = f[f.length - 1];
+    if (e.shiftKey && (document.activeElement === first || document.activeElement === dialog)){
+      e.preventDefault();
+      last.focus();
+    } else if (!e.shiftKey && document.activeElement === last){
+      e.preventDefault();
+      first.focus();
+    }
+  });
 })();
 </script>
 <script src="assets/fireworks.js"></script>
