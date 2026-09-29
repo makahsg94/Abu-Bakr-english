@@ -849,19 +849,24 @@ header.scrolled{
   color:var(--muted);
 }
 .plan-levels b{color:var(--gold-deep); font-weight:700;}
-.plan-pips{display:flex; flex:none; gap:3px;}
-.plan-pips i{
-  width:7px;
-  height:7px;
-  border-radius:50%;
-  background:rgba(16,42,67,.07);
+.plan-chain{display:flex; flex-wrap:wrap; gap:5px; flex:1 1 100%;}
+.plan-chip{
+  display:inline-flex;
+  align-items:center;
+  padding:3px 9px;
+  font-size:.68rem;
+  font-weight:700;
+  letter-spacing:.02em;
+  color:var(--navy);
+  background:rgba(16,42,67,.06);
   border:1px solid var(--line);
+  border-radius:999px;
+  white-space:nowrap;
 }
-.plan-pips i.gr{margin-inline-end:5px;}
-.plan-pips i.on{
-  background:var(--gold);
-  border-color:var(--gold);
-  box-shadow:0 2px 7px rgba(184,135,63,.4);
+.plan-chip.goal{
+  color:var(--gold-deep);
+  background:rgba(184,135,63,.1);
+  border-color:rgba(184,135,63,.4);
 }
 
 /* ===== ROADMAP MODAL (animated journey sheet) ===== */
@@ -1034,49 +1039,43 @@ html[dir="rtl"] .rm-stat::after{transform:translateX(110%);}
 .rm-levels-txt{font-size:.82rem; color:rgba(255,255,255,.82);}
 .rm-levels-txt b{color:var(--gold-light); font-weight:700;}
 .rm-levels-sub{font-size:.72rem; color:rgba(255,255,255,.48);}
-.rm-pips{display:flex; flex-wrap:wrap; gap:14px; margin-inline-start:auto;}
-.rm-band{display:flex; align-items:center; gap:5px;}
-.rm-band em{
-  font-style:normal;
-  margin-inline-start:4px;
-  font-size:.7rem;
-  font-weight:700;
-  letter-spacing:.08em;
-  color:rgba(255,255,255,.4);
-}
-.rm-band.on em{color:var(--gold-light);}
-.rm-pip{
-  position:relative;
-  width:26px;
-  height:26px;
-  display:flex;
+.rm-chain{display:flex; flex-wrap:wrap; gap:8px; margin-inline-start:auto;}
+.rm-chip{
+  display:inline-flex;
   align-items:center;
-  justify-content:center;
-  font-size:.72rem;
+  gap:6px;
+  padding:6px 12px;
+  font-size:.74rem;
   font-weight:700;
-  color:rgba(255,255,255,.4);
+  letter-spacing:.02em;
+  color:rgba(255,255,255,.72);
   border:1px solid rgba(255,255,255,.16);
-  border-radius:50%;
+  border-radius:999px;
   background:rgba(255,255,255,.04);
+  white-space:nowrap;
 }
-.rm-pip.on{
+.rm-chip::before{
+  content:"";
+  width:6px;
+  height:6px;
+  border-radius:50%;
+  background:rgba(255,255,255,.28);
+}
+.rm-chip.on{
   color:#1A1206;
   background:linear-gradient(140deg, var(--gold-light), var(--gold));
   border-color:transparent;
   box-shadow:0 4px 14px rgba(184,135,63,.3);
 }
-.rm-pip.on::after{
-  content:"";
-  position:absolute;
-  inset:-4px;
-  border-radius:50%;
-  border:1px solid rgba(214,166,92,.5);
-  animation:rmPing 2.6s var(--ease) infinite;
+.rm-chip.on::before{background:rgba(26,18,6,.55);}
+.rm-chip.goal{
+  color:var(--gold-light);
+  border-color:rgba(214,166,92,.55);
+  background:rgba(214,166,92,.1);
+  box-shadow:0 0 0 3px rgba(214,166,92,.08);
 }
-@keyframes rmPing{
-  0%{transform:scale(.85); opacity:.9;}
-  70%,100%{transform:scale(1.3); opacity:0;}
-}
+.rm-chip.goal::before{background:var(--gold-light);}
+
 .rm-body{padding:clamp(24px,4.5vw,36px) clamp(24px,4.5vw,46px) clamp(30px,4.5vw,44px);}
 .rm-track{list-style:none; position:relative; display:grid; gap:12px;}
 .rm-track::before{
@@ -1277,16 +1276,13 @@ html[dir="rtl"] .rm-stage.open .rm-chevron{transform:rotate(180deg) scaleX(-1);}
   .rm-stage-btn{padding:14px 15px; gap:8px 10px;}
   .rm-stage-title{flex:1 1 100%; font-size:1rem;}
   .rm-detail-inner{padding:2px 15px 15px;}
-  .rm-pips{margin-inline-start:0; width:100%; justify-content:space-between;}
+  .rm-chain{margin-inline-start:0; width:100%;}
   .rm-levels-txt,.rm-levels-sub{flex:1 1 100%;}
 }
 @media (max-width:360px){
   .rm-stats{grid-template-columns:1fr;}
-  .rm-pips{gap:12px;}
-  .rm-band{gap:4px;}
-  .rm-pip{width:22px; height:22px; font-size:.56rem;}
-  .rm-band em{font-size:.58rem;}
-  .plan-pips i.gr{margin-inline-end:3px;}
+  .rm-chain{gap:6px;}
+  .rm-chip{padding:5px 10px; font-size:.68rem;}
 }
 .plans-note{
   margin:34px auto 0;
@@ -1973,7 +1969,8 @@ html.dark .book-cta .btn-ghost{color:#FFFFFF; border-color:rgba(255,255,255,.35)
 /* ===== DARK MODE: ROADMAP ===== */
 html.dark .plan-roadmap{color:var(--ink);}
 html.dark .plan-levels b{color:var(--gold-light);}
-html.dark .plan-pips i{background:rgba(230,233,238,.07); border-color:rgba(230,233,238,.16);}
+html.dark .plan-chip{background:rgba(230,233,238,.07); border-color:rgba(230,233,238,.16); color:var(--ink);}
+html.dark .plan-chip.goal{color:var(--gold-light); border-color:rgba(214,166,92,.45); background:rgba(214,166,92,.12);}
 html.dark .plan-roadmap:hover{background:rgba(230,233,238,.07); border-color:var(--gold-light); color:var(--gold-light);}
 html.dark .plans-hint b,
 html.dark .rm-stage-title,
@@ -2339,30 +2336,37 @@ html.dark .rm-progress{background:rgba(214,166,92,.14);}
       <span class="eyebrow">Learning Plans</span>
       <h2>Choose the path that matches your current level</h2>
       <p style="margin-left:auto;margin-right:auto;">
-        Private 1-to-1 English coaching designed to take you from your current level toward B2.
+        Private 1-to-1 English coaching. One level = 2 months ≈ 16 live sessions, and every path stops at the first step of B2 Upper-Intermediate.
       </p>
     </div>
 
     <div class="plans-grid reveal-stagger">
       <article class="plan-card">
-        <span class="plan-badge">Path 01 · Beginner</span>
+        <span class="plan-badge">Path 01 · A1 Starter</span>
         <span class="plan-number">01</span>
-        <h3>From A1 to B2</h3>
-        <p class="plan-subtitle">For beginners or learners with a weak English foundation.</p>
+        <h3>From A1 to the start of B2</h3>
+        <p class="plan-subtitle">For beginners, or learners whose English needs a fresh foundation.</p>
         <div class="plan-price">
           <strong>16,800</strong><span>EGP</span>
         </div>
         <div class="plan-installments">Payable in 4 installments</div>
         <div class="plan-levels">
-          <span class="plan-pips" aria-hidden="true"><i class="on"></i><i class="on"></i><i class="on gr"></i><i class="on"></i><i class="on"></i><i class="on gr"></i><i class="on"></i><i class="on"></i><i class="on gr"></i><i class="on"></i><i class="on"></i><i class="on gr"></i></span>
-          <span><b>12 levels</b> in the A1 → B2 system</span>
+          <span class="plan-chain" aria-hidden="true">
+            <span class="plan-chip">A1 Starter</span>
+            <span class="plan-chip">A2 Pre-Intermediate</span>
+            <span class="plan-chip">B1 Intermediate</span>
+            <span class="plan-chip goal">B2 Upper-Intermediate start</span>
+          </span>
+          <span><b>6 months</b> · 48 private live sessions</span>
         </div>
         <ul class="plan-features">
+          <li>One level = 2 months ≈ 16 private live sessions</li>
           <li>Speakout as the main book, plus other well-known books</li>
           <li>Private live 1-to-1 lessons on Zoom</li>
           <li>Homework from the book after every session</li>
           <li>Correction and feedback on every task</li>
           <li>Monthly progress report</li>
+          <li>Faster learner? We speed up with you</li>
         </ul>
         <a href="#book" class="plan-cta">Choose This Path</a>
         <button type="button" class="plan-roadmap" data-roadmap="path1" aria-haspopup="dialog">See the Roadmap <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg></button>
@@ -2371,56 +2375,67 @@ html.dark .rm-progress{background:rgba(214,166,92,.14);}
       <article class="plan-card featured">
         <span class="plan-badge">Path 02 · Most Popular</span>
         <span class="plan-number">02</span>
-        <h3>From A2 to B2</h3>
+        <h3>From A2 to the start of B2</h3>
         <p class="plan-subtitle">For learners who already have the basics of English.</p>
         <div class="plan-price">
           <strong>11,200</strong><span>EGP</span>
         </div>
         <div class="plan-installments">Payable in 3 installments</div>
         <div class="plan-levels">
-          <span class="plan-pips" aria-hidden="true"><i class="on"></i><i class="on"></i><i class="on gr"></i><i class="on"></i><i class="on"></i><i class="on gr"></i><i class="on"></i><i class="on"></i><i class="on gr"></i><i></i><i></i><i class="gr"></i></span>
-          <span><b>9 levels</b> in the A1 → B2 system</span>
+          <span class="plan-chain" aria-hidden="true">
+            <span class="plan-chip">A2 Pre-Intermediate</span>
+            <span class="plan-chip">B1 Intermediate</span>
+            <span class="plan-chip goal">B2 Upper-Intermediate start</span>
+          </span>
+          <span><b>4 months</b> · 32 private live sessions</span>
         </div>
         <ul class="plan-features">
+          <li>One level = 2 months ≈ 16 private live sessions</li>
           <li>Speakout as the main book, plus other well-known books</li>
           <li>Private live 1-to-1 lessons on Zoom</li>
           <li>Homework from the book after every session</li>
           <li>Correction and feedback on every task</li>
           <li>Monthly progress report</li>
+          <li>Faster learner? We speed up with you</li>
         </ul>
         <a href="#book" class="plan-cta">Choose This Path</a>
         <button type="button" class="plan-roadmap" data-roadmap="path2" aria-haspopup="dialog">See the Roadmap <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg></button>
       </article>
 
       <article class="plan-card">
-        <span class="plan-badge">Path 03 · Intermediate</span>
+        <span class="plan-badge">Path 03 · B1 Intermediate</span>
         <span class="plan-number">03</span>
-        <h3>From B1 to B2</h3>
-        <p class="plan-subtitle">For intermediate learners who are already close to B2.</p>
+        <h3>From B1 to the start of B2</h3>
+        <p class="plan-subtitle">For learners already at B1 who want it finished properly.</p>
         <div class="plan-price">
           <strong>5,600</strong><span>EGP</span>
         </div>
         <div class="plan-installments">Payable in 2 installments</div>
         <div class="plan-levels">
-          <span class="plan-pips" aria-hidden="true"><i class="on"></i><i class="on"></i><i class="on gr"></i><i class="on"></i><i class="on"></i><i class="on gr"></i><i></i><i></i><i class="gr"></i><i></i><i></i><i class="gr"></i></span>
-          <span><b>6 levels</b> in the A1 → B2 system</span>
+          <span class="plan-chain" aria-hidden="true">
+            <span class="plan-chip">B1 Intermediate</span>
+            <span class="plan-chip goal">B2 Upper-Intermediate start</span>
+          </span>
+          <span><b>2 months</b> · 16 private live sessions</span>
         </div>
         <ul class="plan-features">
+          <li>One level = 2 months ≈ 16 private live sessions</li>
           <li>Speakout as the main book, plus other well-known books</li>
           <li>Private live 1-to-1 lessons on Zoom</li>
           <li>Homework from the book after every session</li>
           <li>Correction and feedback on every task</li>
           <li>Monthly progress report</li>
+          <li>Faster learner? We speed up with you</li>
         </ul>
         <a href="#book" class="plan-cta">Choose This Path</a>
         <button type="button" class="plan-roadmap" data-roadmap="path3" aria-haspopup="dialog">See the Roadmap <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg></button>
       </article>
     </div>
 
-    <p class="plans-hint">Not sure which path is right for you? Open <b>See the Roadmap</b> under any path first — it shows every stage, the books you will work from, the homework, and what you finish at the end of each stage.</p>
+    <p class="plans-hint">Not sure which path is right for you? Open <b>See the Roadmap</b> under any path first — it shows every level, the months and sessions it takes, the books you will work from, the homework, and where the path ends.</p>
 
     <p class="plans-note">
-      Not sure which path is right for you? Contact Abu Bakr and choose the plan that best matches your current English level and goals.
+      Levels are named the Egyptian way: A1 Starter, A2 Pre-Intermediate, B1 Intermediate, B2 Upper-Intermediate. All lessons are private 1-to-1, and every path ends at the first step of B2 — finishing the whole of B2 is C1-level work and is agreed as a separate plan.
     </p>
 
     <div class="plans-benefits reveal-stagger">
@@ -2664,23 +2679,23 @@ html.dark .rm-progress{background:rgba(214,166,92,.14);}
     <!-- ===== PATH 01 · A1 → B2 ===== -->
     <section class="rm-panel" data-panel="path1" aria-labelledby="rmTitlePath1">
       <div class="rm-head">
-        <span class="eyebrow">Path 01 · Beginner</span>
-        <h2 id="rmTitlePath1">Your roadmap from A1 to B2</h2>
-        <p class="rm-lead">Four Speakout levels, one clear path. You start with a speaking assessment, then move level by level until you reach — and prove — B2.</p>
+        <span class="eyebrow">Path 01 · A1 Starter</span>
+        <h2 id="rmTitlePath1">Your roadmap from A1 to the start of B2</h2>
+        <p class="rm-lead">Level by level, two months at a time. You start with a speaking assessment, then finish A1 Starter, A2 Pre-Intermediate and B1 Intermediate — and arrive at the first step of B2 Upper-Intermediate.</p>
         <div class="rm-stats">
-          <div class="rm-stat"><span>Start Level</span><strong>A1</strong></div>
-          <div class="rm-stat"><span>Finish Level</span><strong>B2</strong></div>
-          <div class="rm-stat"><span>Main book</span><strong>Speakout Starter → Intermediate</strong></div>
+          <div class="rm-stat"><span>Start Level</span><strong>A1 Starter</strong></div>
+          <div class="rm-stat"><span>Finish Level</span><strong>First step of B2</strong></div>
+          <div class="rm-stat"><span>Main book</span><strong>Speakout Starter → Pre-Intermediate</strong></div>
           <div class="rm-stat"><span>Payment</span><strong>16,800 EGP · 4 installments</strong></div>
         </div>
         <div class="rm-levels">
-          <span class="rm-levels-txt">This path is worth <b>12 levels</b> of the A1 → B2 system</span>
-          <span class="rm-levels-sub">3 levels for every CEFR level, the split courses use</span>
-          <div class="rm-pips" aria-hidden="true">
-            <span class="rm-band on"><span class="rm-pip on">1</span><span class="rm-pip on">2</span><span class="rm-pip on">3</span><em>A1</em></span>
-            <span class="rm-band on"><span class="rm-pip on">4</span><span class="rm-pip on">5</span><span class="rm-pip on">6</span><em>A2</em></span>
-            <span class="rm-band on"><span class="rm-pip on">7</span><span class="rm-pip on">8</span><span class="rm-pip on">9</span><em>B1</em></span>
-            <span class="rm-band on"><span class="rm-pip on">10</span><span class="rm-pip on">11</span><span class="rm-pip on">12</span><em>B2</em></span>
+          <span class="rm-levels-txt">This path finishes <b>3 levels</b> — 6 months, 48 live sessions</span>
+          <span class="rm-levels-sub">2 months and about 16 private 1-to-1 sessions per level</span>
+          <div class="rm-chain" aria-hidden="true">
+            <span class="rm-chip on">A1 Starter</span>
+            <span class="rm-chip on">A2 Pre-Intermediate</span>
+            <span class="rm-chip on">B1 Intermediate</span>
+            <span class="rm-chip goal">B2 Upper-Intermediate start</span>
           </div>
         </div>
       </div>
@@ -2689,7 +2704,7 @@ html.dark .rm-progress{background:rgba(214,166,92,.14);}
           <li class="rm-stage">
             <div class="rm-rail"><span class="rm-node">01</span></div>
             <div class="rm-card">
-              <h3 class="rm-stage-head"><button type="button" class="rm-stage-btn" aria-expanded="false"><span class="rm-stage-title">Assessment &amp; Your Plan</span><span class="rm-tag">Weeks 1–2</span><span class="rm-chevron" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg></span></button></h3>
+              <h3 class="rm-stage-head"><button type="button" class="rm-stage-btn" aria-expanded="false"><span class="rm-stage-title">Assessment &amp; Your Plan</span><span class="rm-tag">Included in your first level</span><span class="rm-chevron" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg></span></button></h3>
               <div class="rm-detail">
                 <div class="rm-detail-inner">
                   <p class="rm-stage-text">A short speaking interview and a written test, then we agree on your goal and fix how many live sessions you need each week.</p>
@@ -2705,7 +2720,7 @@ html.dark .rm-progress{background:rgba(214,166,92,.14);}
           <li class="rm-stage">
             <div class="rm-rail"><span class="rm-node">02</span></div>
             <div class="rm-card">
-              <h3 class="rm-stage-head"><button type="button" class="rm-stage-btn" aria-expanded="false"><span class="rm-stage-title">Speakout Starter · A1</span><span class="rm-lv">Levels 1–3</span><span class="rm-tag">≈ 8 weeks</span><span class="rm-chevron" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg></span></button></h3>
+              <h3 class="rm-stage-head"><button type="button" class="rm-stage-btn" aria-expanded="false"><span class="rm-stage-title">A1 · Starter</span><span class="rm-lv">Speakout Starter</span><span class="rm-tag">2 months · ≈ 16 sessions</span><span class="rm-chevron" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg></span></button></h3>
               <div class="rm-detail">
                 <div class="rm-detail-inner">
                   <p class="rm-stage-text">The base of the language: greetings, introducing yourself, family, food, numbers, time, prices, and daily routines.</p>
@@ -2721,7 +2736,7 @@ html.dark .rm-progress{background:rgba(214,166,92,.14);}
           <li class="rm-stage">
             <div class="rm-rail"><span class="rm-node">03</span></div>
             <div class="rm-card">
-              <h3 class="rm-stage-head"><button type="button" class="rm-stage-btn" aria-expanded="false"><span class="rm-stage-title">Speakout Elementary · A2</span><span class="rm-lv">Levels 4–6</span><span class="rm-tag">≈ 10 weeks</span><span class="rm-chevron" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg></span></button></h3>
+              <h3 class="rm-stage-head"><button type="button" class="rm-stage-btn" aria-expanded="false"><span class="rm-stage-title">A2 · Pre-Intermediate</span><span class="rm-lv">Speakout Elementary</span><span class="rm-tag">2 months · ≈ 16 sessions</span><span class="rm-chevron" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg></span></button></h3>
               <div class="rm-detail">
                 <div class="rm-detail-inner">
                   <p class="rm-stage-text">Now the language starts paying off: past and future, shopping, travel, health, work and study, and describing people.</p>
@@ -2737,7 +2752,7 @@ html.dark .rm-progress{background:rgba(214,166,92,.14);}
           <li class="rm-stage">
             <div class="rm-rail"><span class="rm-node">04</span></div>
             <div class="rm-card">
-              <h3 class="rm-stage-head"><button type="button" class="rm-stage-btn" aria-expanded="false"><span class="rm-stage-title">Speakout Pre-Intermediate · B1</span><span class="rm-lv">Levels 7–9</span><span class="rm-tag">≈ 10 weeks</span><span class="rm-chevron" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg></span></button></h3>
+              <h3 class="rm-stage-head"><button type="button" class="rm-stage-btn" aria-expanded="false"><span class="rm-stage-title">B1 · Intermediate</span><span class="rm-lv">Speakout Pre-Intermediate</span><span class="rm-tag">2 months · ≈ 16 sessions</span><span class="rm-chevron" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg></span></button></h3>
               <div class="rm-detail">
                 <div class="rm-detail-inner">
                   <p class="rm-stage-text">This is the level that turns knowledge into fluency: storytelling, opinions and reasons, technology, environment, and longer conversations.</p>
@@ -2753,23 +2768,23 @@ html.dark .rm-progress{background:rgba(214,166,92,.14);}
           <li class="rm-stage">
             <div class="rm-rail"><span class="rm-node">05</span></div>
             <div class="rm-card">
-              <h3 class="rm-stage-head"><button type="button" class="rm-stage-btn" aria-expanded="false"><span class="rm-stage-title">Speakout Intermediate · B2</span><span class="rm-lv">Levels 10–12</span><span class="rm-tag">Final stage</span><span class="rm-chevron" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg></span></button></h3>
+              <h3 class="rm-stage-head"><button type="button" class="rm-stage-btn" aria-expanded="false"><span class="rm-stage-title">Where this path ends: the first step of B2</span><span class="rm-tag">Not a full level</span><span class="rm-chevron" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg></span></button></h3>
               <div class="rm-detail">
                 <div class="rm-detail-inner">
-                  <p class="rm-stage-text">The last push: giving an opinion and defending it, formal writing, work and study language, plus exam-style tasks in all four skills.</p>
+                  <p class="rm-stage-text">The path stops at the first step of B2 Upper-Intermediate on purpose: finishing the whole of B2 is C1-level work. You finish with A1, A2 and B1 complete, a written level report, and a clear recommendation for the separate B2 course.</p>
                   <ul class="rm-points">
-                    <li><b>We work from:</b> Speakout Intermediate, plus other well-known books for extra practice.</li>
-                    <li><b>Homework:</b> A weekly mock task in speaking, writing, reading, and listening, corrected in detail.</li>
-                    <li><b>You finish this stage able to:</b> Reach B2 in a final assessment, and keep improving on your own.</li>
+                    <li><b>We work from:</b> a review built from your own weak points in B1, plus other well-known books.</li>
+                    <li><b>Homework:</b> Your weakest skill only, focused on the last two days of the level.</li>
+                    <li><b>You finish this stage able to:</b> Move into B2 Upper-Intermediate with a finished B1 and a written report behind you.</li>
                   </ul>
                 </div>
               </div>
             </div>
           </li>
         </ol>
-                    <p class="rm-note"><b>Typical pace:</b> you start with 1 live Zoom session a week and we build up to 4 as your level and your goal ask for it. The number of weeks depends on your pace and attendance, and every stage ends with a quick check so we know where you stand before moving to the next one.</p>
+                    <p class="rm-note"><b>Typical pace:</b> 2 live Zoom sessions a week — 8 a month, about 16 per level. One session a week works too, and the same 16 sessions then take four months. Move faster and we move faster with you, and every level ends with a quick check before we move on.</p>
         <div class="rm-foot">
-          <a class="btn btn-gold" href="https://wa.me/201014416415?text=Hello%20Abu%20Bakr%2C%20I%27d%20like%20to%20book%20Path%2001%20(A1%20to%20B2%2C%2016%2C800%20EGP%2C%204%20installments)." target="_blank" rel="noopener">Book This Path</a>
+          <a class="btn btn-gold" href="https://wa.me/201014416415?text=Hello%20Abu%20Bakr%2C%20I%27d%20like%20to%20book%20Path%2001%20(A1%20Starter%20to%20the%20start%20of%20B2%2C%2016%2C800%20EGP%2C%204%20installments)." target="_blank" rel="noopener">Book This Path</a>
           <a class="btn btn-ghost" href="test.html">Take the Level Test</a>
         </div>
       </div>
@@ -2778,23 +2793,22 @@ html.dark .rm-progress{background:rgba(214,166,92,.14);}
     <!-- ===== PATH 02 · A2 → B2 ===== -->
     <section class="rm-panel" data-panel="path2" aria-labelledby="rmTitlePath2" hidden>
       <div class="rm-head">
-        <span class="eyebrow">Path 02 · Most Popular</span>
-        <h2 id="rmTitlePath2">Your roadmap from A2 to B2</h2>
-        <p class="rm-lead">You already have the basics, so we skip the foundation and take the faster route: three Speakout levels, one stage at a time.</p>
+        <span class="eyebrow">Path 02 · A2 Pre-Intermediate</span>
+        <h2 id="rmTitlePath2">Your roadmap from A2 to the start of B2</h2>
+        <p class="rm-lead">You already have the basics, so we skip the foundation: finish A2 Pre-Intermediate and B1 Intermediate in about four months, then arrive at the first step of B2 Upper-Intermediate.</p>
         <div class="rm-stats">
-          <div class="rm-stat"><span>Start Level</span><strong>A2</strong></div>
-          <div class="rm-stat"><span>Finish Level</span><strong>B2</strong></div>
-          <div class="rm-stat"><span>Main book</span><strong>Speakout Elementary → Intermediate</strong></div>
+          <div class="rm-stat"><span>Start Level</span><strong>A2 Pre-Intermediate</strong></div>
+          <div class="rm-stat"><span>Finish Level</span><strong>First step of B2</strong></div>
+          <div class="rm-stat"><span>Main book</span><strong>Speakout Elementary → Pre-Intermediate</strong></div>
           <div class="rm-stat"><span>Payment</span><strong>11,200 EGP · 3 installments</strong></div>
         </div>
         <div class="rm-levels">
-          <span class="rm-levels-txt">This path is worth <b>9 levels</b> of the A1 → B2 system</span>
-          <span class="rm-levels-sub">Levels 4 to 12, 3 levels for every CEFR level</span>
-          <div class="rm-pips" aria-hidden="true">
-            <span class="rm-band"><span class="rm-pip">1</span><span class="rm-pip">2</span><span class="rm-pip">3</span><em>A1</em></span>
-            <span class="rm-band on"><span class="rm-pip on">4</span><span class="rm-pip on">5</span><span class="rm-pip on">6</span><em>A2</em></span>
-            <span class="rm-band on"><span class="rm-pip on">7</span><span class="rm-pip on">8</span><span class="rm-pip on">9</span><em>B1</em></span>
-            <span class="rm-band on"><span class="rm-pip on">10</span><span class="rm-pip on">11</span><span class="rm-pip on">12</span><em>B2</em></span>
+          <span class="rm-levels-txt">This path finishes <b>2 levels</b> — 4 months, 32 live sessions</span>
+          <span class="rm-levels-sub">2 months and about 16 private 1-to-1 sessions per level</span>
+          <div class="rm-chain" aria-hidden="true">
+            <span class="rm-chip on">A2 Pre-Intermediate</span>
+            <span class="rm-chip on">B1 Intermediate</span>
+            <span class="rm-chip goal">B2 Upper-Intermediate start</span>
           </div>
         </div>
       </div>
@@ -2803,7 +2817,7 @@ html.dark .rm-progress{background:rgba(214,166,92,.14);}
           <li class="rm-stage">
             <div class="rm-rail"><span class="rm-node">01</span></div>
             <div class="rm-card">
-              <h3 class="rm-stage-head"><button type="button" class="rm-stage-btn" aria-expanded="false"><span class="rm-stage-title">Assessment &amp; Your Plan</span><span class="rm-tag">Weeks 1–2</span><span class="rm-chevron" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg></span></button></h3>
+              <h3 class="rm-stage-head"><button type="button" class="rm-stage-btn" aria-expanded="false"><span class="rm-stage-title">Assessment &amp; Your Plan</span><span class="rm-tag">Included in your first level</span><span class="rm-chevron" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg></span></button></h3>
               <div class="rm-detail">
                 <div class="rm-detail-inner">
                   <p class="rm-stage-text">A short speaking interview and a written test, then we agree on your goal and fix how many live sessions you need each week.</p>
@@ -2819,7 +2833,7 @@ html.dark .rm-progress{background:rgba(214,166,92,.14);}
           <li class="rm-stage">
             <div class="rm-rail"><span class="rm-node">02</span></div>
             <div class="rm-card">
-              <h3 class="rm-stage-head"><button type="button" class="rm-stage-btn" aria-expanded="false"><span class="rm-stage-title">Speakout Elementary · A2</span><span class="rm-lv">Levels 4–6</span><span class="rm-tag">≈ 8 weeks</span><span class="rm-chevron" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg></span></button></h3>
+              <h3 class="rm-stage-head"><button type="button" class="rm-stage-btn" aria-expanded="false"><span class="rm-stage-title">A2 · Pre-Intermediate</span><span class="rm-lv">Speakout Elementary</span><span class="rm-tag">2 months · ≈ 16 sessions</span><span class="rm-chevron" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg></span></button></h3>
               <div class="rm-detail">
                 <div class="rm-detail-inner">
                   <p class="rm-stage-text">Stronger basics first: past and future, shopping, travel, health, work and study, and describing people.</p>
@@ -2835,7 +2849,7 @@ html.dark .rm-progress{background:rgba(214,166,92,.14);}
           <li class="rm-stage">
             <div class="rm-rail"><span class="rm-node">03</span></div>
             <div class="rm-card">
-              <h3 class="rm-stage-head"><button type="button" class="rm-stage-btn" aria-expanded="false"><span class="rm-stage-title">Speakout Pre-Intermediate · B1</span><span class="rm-lv">Levels 7–9</span><span class="rm-tag">≈ 10 weeks</span><span class="rm-chevron" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg></span></button></h3>
+              <h3 class="rm-stage-head"><button type="button" class="rm-stage-btn" aria-expanded="false"><span class="rm-stage-title">B1 · Intermediate</span><span class="rm-lv">Speakout Pre-Intermediate</span><span class="rm-tag">2 months · ≈ 16 sessions</span><span class="rm-chevron" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg></span></button></h3>
               <div class="rm-detail">
                 <div class="rm-detail-inner">
                   <p class="rm-stage-text">This is the level that turns knowledge into fluency: storytelling, opinions and reasons, technology, environment, and longer conversations.</p>
@@ -2851,23 +2865,23 @@ html.dark .rm-progress{background:rgba(214,166,92,.14);}
           <li class="rm-stage">
             <div class="rm-rail"><span class="rm-node">04</span></div>
             <div class="rm-card">
-              <h3 class="rm-stage-head"><button type="button" class="rm-stage-btn" aria-expanded="false"><span class="rm-stage-title">Speakout Intermediate · B2</span><span class="rm-lv">Levels 10–12</span><span class="rm-tag">Final stage</span><span class="rm-chevron" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg></span></button></h3>
+              <h3 class="rm-stage-head"><button type="button" class="rm-stage-btn" aria-expanded="false"><span class="rm-stage-title">Where this path ends: the first step of B2</span><span class="rm-tag">Not a full level</span><span class="rm-chevron" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg></span></button></h3>
               <div class="rm-detail">
                 <div class="rm-detail-inner">
-                  <p class="rm-stage-text">The last push: giving an opinion and defending it, formal writing, work and study language, plus exam-style tasks in all four skills.</p>
+                  <p class="rm-stage-text">The path stops at the first step of B2 Upper-Intermediate on purpose: finishing the whole of B2 is C1-level work. You finish with A2 and B1 complete, a written level report, and a clear recommendation for the separate B2 course.</p>
                   <ul class="rm-points">
-                    <li><b>We work from:</b> Speakout Intermediate, plus other well-known books for extra practice.</li>
-                    <li><b>Homework:</b> A weekly mock task in speaking, writing, reading, and listening, corrected in detail.</li>
-                    <li><b>You finish this stage able to:</b> Reach B2 in a final assessment, and keep improving on your own.</li>
+                    <li><b>We work from:</b> a review built from your own weak points in B1, plus other well-known books.</li>
+                    <li><b>Homework:</b> Your weakest skill only, focused on the last two days of the level.</li>
+                    <li><b>You finish this stage able to:</b> Move into B2 Upper-Intermediate with a finished B1 and a written report behind you.</li>
                   </ul>
                 </div>
               </div>
             </div>
           </li>
         </ol>
-                    <p class="rm-note"><b>Typical pace:</b> you start with 1 live Zoom session a week and we build up to 4 as your level and your goal ask for it. The number of weeks depends on your pace and attendance, and every stage ends with a quick check so we know where you stand before moving to the next one.</p>
+                    <p class="rm-note"><b>Typical pace:</b> 2 live Zoom sessions a week — 8 a month, about 16 per level. One session a week works too, and the same 16 sessions then take four months. Move faster and we move faster with you, and every level ends with a quick check before we move on.</p>
         <div class="rm-foot">
-          <a class="btn btn-gold" href="https://wa.me/201014416415?text=Hello%20Abu%20Bakr%2C%20I%27d%20like%20to%20book%20Path%2002%20(A2%20to%20B2%2C%2011%2C200%20EGP%2C%203%20installments)." target="_blank" rel="noopener">Book This Path</a>
+          <a class="btn btn-gold" href="https://wa.me/201014416415?text=Hello%20Abu%20Bakr%2C%20I%27d%20like%20to%20book%20Path%2002%20(A2%20Pre-Intermediate%20to%20the%20start%20of%20B2%2C%2011%2C200%20EGP%2C%203%20installments)." target="_blank" rel="noopener">Book This Path</a>
           <a class="btn btn-ghost" href="test.html">Take the Level Test</a>
         </div>
       </div>
@@ -2876,23 +2890,21 @@ html.dark .rm-progress{background:rgba(214,166,92,.14);}
     <!-- ===== PATH 03 · B1 → B2 ===== -->
     <section class="rm-panel" data-panel="path3" aria-labelledby="rmTitlePath3" hidden>
       <div class="rm-head">
-        <span class="eyebrow">Path 03 · Intermediate</span>
-        <h2 id="rmTitlePath3">Your roadmap from B1 to B2</h2>
-        <p class="rm-lead">A short, focused program: we fix accuracy and fluency where they break down, then finish with a real B2 assessment.</p>
+        <span class="eyebrow">Path 03 · B1 Intermediate</span>
+        <h2 id="rmTitlePath3">Your roadmap from B1 to the start of B2</h2>
+        <p class="rm-lead">A short, focused program: one full level, about two months, to fix accuracy and fluency where they break down and finish B1 properly.</p>
         <div class="rm-stats">
-          <div class="rm-stat"><span>Start Level</span><strong>B1</strong></div>
-          <div class="rm-stat"><span>Finish Level</span><strong>B2</strong></div>
-          <div class="rm-stat"><span>Main book</span><strong>Speakout Intermediate</strong></div>
+          <div class="rm-stat"><span>Start Level</span><strong>B1 Intermediate</strong></div>
+          <div class="rm-stat"><span>Finish Level</span><strong>First step of B2</strong></div>
+          <div class="rm-stat"><span>Main book</span><strong>Speakout Pre-Intermediate</strong></div>
           <div class="rm-stat"><span>Payment</span><strong>5,600 EGP · 2 installments</strong></div>
         </div>
         <div class="rm-levels">
-          <span class="rm-levels-txt">This path is worth <b>6 levels</b> of the A1 → B2 system</span>
-          <span class="rm-levels-sub">Levels 7 to 12, 3 levels for every CEFR level</span>
-          <div class="rm-pips" aria-hidden="true">
-            <span class="rm-band"><span class="rm-pip">1</span><span class="rm-pip">2</span><span class="rm-pip">3</span><em>A1</em></span>
-            <span class="rm-band"><span class="rm-pip">4</span><span class="rm-pip">5</span><span class="rm-pip">6</span><em>A2</em></span>
-            <span class="rm-band on"><span class="rm-pip on">7</span><span class="rm-pip on">8</span><span class="rm-pip on">9</span><em>B1</em></span>
-            <span class="rm-band on"><span class="rm-pip on">10</span><span class="rm-pip on">11</span><span class="rm-pip on">12</span><em>B2</em></span>
+          <span class="rm-levels-txt">This path finishes <b>1 level</b> — 2 months, 16 live sessions</span>
+          <span class="rm-levels-sub">2 months and about 16 private 1-to-1 sessions for the level</span>
+          <div class="rm-chain" aria-hidden="true">
+            <span class="rm-chip on">B1 Intermediate</span>
+            <span class="rm-chip goal">B2 Upper-Intermediate start</span>
           </div>
         </div>
       </div>
@@ -2901,12 +2913,12 @@ html.dark .rm-progress{background:rgba(214,166,92,.14);}
           <li class="rm-stage">
             <div class="rm-rail"><span class="rm-node">01</span></div>
             <div class="rm-card">
-              <h3 class="rm-stage-head"><button type="button" class="rm-stage-btn" aria-expanded="false"><span class="rm-stage-title">Assessment &amp; Gap Check</span><span class="rm-lv">Levels 7–9</span><span class="rm-tag">Week 1</span><span class="rm-chevron" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg></span></button></h3>
+              <h3 class="rm-stage-head"><button type="button" class="rm-stage-btn" aria-expanded="false"><span class="rm-stage-title">Assessment &amp; Gap Check</span><span class="rm-tag">Included in your first level</span><span class="rm-chevron" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg></span></button></h3>
               <div class="rm-detail">
                 <div class="rm-detail-inner">
                   <p class="rm-stage-text">A speaking interview plus one task in reading, writing, and listening, so we work on your actual weak points instead of repeating what you already know.</p>
                   <ul class="rm-points">
-                    <li><b>We work from:</b> Speakout Intermediate at the level your test shows, plus other well-known books.</li>
+                    <li><b>We work from:</b> Speakout Pre-Intermediate at the level your test shows, plus other well-known books.</li>
                     <li><b>Homework:</b> A short gap-fixing task from day one.</li>
                     <li><b>You finish this stage able to:</b> Know exactly what to work on, and why.</li>
                   </ul>
@@ -2917,14 +2929,14 @@ html.dark .rm-progress{background:rgba(214,166,92,.14);}
           <li class="rm-stage">
             <div class="rm-rail"><span class="rm-node">02</span></div>
             <div class="rm-card">
-              <h3 class="rm-stage-head"><button type="button" class="rm-stage-btn" aria-expanded="false"><span class="rm-stage-title">Speakout Intermediate · B2</span><span class="rm-lv">Levels 10–12</span><span class="rm-tag">≈ 8 weeks</span><span class="rm-chevron" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg></span></button></h3>
+              <h3 class="rm-stage-head"><button type="button" class="rm-stage-btn" aria-expanded="false"><span class="rm-stage-title">B1 · Intermediate</span><span class="rm-lv">Speakout Pre-Intermediate</span><span class="rm-tag">2 months · ≈ 16 sessions</span><span class="rm-chevron" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg></span></button></h3>
               <div class="rm-detail">
                 <div class="rm-detail-inner">
-                    <p class="rm-stage-text">Giving an opinion and defending it, formal writing, work and study language, and longer speaking under time pressure — the parts you need are chosen after your test.</p>
+                    <p class="rm-stage-text">Giving an opinion and defending it, formal writing, work and study language, and longer speaking under time pressure — chosen from the parts you actually need after your test.</p>
                   <ul class="rm-points">
-                    <li><b>We work from:</b> Speakout Intermediate, plus other well-known books for extra practice.</li>
-                    <li><b>Homework:</b> A weekly mock task in speaking, writing, reading, and listening, corrected in detail.</li>
-                    <li><b>You finish this stage able to:</b> Reach B2 in a final assessment, and keep improving on your own.</li>
+                    <li><b>We work from:</b> Speakout Pre-Intermediate, plus other well-known books for extra practice.</li>
+                    <li><b>Homework:</b> One 150-word text, one listening summary, and one recorded presentation every week.</li>
+                    <li><b>You finish this stage able to:</b> Speak for 10 minutes on any everyday topic with only a few mistakes.</li>
                   </ul>
                 </div>
               </div>
@@ -2933,23 +2945,23 @@ html.dark .rm-progress{background:rgba(214,166,92,.14);}
           <li class="rm-stage">
             <div class="rm-rail"><span class="rm-node">03</span></div>
             <div class="rm-card">
-              <h3 class="rm-stage-head"><button type="button" class="rm-stage-btn" aria-expanded="false"><span class="rm-stage-title">Final Assessment &amp; Next Steps</span><span class="rm-tag">Last week</span><span class="rm-chevron" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg></span></button></h3>
+              <h3 class="rm-stage-head"><button type="button" class="rm-stage-btn" aria-expanded="false"><span class="rm-stage-title">Where this path ends: the first step of B2</span><span class="rm-tag">Not a full level</span><span class="rm-chevron" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg></span></button></h3>
               <div class="rm-detail">
                 <div class="rm-detail-inner">
-                  <p class="rm-stage-text">A full mock in all four skills, a clear level report, and an honest recommendation for what to study next — an exam, an interview, or a workplace need.</p>
+                  <p class="rm-stage-text">The path stops at the first step of B2 Upper-Intermediate on purpose: finishing the whole of B2 is C1-level work. You finish with B1 complete, a written level report, and a clear recommendation for the separate B2 course.</p>
                   <ul class="rm-points">
-                    <li><b>We work from:</b> your weak points from the mock, plus other well-known books.</li>
-                    <li><b>Homework:</b> Your weakest skill only, focused on the last two days.</li>
-                    <li><b>You finish this stage able to:</b> Prove B2 with a full mock result and a written level report.</li>
+                    <li><b>We work from:</b> a review built from your own weak points in B1, plus other well-known books.</li>
+                    <li><b>Homework:</b> Your weakest skill only, focused on the last two days of the level.</li>
+                    <li><b>You finish this stage able to:</b> Move into B2 Upper-Intermediate with a finished B1 and a written report behind you.</li>
                   </ul>
                 </div>
               </div>
             </div>
           </li>
         </ol>
-                    <p class="rm-note"><b>Typical pace:</b> you start with 1 live Zoom session a week and we build up to 4 as your level and your goal ask for it. The number of weeks depends on your pace and attendance, and every stage ends with a quick check so we know where you stand before moving to the next one.</p>
+                    <p class="rm-note"><b>Typical pace:</b> 2 live Zoom sessions a week — 8 a month, about 16 per level. One session a week works too, and the same 16 sessions then take four months. Move faster and we move faster with you, and every level ends with a quick check before we move on.</p>
         <div class="rm-foot">
-          <a class="btn btn-gold" href="https://wa.me/201014416415?text=Hello%20Abu%20Bakr%2C%20I%27d%20like%20to%20book%20Path%2003%20(B1%20to%20B2%2C%205%2C600%20EGP%2C%202%20installments)." target="_blank" rel="noopener">Book This Path</a>
+          <a class="btn btn-gold" href="https://wa.me/201014416415?text=Hello%20Abu%20Bakr%2C%20I%27d%20like%20to%20book%20Path%2003%20(B1%20Intermediate%20to%20the%20start%20of%20B2%2C%205%2C600%20EGP%2C%202%20installments)." target="_blank" rel="noopener">Book This Path</a>
           <a class="btn btn-ghost" href="test.html">Take the Level Test</a>
         </div>
       </div>
@@ -3568,7 +3580,62 @@ document.querySelectorAll('.faq-item').forEach(item => {
     "Certificate of Assessment": "شهادة تقييم",
     "How to Teach IELTS": "كيفية تدريس IELTS",
     "More": "المزيد",
-    "© 2026 Abu Bakr Mukhtar. All rights reserved.": "© 2026 Mahmoud Atef. جميع الحقوق محفوظة."
+    "© 2026 Abu Bakr Mukhtar. All rights reserved.": "© 2026 Mahmoud Atef. جميع الحقوق محفوظة.",
+    "Private 1-to-1 English coaching. One level = 2 months ≈ 16 live sessions, and every path stops at the first step of B2 Upper-Intermediate.": "تدريس إنجليزي خاص فردي. المستوى الواحد = شهرين ≈ 16 حصة مباشرة، وكل مسار بيقف عند أول خطوة في B2 فوق المتوسط.",
+    "Levels are named the Egyptian way: A1 Starter, A2 Pre-Intermediate, B1 Intermediate, B2 Upper-Intermediate. All lessons are private 1-to-1, and every path ends at the first step of B2 — finishing the whole of B2 is C1-level work and is agreed as a separate plan.": "المستويات بالطريقة المصرية: A1 مبتدئ، A2 ما قبل المتوسط، B1 متوسط، B2 فوق المتوسط. كل الحصص خاصة فردية، وكل مسار بينتهي عند أول خطوة في B2 — وخلاص B2 كله شغل مستوى C1 وبيتم الاتفاق عليه كخطة منفصلة.",
+    "under any path first — it shows every level, the months and sessions it takes, the books you will work from, the homework, and where the path ends.": "تحت أي مسار الأول — بيوضّح كل مستوى، والشهور والحصص اللي بياخدها، والكتب اللي هتشتغل منها، والواجب، والمسار بينتهي فين.",
+    "Path 01 · A1 Starter": "المسار 01 · A1 مبتدئ",
+    "Path 02 · A2 Pre-Intermediate": "المسار 02 · A2 ما قبل المتوسط",
+    "Path 03 · B1 Intermediate": "المسار 03 · B1 متوسط",
+    "From A1 to the start of B2": "من A1 إلى بداية B2",
+    "From A2 to the start of B2": "من A2 إلى بداية B2",
+    "From B1 to the start of B2": "من B1 إلى بداية B2",
+    "For beginners, or learners whose English needs a fresh foundation.": "للمبتدئين، أو اللي إنجليزيتهم محتاجة تأسيس من جديد.",
+    "For learners already at B1 who want it finished properly.": "للطلاب اللي مستواهم B1 وعايزين يخلّصوه صح.",
+    "A1 Starter": "A1 مبتدئ",
+    "A2 Pre-Intermediate": "A2 ما قبل المتوسط",
+    "B1 Intermediate": "B1 متوسط",
+    "B2 Upper-Intermediate start": "بداية B2 فوق المتوسط",
+    "A1 · Starter": "A1 · مبتدئ",
+    "A2 · Pre-Intermediate": "A2 · ما قبل المتوسط",
+    "B1 · Intermediate": "B1 · متوسط",
+    "One level = 2 months ≈ 16 private live sessions": "المستوى = شهرين ≈ 16 حصة مباشرة خاصة",
+    "Faster learner? We speed up with you": "طالب سريع؟ بنسرّع معاك",
+    "6 months": "6 شهور",
+    "4 months": "4 شهور",
+    "2 months": "شهرين",
+    "· 48 private live sessions": "· 48 حصة مباشرة خاصة",
+    "· 32 private live sessions": "· 32 حصة مباشرة خاصة",
+    "· 16 private live sessions": "· 16 حصة مباشرة خاصة",
+    "2 months · ≈ 16 sessions": "شهرين · ≈ 16 حصة",
+    "Included in your first level": "متضمّن في أول مستوى ليك",
+    "Not a full level": "مش مستوى كامل",
+    "First step of B2": "أول خطوة في B2",
+    "Your roadmap from A1 to the start of B2": "خطتك من A1 إلى بداية B2",
+    "Your roadmap from A2 to the start of B2": "خطتك من A2 إلى بداية B2",
+    "Your roadmap from B1 to the start of B2": "خطتك من B1 إلى بداية B2",
+    "Level by level, two months at a time. You start with a speaking assessment, then finish A1 Starter, A2 Pre-Intermediate and B1 Intermediate — and arrive at the first step of B2 Upper-Intermediate.": "مستوى ورا مستوى، شهرين في المرة. بتبدأ بتقييم محادثة، وبعدين تخلّص A1 مبتدئ وA2 ما قبل المتوسط وB1 متوسط — وتوصل لأول خطوة في B2 فوق المتوسط.",
+    "You already have the basics, so we skip the foundation: finish A2 Pre-Intermediate and B1 Intermediate in about four months, then arrive at the first step of B2 Upper-Intermediate.": "انت عندك الأساسيات خلاص، فبنعدّي التأسيس: تخلّص A2 ما قبل المتوسط وB1 متوسط في حوالي أربع شهور، وتوصل لأول خطوة في B2 فوق المتوسط.",
+    "A short, focused program: one full level, about two months, to fix accuracy and fluency where they break down and finish B1 properly.": "برنامج قصير ومركّز: مستوى كامل واحد في حدود شهرين، نظبّط الدقة والطلاقة اللي بيتلخبطوا فيها ونخلّص B1 صح.",
+    "This path finishes": "المسار ده بيخلّص",
+    "3 levels": "3 مستويات",
+    "2 levels": "مستويين",
+    "1 level": "مستوى واحد",
+    "— 6 months, 48 live sessions": "— 6 شهور، 48 حصة مباشرة",
+    "— 4 months, 32 live sessions": "— 4 شهور، 32 حصة مباشرة",
+    "— 2 months, 16 live sessions": "— شهرين، 16 حصة مباشرة",
+    "2 months and about 16 private 1-to-1 sessions per level": "شهرين وحوالي 16 حصة خاصة فردية للمستوى",
+    "2 months and about 16 private 1-to-1 sessions for the level": "شهرين وحوالي 16 حصة خاصة فردية للمستوى",
+    "Where this path ends: the first step of B2": "المسار بينتهي هنا: أول خطوة في B2",
+    "The path stops at the first step of B2 Upper-Intermediate on purpose: finishing the whole of B2 is C1-level work. You finish with A1, A2 and B1 complete, a written level report, and a clear recommendation for the separate B2 course.": "المسار بيقف عند أول خطوة في B2 فوق المتوسط عن قصد: وخلاص B2 كله شغل مستوى C1. بتخلّص وانت مخلّص A1 وA2 وB1، مع تقرير مستوى مكتوب، وترشيح واضح لكورس B2 المنفصل.",
+    "The path stops at the first step of B2 Upper-Intermediate on purpose: finishing the whole of B2 is C1-level work. You finish with A2 and B1 complete, a written level report, and a clear recommendation for the separate B2 course.": "المسار بيقف عند أول خطوة في B2 فوق المتوسط عن قصد: وخلاص B2 كله شغل مستوى C1. بتخلّص وانت مخلّص A2 وB1، مع تقرير مستوى مكتوب، وترشيح واضح لكورس B2 المنفصل.",
+    "The path stops at the first step of B2 Upper-Intermediate on purpose: finishing the whole of B2 is C1-level work. You finish with B1 complete, a written level report, and a clear recommendation for the separate B2 course.": "المسار بيقف عند أول خطوة في B2 فوق المتوسط عن قصد: وخلاص B2 كله شغل مستوى C1. بتخلّص وانت مخلّص B1، مع تقرير مستوى مكتوب، وترشيح واضح لكورس B2 المنفصل.",
+    "a review built from your own weak points in B1, plus other well-known books.": "مراجعة مبنية على نقاط ضعفك في B1، مع كتب تانية مشهورة.",
+    "Your weakest skill only, focused on the last two days of the level.": "أضعف مهارة عندك بس، مركّزة على آخر يومين في المستوى.",
+    "Move into B2 Upper-Intermediate with a finished B1 and a written report behind you.": "تدخل B2 فوق المتوسط وانت مخلّص B1 ومعه تقرير مكتوب.",
+    "2 live Zoom sessions a week — 8 a month, about 16 per level. One session a week works too, and the same 16 sessions then take four months. Move faster and we move faster with you, and every level ends with a quick check before we move on.": "حصتين زووم مباشر في الأسبوع — 8 في الشهر، وحوالي 16 لكل مستوى. حصة واحدة في الأسبوع كمان شغّالة، وساعتها نفس الـ16 حصة بتاخد أربع شهور. لو اتقدّمت أسرع بنسرّع معاك، وكل مستوى بينتهي بتقييم سريع قبل ما نكمل.",
+    "Speakout Pre-Intermediate at the level your test shows, plus other well-known books.": "Speakout Pre-Intermediate على المستوى اللي الاختبار بيوضّحه، مع كتب تانية مشهورة.",
+    "Giving an opinion and defending it, formal writing, work and study language, and longer speaking under time pressure — chosen from the parts you actually need after your test.": "إنك تدّي رأي وتدافع عنه، الكتابة الرسمية، لغة الشغل والدراسة، وكلام أطول تحت ضغط الوقت — كل ده بنختاره من الأجزاء اللي بتحتاجها فعلاً بعد الاختبار."
   };
 
   const original = new WeakMap();
