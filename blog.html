@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Blog | Abu Bakr Mukhtar</title>
+<meta name="description" content="Articles, tips and stories about learning English from Abu Bakr Mukhtar.">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://abubakrmukhtar.com/blog">
+<meta name="theme-color" content="#0F1B2E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --text-strong:var(--navy);
+  --navy:#0F1B2E;--navy-2:#16283F;--navy-soft:#22354E;
+  --paper:#FBF9F5;--paper-2:#F3F0E9;--line:#E4E0D6;
+  --ink:#17212F;--muted:#5B6472;--muted-light:#8891A0;
+  --gold:#B8873F;--gold-light:#D6B372;--gold-deep:#8A6428;
+  --white:#ffffff;--radius-s:8px;--radius-m:14px;--radius-l:22px;
+  --shadow-soft:0 20px 50px -25px rgba(15,27,46,0.25);
+  --shadow-card:0 10px 30px -15px rgba(15,27,46,0.18);
+  --ease:cubic-bezier(.25,.8,.35,1);
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{font-family:'Inter',sans-serif;color:var(--ink);background:var(--paper);line-height:1.6;-webkit-font-smoothing:antialiased;min-height:100vh;display:flex;flex-direction:column;}
+img{max-width:100%;display:block;}
+a{text-decoration:none;color:inherit;}
+.container{max-width:1100px;margin:0 auto;padding:0 24px;}
+html.dark{
+  --text-strong:#E9EDF3;--paper:#0D1117;--paper-2:#151B24;--line:#2A323F;--ink:#E6E9EE;--muted:#9AA6B5;--muted-light:#6E7A8C;--white:#12171F;--gold:#D6A65C;--gold-light:#E4BE7E;--navy-2:#1B2433;--navy-soft:#26364E;--shadow-soft:0 20px 50px -25px rgba(0,0,0,.6);--shadow-card:0 10px 30px -15px rgba(0,0,0,.55);}
+html.dark body{color:var(--ink);}
+.theme-toggle{display:inline-flex;align-items:center;justify-content:center;width:36px;height:36px;flex:0 0 36px;border:1px solid var(--line);border-radius:50%;color:var(--ink);background:transparent;cursor:pointer;}
+.theme-toggle .icon-sun{display:none;}
+html.dark .theme-toggle .icon-moon{display:none;}
+html.dark .theme-toggle .icon-sun{display:block;}
+.lang-switcher{display:inline-flex;background:var(--white);border:1px solid var(--line);border-radius:999px;padding:4px;gap:2px;}
+.lang-switcher button{border:0;background:transparent;font-family:inherit;font-weight:600;font-size:.78rem;padding:7px 14px;border-radius:999px;cursor:pointer;color:var(--muted);transition:all .25s var(--ease);}
+.lang-switcher button.active{background:var(--navy);color:#fff;}
+.lang-switcher button:not(.active):hover{color:var(--text-strong);}
+html.dark .lang-switcher button.active{background:#fff;color:#0F1B2E;}
+html.dark .lang-switcher button:not(.active):hover{color:#fff;}
+
+/* header */
+.site-header{position:sticky;top:0;z-index:50;background:rgba(251,249,245,0.85);backdrop-filter:blur(12px);border-bottom:1px solid var(--line);}
+html.dark .site-header{background:rgba(13,17,23,0.85);}
+.nav-inner{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:14px 24px;max-width:1100px;margin:0 auto;}
+.logo{font-family:'Fraunces',serif;font-size:1.1rem;color:var(--text-strong);font-weight:600;}
+.logo span{display:block;font-family:'Inter',sans-serif;font-size:.7rem;color:var(--muted);font-weight:400;}
+.nav-links{display:flex;gap:18px;align-items:center;font-size:.9rem;}
+.nav-links a{color:var(--muted);transition:color .2s;}
+.nav-links a:hover{color:var(--gold);}
+.nav-cta{display:flex;gap:10px;align-items:center;}
+.btn{display:inline-flex;align-items:center;gap:8px;padding:9px 16px;border-radius:999px;font-size:.85rem;font-weight:600;border:1px solid transparent;cursor:pointer;transition:all .2s;}
+.btn-ghost{border-color:var(--line);color:var(--ink);}
+.btn-ghost:hover{border-color:var(--gold);color:var(--gold);}
+.btn-primary{background:var(--navy);color:#fff;}
+.btn-primary:hover{background:var(--navy-2);}
+.hamburger{display:none;flex-direction:column;gap:4px;background:none;border:none;cursor:pointer;}
+.hamburger span{width:22px;height:2px;background:var(--ink);border-radius:2px;}
+.mobile-menu{display:none;flex-direction:column;gap:12px;padding:16px 24px;border-top:1px solid var(--line);background:var(--paper);}
+.mobile-menu.open{display:flex;}
+
+/* hero */
+.page-hero{padding:64px 0 32px;text-align:center;}
+.page-hero h1{font-family:'Fraunces',serif;font-size:2.4rem;color:var(--text-strong);margin-bottom:10px;}
+.page-hero p{color:var(--muted);max-width:600px;margin:0 auto;}
+html.dark .page-hero h1{color:#fff;}
+
+/* posts grid */
+.posts-wrap{padding:24px 0 80px;flex:1;}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:24px;}
+.card{background:var(--white);border:1px solid var(--line);border-radius:var(--radius-l);overflow:hidden;box-shadow:var(--shadow-card);transition:transform .25s var(--ease),box-shadow .25s;cursor:pointer;display:flex;flex-direction:column;}
+.card:hover{transform:translateY(-4px);box-shadow:var(--shadow-soft);}
+.card-img{aspect-ratio:16/9;background:var(--paper-2);overflow:hidden;}
+.card-img img{width:100%;height:100%;object-fit:cover;}
+.card-body{padding:20px;display:flex;flex-direction:column;gap:8px;flex:1;}
+.card-title{font-family:'Fraunces',serif;font-size:1.25rem;color:var(--text-strong);line-height:1.2;}
+html.dark .card-title{color:#fff;}
+.card-excerpt{color:var(--muted);font-size:.9rem;flex:1;}
+.card-meta{font-size:.75rem;color:var(--muted-light);display:flex;gap:10px;align-items:center;}
+.card-date{font-weight:500;}
+.card-link{margin-top:2px;font-size:.85rem;font-weight:600;color:var(--gold-deep);display:inline-flex;align-items:center;gap:6px;}
+html.dark .card-link{color:var(--gold-light);}
+.empty{padding:60px 20px;text-align:center;color:var(--muted);}
+.loading{padding:60px 20px;text-align:center;color:var(--muted);}
+
+/* footer */
+.site-footer{border-top:1px solid var(--line);padding:24px 0;text-align:center;color:var(--muted);font-size:.85rem;}
+
+@media (max-width:760px){
+  .nav-links{display:none;}
+  .hamburger{display:flex;}
+  .mobile-menu a{color:var(--ink);padding:6px 0;}
+}
+
+/* ===== DARK MODE FIXES ===== */
+html.dark .lang-switcher button{background:transparent;}
+html.dark .lang-switcher{background:rgba(18,23,31,.88);box-shadow:0 8px 20px -15px rgba(0,0,0,.6);}
+html.dark .lang-switcher button.active{background:var(--navy);color:#FFFFFF;}
+html.dark .lang-switcher button:not(.active):hover{color:#FFFFFF;}
+html.dark .mobile-menu a.btn-gold,html.dark .mobile-menu .btn-gold{color:#1A1206 !important;}
+html.dark .btn-gold{color:#1A1206 !important;}
+html.dark .featured .plan-cta{color:#1A1206 !important;}
+html.dark .theme-toggle{background:rgba(18,23,31,.88);}
+html.dark .skip-link{color:#FFFFFF;}
+</style>
+</head>
+<body>
+<header class="site-header">
+  <div class="nav-inner">
+    <a href="index.html" class="logo">Abu Bakr Mukhtar<span>English Teacher &amp; Language Coach</span></a>
+    <nav class="nav-links">
+      <a href="index.html#home">Home</a>
+      <a href="index.html#courses">Courses</a>
+      <a href="flashcards.html">Vocabulary</a>
+      <a href="tools.html">Tools</a>
+      <a href="blog.html">Blog</a>
+      <a href="contact.html">Contact</a>
+    </nav>
+    <div class="nav-cta">
+      <div class="lang-switcher" id="langSwitcher" aria-label="Language switcher">
+        <button type="button" data-lang="en" class="active">EN</button>
+        <button type="button" data-lang="ar">AR</button>
+      </div>
+      <button type="button" class="theme-toggle" aria-label="Toggle dark mode">
+        <svg class="icon-moon" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>
+        <svg class="icon-sun" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="4"/><path d="M12 2v2m0 16v2M4.9 4.9l1.4 1.4m11.4 11.4 1.4 1.4M2 12h2m16 0h2M4.9 19.1l1.4-1.4m11.4-11.4 1.4-1.4"/></svg>
+      </button>
+      <a href="contact.html" class="btn btn-ghost">Contact</a>
+    </div>
+    <button class="hamburger" id="hamburgerBtn" aria-label="Open menu"><span></span><span></span><span></span></button>
+  </div>
+  <div class="mobile-menu" id="mobileMenu">
+    <div class="lang-switcher" id="langSwitcherMobile" aria-label="Language switcher" style="align-self:flex-start;">
+      <button type="button" data-lang="en" class="active">EN</button>
+      <button type="button" data-lang="ar">AR</button>
+    </div>
+    <a href="index.html#home">Home</a>
+    <a href="index.html#courses">Courses</a>
+    <a href="flashcards.html">Vocabulary</a>
+    <a href="tools.html">Tools</a>
+    <a href="blog.html">Blog</a>
+    <a href="contact.html">Contact</a>
+  </div>
+</header>
+
+<main>
+  <section class="page-hero">
+    <div class="container">
+      <h1>Blog</h1>
+      <p>Articles, tips and stories about learning English.</p>
+    </div>
+  </section>
+  <section class="posts-wrap">
+    <div class="container">
+      <div id="status" class="loading">Loading posts…</div>
+      <div id="grid" class="grid" style="display:none;"></div>
+    </div>
+  </section>
+</main>
+
+<footer class="site-footer">
+  �<a href="https://www.facebook.com/mahmoud.atef.239821" target="_blank" rel="noopener">� 2026 Mahmoud Atef. All rights reserved.</a>
+</footer>
+
+<script src="assets/theme.js"></script>
+<script src="assets/quick-post.js"></script>
+<script>
+/* ===== LANGUAGE SWITCHER (EN / AR) ===== */
+(function(){
+  const DICT = {
+    "Home": "الرئيسية",
+    "Courses": "الدورات",
+    "Vocabulary": "المفردات",
+    "Tools": "الأدوات",
+    "Blog": "المدونة",
+    "Contact": "تواصل",
+    "English Teacher & Language Coach": "مدرّس لغة إنجليزية ومدرب لغوي",
+    "Abu Bakr Mukhtar": "أبو بكر مختار",
+    "Articles, tips and stories about learning English.": "مقالات ونصائح وقصوات عن تعلم الإنجليزية.",
+    "Loading posts…": "جارِ تحميل المقالات…",
+    "No posts yet. Check back soon!": "لا توجد مقالات بعد. ترقّبها قريباً!",
+    "Failed to load posts.": "تعذّر تحميل المقالات.",
+    "Read article": "اقرأ المقال",
+    "�<a href="https://www.facebook.com/mahmoud.atef.239821" target="_blank" rel="noopener">� 2026 Mahmoud Atef. All rights reserved.</a>": "© 2026 أبو بكر مختار. جميع الحقوق محفوظة."
+  };
+  const original = new WeakMap();
+  const btns = document.querySelectorAll('[data-lang]');
+
+  function translateChrome(l){
+    const w = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT);
+    const nodes = [];
+    let n;
+    while ((n = w.nextNode())) nodes.push(n);
+    nodes.forEach(function(x){
+      const p = x.parentElement;
+      if (!p || ['SCRIPT','STYLE'].includes(p.tagName)) return;
+      if (!original.has(x)) original.set(x, x.nodeValue);
+      const en = original.get(x).trim();
+      if (!en) return;
+      if (l === 'ar' && DICT[en]) {
+        x.nodeValue = x.nodeValue.replace(en, DICT[en]);
+      } else if (l === 'en') {
+        x.nodeValue = original.get(x);
+      }
+    });
+  }
+
+  function apply(l){
+    document.documentElement.lang = l;
+    document.documentElement.dir = l === 'ar' ? 'rtl' : 'ltr';
+    btns.forEach(function(b){ b.classList.toggle('active', b.dataset.lang === l); });
+    translateChrome(l);
+    try { localStorage.setItem('siteLanguage', l); } catch(e){}
+  }
+
+  window.blogApplyLanguage = apply;
+
+  btns.forEach(function(b){
+    b.addEventListener('click', function(){ apply(b.dataset.lang); });
+  });
+
+  let s = null;
+  try { s = localStorage.getItem('siteLanguage'); } catch(e){}
+  if (!s) {
+    const nav = (navigator.language || navigator.userLanguage || '').toLowerCase();
+    s = nav.startsWith('ar') ? 'ar' : 'en';
+  }
+  apply(s);
+})();
+</script>
+<script>
+(function(){
+  const grid = document.getElementById('grid');
+  const status = document.getElementById('status');
+  function fmtDate(s){ if(!s) return ''; try{ return new Date(s.replace(' ','T')+'Z').toLocaleDateString(undefined,{year:'numeric',month:'short',day:'numeric'}); }catch(e){return s;} }
+  function esc(s){ return String(s||'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c])); }
+  function retranslate(){ if(typeof window.blogApplyLanguage === 'function'){ window.blogApplyLanguage(document.documentElement.lang === 'ar' ? 'ar' : 'en'); } }
+  fetch('/api/posts').then(r=>r.json()).then(data=>{
+    const posts = (data && data.posts) || [];
+    if(!posts.length){ status.textContent = 'No posts yet. Check back soon!'; status.className='empty'; retranslate(); return; }
+    status.style.display='none';
+    grid.style.display='grid';
+    grid.innerHTML = posts.map(p=>`
+      <article class="card" data-slug="${esc(p.slug)}">
+        ${p.cover_image ? `<div class="card-img"><img src="${esc(p.cover_image)}" alt="${esc(p.title)}" loading="lazy"></div>` : ''}
+        <div class="card-body">
+          <h2 class="card-title">${esc(p.title)}</h2>
+          <p class="card-excerpt">${esc(p.excerpt || '')}</p>
+          <div class="card-meta">
+            <span class="card-date">${fmtDate(p.created_at)}</span>
+            ${p.author?`<span>· ${esc(p.author)}</span>`:''}
+          </div>
+          <span class="card-link">Read article
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+          </span>
+        </div>
+      </article>
+    `).join('');
+    grid.querySelectorAll('.card').forEach(c=>{
+      c.addEventListener('click',()=>{ location.href = 'post.html?slug=' + encodeURIComponent(c.dataset.slug); });
+    });
+    retranslate();
+  }).catch(err=>{
+    status.textContent = 'Failed to load posts.';
+    status.className='empty';
+    retranslate();
+  });
+
+  const hb = document.getElementById('hamburgerBtn');
+  const mm = document.getElementById('mobileMenu');
+  if(hb && mm){ hb.addEventListener('click',()=>mm.classList.toggle('open')); mm.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>mm.classList.remove('open'))); }
+})();
+</script>
+</body>
+</html>

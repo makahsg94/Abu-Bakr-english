@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Admin | Abu Bakr Mukhtar</title>
+<meta name="robots" content="noindex, nofollow">
+<meta name="theme-color" content="#0F1B2E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --text-strong:var(--navy);
+  --navy:#0F1B2E;--paper:#FBF9F5;--paper-2:#F3F0E9;--line:#E4E0D6;
+  --ink:#17212F;--muted:#5B6472;--muted-light:#8891A0;--gold:#B8873F;--white:#ffffff;
+  --radius-m:14px;--radius-l:22px;--shadow-card:0 10px 30px -15px rgba(15,27,46,0.18);--ease:cubic-bezier(.25,.8,.35,1);
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{font-family:'Inter',sans-serif;color:var(--ink);background:var(--paper);line-height:1.6;min-height:100vh;}
+html.dark{
+  --text-strong:#E9EDF3;--paper:#0D1117;--paper-2:#151B24;--line:#2A323F;--ink:#E6E9EE;--muted:#9AA6B5;--muted-light:#6E7A8C;--white:#12171F;--gold:#D6A65C;--navy:#E6E9EE;}
+html.dark body{color:var(--ink);}
+.container{max-width:960px;margin:0 auto;padding:0 24px;}
+.card{background:var(--white);border:1px solid var(--line);border-radius:var(--radius-l);padding:24px;box-shadow:var(--shadow-card);margin-bottom:20px;}
+h1,h2{font-family:'Fraunces',serif;color:var(--text-strong);}
+html.dark h1,html.dark h2{color:#fff;}
+label{display:block;font-size:.85rem;font-weight:600;margin:12px 0 6px;color:var(--ink);}
+input,textarea,select{width:100%;padding:10px 12px;border:1px solid var(--line);border-radius:8px;background:var(--paper);color:var(--ink);font-size:.95rem;font-family:inherit;}
+textarea{min-height:220px;resize:vertical;font-family:ui-monospace,monospace;}
+.btn{display:inline-flex;align-items:center;gap:8px;padding:10px 18px;border-radius:999px;font-size:.9rem;font-weight:600;border:1px solid transparent;cursor:pointer;}
+.btn-primary{background:var(--navy);color:#fff;}
+.btn-ghost{border-color:var(--line);color:var(--ink);background:transparent;}
+.btn-danger{background:#b91c1c;color:#fff;}
+.btn-sm{padding:6px 12px;font-size:.8rem;}
+.row{display:flex;gap:12px;align-items:center;flex-wrap:wrap;}
+.muted{color:var(--muted);font-size:.85rem;}
+.status{padding:12px;border-radius:8px;margin:12px 0;}
+.status.err{background:#fee2e2;color:#991b1b;}
+.status.ok{background:#dcfce7;color:#166534;}
+.list-item{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:14px;border:1px solid var(--line);border-radius:10px;margin-bottom:10px;flex-wrap:wrap;}
+.list-item .title{font-weight:600;}
+.list-item .meta{font-size:.75rem;color:var(--muted);}
+.hidden{display:none;}
+.login-wrap{max-width:400px;margin:80px auto;}
+.checkbox{display:flex;align-items:center;gap:8px;margin:12px 0;}
+.checkbox input{width:auto;}
+.toolbar{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:6px;}
+.toolbar button{border:1px solid var(--line);background:var(--paper);color:var(--ink);border-radius:6px;padding:4px 10px;font-size:.8rem;cursor:pointer;}
+.toolbar button:hover{border-color:var(--gold);color:var(--gold);}
+.file-input{width:auto;font-size:.85rem;}
+.file-btn{
+  display:inline-flex;align-items:center;gap:8px;padding:9px 16px;cursor:pointer;
+  border:1px dashed var(--line);border-radius:10px;background:var(--paper);
+  font-size:.85rem;font-weight:600;color:var(--ink);
+}
+.file-btn:hover{border-color:var(--gold);color:var(--gold);}
+.file-btn input{display:none;}
+.cover-preview{margin-top:10px;}
+.cover-preview img{max-width:220px;border-radius:10px;border:1px solid var(--line);}
+
+/* ===== MOBILE ===== */
+@media (max-width:640px){
+  .container{padding:0 16px;}
+  .card{padding:18px;border-radius:16px;}
+  h1{font-size:1.5rem;}
+  h2{font-size:1.2rem;}
+  .btn,.btn-sm{width:100%;justify-content:center;padding:13px 18px;}
+  .row{gap:8px;}
+  .row .btn{width:auto;}
+  .file-btn{width:100%;justify-content:center;padding:13px 16px;}
+  input,textarea,select{font-size:16px;padding:12px 14px;}
+  textarea{min-height:200px;}
+  .toolbar button{padding:9px 13px;font-size:.85rem;}
+  .list-item{flex-direction:column;align-items:stretch;}
+  .list-item .row{width:100%;}
+  .list-item .row .btn{flex:1;}
+  .cover-preview img{max-width:100%;}
+}
+
+/* ===== DARK MODE FIXES ===== */
+html.dark .lang-switcher button{background:transparent;}
+html.dark .lang-switcher{background:rgba(18,23,31,.88);box-shadow:0 8px 20px -15px rgba(0,0,0,.6);}
+html.dark .lang-switcher button.active{background:var(--navy);color:#FFFFFF;}
+html.dark .lang-switcher button:not(.active):hover{color:#FFFFFF;}
+html.dark .mobile-menu a.btn-gold,html.dark .mobile-menu .btn-gold{color:#1A1206 !important;}
+html.dark .btn-gold{color:#1A1206 !important;}
+html.dark .featured .plan-cta{color:#1A1206 !important;}
+html.dark .theme-toggle{background:rgba(18,23,31,.88);}
+html.dark .skip-link{color:#FFFFFF;}
+</style>
+</head>
+<body>
+<div class="container" style="padding-top:32px;padding-bottom:60px;">
+  <h1>Admin Dashboard</h1>
+  <p class="muted">Manage blog posts. Protected area.</p>
+
+  <div id="loginView" class="card login-wrap">
+    <h2>Login</h2>
+    <label>Password</label>
+    <input type="password" id="password" placeholder="Admin password">
+    <div style="margin-top:14px;">
+      <button class="btn btn-primary" id="loginBtn">Sign in</button>
+    </div>
+    <div id="loginStatus"></div>
+  </div>
+
+  <div id="dashView" class="hidden">
+    <div class="row" style="justify-content:space-between;margin-bottom:16px;">
+      <h2>Posts</h2>
+      <div class="row">
+        <span class="muted" id="whoami"></span>
+        <button class="btn btn-ghost btn-sm" id="newBtn">+ New post</button>
+        <button class="btn btn-ghost btn-sm" id="logoutBtn">Logout</button>
+      </div>
+    </div>
+    <div id="globalStatus"></div>
+
+    <div id="editor" class="card hidden">
+      <h2 id="editorTitle">New post</h2>
+      <input type="hidden" id="postId">
+      <label>Title</label>
+      <input id="title" placeholder="Post title">
+      <label>Slug (optional)</label>
+      <input id="slug" placeholder="url-friendly-slug">
+      <label>Excerpt</label>
+      <input id="excerpt" placeholder="Short summary">
+      <label>Cover image (URL or upload)</label>
+      <input id="cover" placeholder="https://... (or upload a file below)">
+      <div class="row" style="margin-top:8px;">
+        <label class="file-btn" for="coverFile">
+          <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 20h9"/><path d="M16.5 3.5a2.12 2.12 0 0 1 3 3L7 19l-4 1 1-4Z"/></svg>
+          Upload image
+          <input type="file" id="coverFile" accept="image/*">
+        </label>
+        <button type="button" class="btn btn-ghost btn-sm" id="clearCover">Clear image</button>
+      </div>
+      <div id="coverPreview" class="cover-preview"></div>
+      <label>Content (Markdown)</label>
+      <div class="toolbar">
+        <button type="button" data-md="## " title="Heading">H2</button>
+        <button type="button" data-md="**bold**" title="Bold"><b>B</b></button>
+        <button type="button" data-md="*italic*" title="Italic"><i>I</i></button>
+        <button type="button" data-md="- " title="Bullet list">&bull;</button>
+        <button type="button" data-md="1. " title="Numbered list">1.</button>
+        <button type="button" data-md="[text](https://)" title="Link">Link</button>
+        <button type="button" data-md="![alt](https://)" title="Image">Image</button>
+        <button type="button" data-md="> quote" title="Quote">&ldquo;</button>
+      </div>
+      <textarea id="content" placeholder="# Heading&#10;&#10;Write your post in Markdown..."></textarea>
+      <div class="checkbox">
+        <input type="checkbox" id="published" checked>
+        <label for="published" style="margin:0;">Published</label>
+      </div>
+      <div class="row" style="margin-top:14px;">
+        <button class="btn btn-primary" id="saveBtn">Save</button>
+        <button class="btn btn-ghost" id="cancelBtn">Cancel</button>
+      </div>
+      <div id="editorStatus"></div>
+    </div>
+
+    <div id="list" class="card">
+      <div id="postsList"></div>
+    </div>
+  </div>
+</div>
+
+<script>
+(function(){
+  const $=id=>document.getElementById(id);
+  function esc(s){return String(s||'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));}
+  function showStatus(el,msg,err){el.innerHTML='<div class="status '+(err?'err':'ok')+'">'+esc(msg)+'</div>';}
+  async function api(path,opts){opts=opts||{};opts.credentials='same-origin';if(opts.body&&typeof opts.body!=='string')opts.body=JSON.stringify(opts.body);opts.headers=Object.assign({'Content-Type':'application/json'},opts.headers||{});const r=await fetch(path,opts);let data=null;try{data=await r.json();}catch(e){}return {r,data};}
+
+  async function checkAuth(){
+    const {r,data}=await api('/api/login');
+    if(r.ok && data && data.authed){ showDash(data.name); loadPosts(); }
+    else showLogin();
+  }
+  function showLogin(){$('loginView').classList.remove('hidden');$('dashView').classList.add('hidden');$('whoami').textContent='';}
+  function showDash(name){$('loginView').classList.add('hidden');$('dashView').classList.remove('hidden');$('whoami').textContent = name ? ('Signed in as ' + name) : '';}
+
+  $('loginBtn').addEventListener('click',async()=>{
+    const pw=$('password').value;
+    const {r,data}=await api('/api/login',{method:'POST',body:{password:pw}});
+    if(r.ok){showDash(data && data.name);loadPosts();}
+    else showStatus($('loginStatus'),(data&&data.error)||'Login failed',true);
+  });
+  $('password').addEventListener('keydown',e=>{if(e.key==='Enter')$('loginBtn').click();});
+
+  $('logoutBtn').addEventListener('click',async()=>{await api('/api/logout',{method:'POST'});$('password').value='';showLogin();});
+
+  async function loadPosts(){
+    const {r,data}=await api('/api/posts');
+    if(!r.ok){showStatus($('globalStatus'),'Failed to load posts',true);return;}
+    const posts=data.posts||[];
+    const el=$('postsList');
+    if(!posts.length){el.innerHTML='<p class="muted">No posts yet.</p>';return;}
+    el.innerHTML=posts.map(p=>`
+      <div class="list-item">
+        <div>
+          <div class="title">${esc(p.title)}</div>
+          <div class="meta">${esc(p.slug)} · ${p.published?'Published':'Draft'} · ${esc(p.created_at||'')}</div>
+        </div>
+        <div class="row">
+          <a class="btn btn-ghost btn-sm" href="post.html?slug=${encodeURIComponent(p.slug)}" target="_blank" rel="noopener">View</a>
+          <button class="btn btn-ghost btn-sm" data-edit="${p.id}">Edit</button>
+          <button class="btn btn-danger btn-sm" data-del="${p.id}">Delete</button>
+        </div>
+      </div>
+    `).join('');
+    el.querySelectorAll('[data-edit]').forEach(b=>b.addEventListener('click',()=>editPost(b.dataset.edit)));
+    el.querySelectorAll('[data-del]').forEach(b=>b.addEventListener('click',()=>deletePost(b.dataset.del)));
+  }
+
+  function resetEditor(){
+    $('postId').value='';$('title').value='';$('slug').value='';$('excerpt').value='';$('cover').value='';$('content').value='';$('published').checked=true;
+    $('coverFile').value='';$('coverPreview').innerHTML='';
+    $('editorTitle').textContent='New post';
+    $('editor').classList.add('hidden');
+  }
+  $('newBtn').addEventListener('click',()=>{resetEditor();$('editor').classList.remove('hidden');window.scrollTo({top:$('editor').offsetTop-20,behavior:'smooth'});});
+  $('cancelBtn').addEventListener('click',resetEditor);
+
+  /* markdown toolbar */
+  document.querySelectorAll('.toolbar button').forEach(btn=>{
+    btn.addEventListener('click',()=>{
+      const ta=$('content');
+      const md=btn.dataset.md;
+      const start=ta.selectionStart||0, end=ta.selectionEnd||0;
+      const sel=ta.value.slice(start,end);
+      ta.value = ta.value.slice(0,start) + md + sel + ta.value.slice(end);
+      ta.focus();
+      const pos=start+md.length;
+      ta.setSelectionRange(pos,pos+sel.length);
+      ta.dispatchEvent(new Event('input',{bubbles:true}));
+    });
+  });
+
+  /* cover image upload (auto-resized + compressed before upload) */
+  function compressImage(file,maxW,quality){
+    return new Promise((resolve,reject)=>{
+      const reader=new FileReader();
+      reader.onload=e=>{
+        const img=new Image();
+        img.onload=()=>{
+          let w=img.width,h=img.height;
+          if(w>maxW){h=Math.round(h*maxW/w);w=maxW;}
+          const c=document.createElement('canvas');
+          c.width=w;c.height=h;
+          c.getContext('2d').drawImage(img,0,0,w,h);
+          resolve(c.toDataURL('image/jpeg',quality));
+        };
+        img.onerror=reject;
+        img.src=e.target.result;
+      };
+      reader.onerror=reject;
+      reader.readAsDataURL(file);
+    });
+  }
+  $('coverFile').addEventListener('change',async e=>{
+    const file=e.target.files && e.target.files[0];
+    if(!file)return;
+    if(file.size > 12*1024*1024){ showStatus($('editorStatus'),'Image is too large (max 12MB)',true); return; }
+    try{
+      const dataUrl = await compressImage(file,1400,0.82);
+      if(dataUrl.length > 900000){ showStatus($('editorStatus'),'Image is still large after compression — please use a smaller image',true); return; }
+      $('cover').value = dataUrl;
+      $('coverPreview').innerHTML = '<img src="'+dataUrl+'" alt="cover preview">';
+      showStatus($('editorStatus'),'Image uploaded and resized',false);
+    }catch(err){ showStatus($('editorStatus'),'Could not read that image',true); }
+  });
+  $('clearCover').addEventListener('click',()=>{
+    $('cover').value='';$('coverFile').value='';$('coverPreview').innerHTML='';
+  });
+  $('cover').addEventListener('input',()=>{
+    const v=$('cover').value.trim();
+    $('coverPreview').innerHTML = v ? '<img src="'+esc(v)+'" alt="cover preview">' : '';
+  });
+
+  async function editPost(id){
+    const {r,data}=await api('/api/posts?id='+encodeURIComponent(id));
+    if(!r.ok){showStatus($('editorStatus'),'Failed to load post',true);return;}
+    const p=data.post;
+    $('postId').value=p.id;
+    $('title').value=p.title||'';
+    $('slug').value=p.slug||'';
+    $('excerpt').value=p.excerpt||'';
+    $('cover').value=p.cover_image||'';
+    $('content').value=p.content||'';
+    $('published').checked=!!p.published;
+    $('coverPreview').innerHTML = p.cover_image ? '<img src="'+esc(p.cover_image)+'" alt="cover preview">' : '';
+    $('editorTitle').textContent='Edit post';
+    $('editor').classList.remove('hidden');
+    window.scrollTo({top:$('editor').offsetTop-20,behavior:'smooth'});
+  }
+
+  async function deletePost(id){
+    if(!confirm('Delete this post?'))return;
+    const {r,data}=await api('/api/posts?id='+encodeURIComponent(id),{method:'DELETE'});
+    if(r.ok){showStatus($('globalStatus'),'Post deleted',false);loadPosts();}
+    else showStatus($('globalStatus'),(data&&data.error)||'Delete failed',true);
+  }
+
+  $('saveBtn').addEventListener('click',async()=>{
+    const id=$('postId').value;
+    const body={
+      title:$('title').value.trim(),
+      slug:$('slug').value.trim(),
+      excerpt:$('excerpt').value.trim(),
+      cover_image:$('cover').value.trim(),
+      content:$('content').value.trim(),
+      published:$('published').checked
+    };
+    if(!body.title){showStatus($('editorStatus'),'Title required',true);return;}
+    if(!body.content){showStatus($('editorStatus'),'Content required',true);return;}
+    let url='/api/posts', method='POST';
+    if(id){url='/api/posts';method='PUT';body.id=Number(id);}
+    const {r,data}=await api(url,{method,body});
+    if(r.ok){
+      showStatus($('globalStatus'),'Saved! The post is now '+(body.published?'live on the blog.':'saved as a draft.'),false);
+      resetEditor();loadPosts();
+    }
+    else showStatus($('editorStatus'),(data&&data.error)||'Save failed',true);
+  });
+
+  checkAuth();
+})();
+</script>
+<script src="assets/quick-post.js"></script>
+</body>
+</html>

@@ -7,4 +7,9 @@ node_modules/
 Thumbs.db
 Desktop.ini
 index.backup.html
-.assetsignore
+.assetsignorefunctions/
+worker.js
+worker.js.map
+schema.sql
+wrangler.toml
+wrangler.worker.toml
