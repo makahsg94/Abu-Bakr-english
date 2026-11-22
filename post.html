@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Post | Abu Bakr Mukhtar</title>
+<meta name="robots" content="index, follow">
+<meta name="theme-color" content="#0F1B2E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --text-strong:var(--navy);
+  --navy:#0F1B2E;--navy-2:#16283F;--paper:#FBF9F5;--paper-2:#F3F0E9;--line:#E4E0D6;
+  --ink:#17212F;--muted:#5B6472;--muted-light:#8891A0;--gold:#B8873F;--white:#ffffff;
+  --radius-l:22px;--shadow-card:0 10px 30px -15px rgba(15,27,46,0.18);--ease:cubic-bezier(.25,.8,.35,1);
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{font-family:'Inter',sans-serif;color:var(--ink);background:var(--paper);line-height:1.7;-webkit-font-smoothing:antialiased;min-height:100vh;display:flex;flex-direction:column;}
+img{max-width:100%;display:block;}
+a{text-decoration:none;color:inherit;}
+.container{max-width:760px;margin:0 auto;padding:0 24px;}
+html.dark{
+  --text-strong:#E9EDF3;--paper:#0D1117;--paper-2:#151B24;--line:#2A323F;--ink:#E6E9EE;--muted:#9AA6B5;--muted-light:#6E7A8C;--white:#12171F;--gold:#D6A65C;}
+html.dark body{color:var(--ink);}
+.theme-toggle{display:inline-flex;align-items:center;justify-content:center;width:36px;height:36px;border:1px solid var(--line);border-radius:50%;color:var(--ink);background:transparent;cursor:pointer;}
+.theme-toggle .icon-sun{display:none;}
+html.dark .theme-toggle .icon-moon{display:none;}
+html.dark .theme-toggle .icon-sun{display:block;}
+.lang-switcher{display:inline-flex;background:var(--white);border:1px solid var(--line);border-radius:999px;padding:4px;gap:2px;}
+.lang-switcher button{border:0;background:transparent;font-family:inherit;font-weight:600;font-size:.78rem;padding:7px 14px;border-radius:999px;cursor:pointer;color:var(--muted);transition:all .25s var(--ease);}
+.lang-switcher button.active{background:var(--navy);color:#fff;}
+.lang-switcher button:not(.active):hover{color:var(--text-strong);}
+html.dark .lang-switcher button.active{background:#fff;color:#0F1B2E;}
+html.dark .lang-switcher button:not(.active):hover{color:#fff;}
+
+.site-header{position:sticky;top:0;z-index:50;background:rgba(251,249,245,0.85);backdrop-filter:blur(12px);border-bottom:1px solid var(--line);}
+html.dark .site-header{background:rgba(13,17,23,0.85);}
+.nav-inner{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:14px 24px;max-width:1100px;margin:0 auto;}
+.logo{font-family:'Fraunces',serif;font-size:1.1rem;color:var(--text-strong);font-weight:600;}
+.logo span{display:block;font-family:'Inter',sans-serif;font-size:.7rem;color:var(--muted);font-weight:400;}
+.nav-links{display:flex;gap:18px;align-items:center;font-size:.9rem;}
+.nav-links a{color:var(--muted);}
+.nav-links a:hover{color:var(--gold);}
+.nav-cta{display:flex;gap:10px;align-items:center;}
+.btn{display:inline-flex;align-items:center;gap:8px;padding:9px 16px;border-radius:999px;font-size:.85rem;font-weight:600;border:1px solid transparent;cursor:pointer;}
+.btn-ghost{border-color:var(--line);color:var(--ink);}
+.hamburger{display:none;flex-direction:column;gap:4px;background:none;border:none;cursor:pointer;}
+.hamburger span{width:22px;height:2px;background:var(--ink);border-radius:2px;}
+.mobile-menu{display:none;flex-direction:column;gap:12px;padding:16px 24px;border-top:1px solid var(--line);background:var(--paper);}
+.mobile-menu.open{display:flex;}
+
+.article{padding:48px 0 80px;}
+.back{display:inline-flex;align-items:center;gap:6px;color:var(--muted);font-size:.9rem;margin-bottom:24px;}
+.back:hover{color:var(--gold);}
+.article-cover{width:100%;aspect-ratio:16/9;border-radius:var(--radius-l);overflow:hidden;background:var(--paper-2);margin-bottom:32px;}
+.article-cover img{width:100%;height:100%;object-fit:cover;}
+.article h1{font-family:'Fraunces',serif;font-size:2.2rem;color:var(--text-strong);line-height:1.15;margin-bottom:12px;}
+html.dark .article h1{color:#fff;}
+.article-meta{color:var(--muted);font-size:.85rem;margin-bottom:32px;display:flex;gap:12px;flex-wrap:wrap;}
+.article-body h1,.article-body h2,.article-body h3{font-family:'Fraunces',serif;color:var(--text-strong);margin:24px 0 10px;line-height:1.2;}
+html.dark .article-body h1,html.dark .article-body h2,html.dark .article-body h3{color:#fff;}
+.article-body h1{font-size:1.8rem;}
+.article-body h2{font-size:1.5rem;}
+.article-body h3{font-size:1.25rem;}
+.article-body p{margin:0 0 16px;}
+.article-body ul,.article-body ol{margin:0 0 16px 22px;}
+.article-body li{margin:4px 0;}
+.article-body a{color:var(--gold);text-decoration:underline;}
+.article-body img{border-radius:12px;margin:16px 0;}
+.article-body blockquote{border-left:3px solid var(--gold);padding:8px 16px;margin:16px 0;color:var(--muted);font-style:italic;}
+.article-body code{background:var(--paper-2);padding:2px 6px;border-radius:4px;font-size:.9em;}
+.article-body pre{background:var(--paper-2);padding:14px;border-radius:8px;overflow-x:auto;margin:16px 0;}
+.status{padding:60px 20px;text-align:center;color:var(--muted);}
+
+.site-footer{border-top:1px solid var(--line);padding:24px 0;text-align:center;color:var(--muted);font-size:.85rem;}
+
+@media (max-width:760px){
+  .nav-links{display:none;}
+  .hamburger{display:flex;}
+  .mobile-menu a{color:var(--ink);padding:6px 0;}
+}
+
+/* ===== DARK MODE FIXES ===== */
+html.dark .lang-switcher button{background:transparent;}
+html.dark .lang-switcher{background:rgba(18,23,31,.88);box-shadow:0 8px 20px -15px rgba(0,0,0,.6);}
+html.dark .lang-switcher button.active{background:var(--navy);color:#FFFFFF;}
+html.dark .lang-switcher button:not(.active):hover{color:#FFFFFF;}
+html.dark .mobile-menu a.btn-gold,html.dark .mobile-menu .btn-gold{color:#1A1206 !important;}
+html.dark .btn-gold{color:#1A1206 !important;}
+html.dark .featured .plan-cta{color:#1A1206 !important;}
+html.dark .theme-toggle{background:rgba(18,23,31,.88);}
+html.dark .skip-link{color:#FFFFFF;}
+</style>
+</head>
+<body>
+<header class="site-header">
+  <div class="nav-inner">
+    <a href="index.html" class="logo">Abu Bakr Mukhtar<span>English Teacher &amp; Language Coach</span></a>
+    <nav class="nav-links">
+      <a href="index.html#home">Home</a>
+      <a href="index.html#courses">Courses</a>
+      <a href="flashcards.html">Vocabulary</a>
+      <a href="tools.html">Tools</a>
+      <a href="blog.html">Blog</a>
+      <a href="contact.html">Contact</a>
+    </nav>
+    <div class="nav-cta">
+      <div class="lang-switcher" id="langSwitcher" aria-label="Language switcher">
+        <button type="button" data-lang="en" class="active">EN</button>
+        <button type="button" data-lang="ar">AR</button>
+      </div>
+      <button type="button" class="theme-toggle" aria-label="Toggle dark mode">
+        <svg class="icon-moon" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>
+        <svg class="icon-sun" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="4"/><path d="M12 2v2m0 16v2M4.9 4.9l1.4 1.4m11.4 11.4 1.4 1.4M2 12h2m16 0h2M4.9 19.1l1.4-1.4m11.4-11.4 1.4-1.4"/></svg>
+      </button>
+    </div>
+    <button class="hamburger" id="hamburgerBtn" aria-label="Open menu"><span></span><span></span><span></span></button>
+  </div>
+  <div class="mobile-menu" id="mobileMenu">
+    <div class="lang-switcher" id="langSwitcherMobile" aria-label="Language switcher" style="align-self:flex-start;">
+      <button type="button" data-lang="en" class="active">EN</button>
+      <button type="button" data-lang="ar">AR</button>
+    </div>
+    <a href="index.html#home">Home</a>
+    <a href="index.html#courses">Courses</a>
+    <a href="flashcards.html">Vocabulary</a>
+    <a href="tools.html">Tools</a>
+    <a href="blog.html">Blog</a>
+    <a href="contact.html">Contact</a>
+  </div>
+</header>
+
+<main>
+  <article class="article">
+    <div class="container">
+      <a href="blog.html" class="back">← Back to blog</a>
+      <div id="status" class="status">Loading…</div>
+      <div id="content" style="display:none;">
+        <div id="cover" class="article-cover" style="display:none;"></div>
+        <h1 id="title"></h1>
+        <div class="article-meta" id="meta"></div>
+        <div class="article-body" id="body"></div>
+      </div>
+    </div>
+  </article>
+</main>
+
+<footer class="site-footer">�<a href="https://www.facebook.com/mahmoud.atef.239821" target="_blank" rel="noopener">� 2026 Mahmoud Atef. All rights reserved.</a></footer>
+
+<script src="assets/theme.js"></script>
+<script>
+/* ===== LANGUAGE SWITCHER (EN / AR) ===== */
+(function(){
+  const DICT = {
+    "Home": "الرئيسية",
+    "Courses": "الدورات",
+    "Vocabulary": "المفردات",
+    "Tools": "الأدوات",
+    "Blog": "المدونة",
+    "Contact": "تواصل",
+    "English Teacher & Language Coach": "مدرّس لغة إنجليزية ومدرب لغوي",
+    "Abu Bakr Mukhtar": "أبو بكر مختار",
+    "← Back to blog": "← رجوع للمدونة",
+    "Loading…": "جارِ التحميل…",
+    "No post specified.": "لم يتم تحديد مقال.",
+    "Post not found.": "المقال غير موجود.",
+    "�<a href="https://www.facebook.com/mahmoud.atef.239821" target="_blank" rel="noopener">� 2026 Mahmoud Atef. All rights reserved.</a>": "© 2026 أبو بكر مختار. جميع الحقوق محفوظة."
+  };
+  const original = new WeakMap();
+  const btns = document.querySelectorAll('[data-lang]');
+
+  function translateChrome(l){
+    const w = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT);
+    const nodes = [];
+    let n;
+    while ((n = w.nextNode())) nodes.push(n);
+    nodes.forEach(function(x){
+      const p = x.parentElement;
+      if (!p || ['SCRIPT','STYLE'].includes(p.tagName)) return;
+      if (!original.has(x)) original.set(x, x.nodeValue);
+      const en = original.get(x).trim();
+      if (!en) return;
+      if (l === 'ar' && DICT[en]) {
+        x.nodeValue = x.nodeValue.replace(en, DICT[en]);
+      } else if (l === 'en') {
+        x.nodeValue = original.get(x);
+      }
+    });
+  }
+
+  function apply(l){
+    document.documentElement.lang = l;
+    document.documentElement.dir = l === 'ar' ? 'rtl' : 'ltr';
+    btns.forEach(function(b){ b.classList.toggle('active', b.dataset.lang === l); });
+    translateChrome(l);
+    try { localStorage.setItem('siteLanguage', l); } catch(e){}
+  }
+
+  window.postApplyLanguage = apply;
+
+  btns.forEach(function(b){
+    b.addEventListener('click', function(){ apply(b.dataset.lang); });
+  });
+
+  let s = null;
+  try { s = localStorage.getItem('siteLanguage'); } catch(e){}
+  if (!s) {
+    const nav = (navigator.language || navigator.userLanguage || '').toLowerCase();
+    s = nav.startsWith('ar') ? 'ar' : 'en';
+  }
+  apply(s);
+})();
+</script>
+<script>
+(function(){
+  const status=document.getElementById('status');
+  const content=document.getElementById('content');
+  function esc(s){return String(s||'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));}
+  function fmtDate(s){if(!s)return '';try{return new Date(s.replace(' ','T')+'Z').toLocaleDateString(undefined,{year:'numeric',month:'long',day:'numeric'});}catch(e){return s;}}
+  // allow only safe link/image URLs; anything else becomes "#"
+  function safeUrl(u){
+    u = String(u||'').trim();
+    if (/^(https?:\/\/|\/|#|mailto:)/i.test(u)) return u;
+    return '#';
+  }
+  function renderMarkdown(md){
+    // escape
+    let s = esc(md||'');
+    // code blocks
+    s = s.replace(/```([\s\S]*?)```/g, (m,code)=>'<pre><code>'+code+'</code></pre>');
+    // headings
+    s = s.replace(/^### (.*)$/gm,'<h3>$1</h3>');
+    s = s.replace(/^## (.*)$/gm,'<h2>$1</h2>');
+    s = s.replace(/^# (.*)$/gm,'<h1>$1</h1>');
+    // images
+    s = s.replace(/!\[([^\]]*)\]\(([^)]+)\)/g,(m,alt,url)=>'<img src="'+safeUrl(url)+'" alt="'+alt+'" loading="lazy">');
+    // links
+    s = s.replace(/\[([^\]]+)\]\(([^)]+)\)/g,(m,text,url)=>'<a href="'+safeUrl(url)+'" target="_blank" rel="noopener">'+text+'</a>');
+    // bold/italic
+    s = s.replace(/\*\*(.+?)\*\*/g,'<strong>$1</strong>');
+    s = s.replace(/\*(.+?)\*/g,'<em>$1</em>');
+    // blockquote (text is already HTML-escaped, so ">" became "&gt;")
+    s = s.replace(/^&gt; (.*)$/gm,'<blockquote>$1</blockquote>');
+    // lists (unordered + ordered)
+    const lines = s.split('\n');
+    let out=[]; let listType=null;
+    for(const line of lines){
+      const um = line.match(/^[-*] (.*)$/);
+      const om = line.match(/^\d+\. (.*)$/);
+      if(um || om){
+        const type = um ? 'ul' : 'ol';
+        if(listType !== type){ if(listType) out.push('</'+listType+'>'); out.push('<'+type+'>'); listType = type; }
+        out.push('<li>'+(um?um[1]:om[1])+'</li>');
+      } else {
+        if(listType){ out.push('</'+listType+'>'); listType=null; }
+        out.push(line);
+      }
+    }
+    if(listType) out.push('</'+listType+'>');
+    s = out.join('\n');
+    // paragraphs: wrap remaining non-tag lines
+    s = s.split(/\n{2,}/).map(block=>{
+      block=block.trim();
+      if(!block) return '';
+      if(/^<(h\d|ul|ol|pre|blockquote|img)/.test(block)) return block;
+      return '<p>'+block.replace(/\n/g,'<br>')+'</p>';
+    }).join('\n');
+    return s;
+  }
+
+  const params = new URLSearchParams(location.search);
+  const slug = params.get('slug');
+  function retranslate(){ if(typeof window.postApplyLanguage === 'function'){ window.postApplyLanguage(document.documentElement.lang === 'ar' ? 'ar' : 'en'); } }
+  if(!slug){ status.textContent='No post specified.'; retranslate(); return; }
+  fetch('/api/posts?slug='+encodeURIComponent(slug)).then(r=>{
+    if(!r.ok) throw new Error('not found');
+    return r.json();
+  }).then(data=>{
+    const p = data.post;
+    if(!p){ status.textContent='Post not found.'; retranslate(); return; }
+    document.title = p.title + ' | Abu Bakr Mukhtar';
+    document.getElementById('title').textContent = p.title;
+    document.getElementById('meta').innerHTML = fmtDate(p.created_at) + (p.author?' · '+esc(p.author):'');
+    if(p.cover_image){ const c=document.getElementById('cover'); c.style.display='block'; c.innerHTML='<img src="'+esc(p.cover_image)+'" alt="'+esc(p.title)+'">'; }
+    document.getElementById('body').innerHTML = renderMarkdown(p.content);
+    status.style.display='none';
+    content.style.display='block';
+    retranslate();
+  }).catch(()=>{
+    status.textContent='Post not found.';
+    retranslate();
+  });
+
+  const hb=document.getElementById('hamburgerBtn');const mm=document.getElementById('mobileMenu');
+  if(hb&&mm){hb.addEventListener('click',()=>mm.classList.toggle('open'));mm.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>mm.classList.remove('open')));}
+})();
+</script>
+</body>
+</html>

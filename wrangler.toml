@@ -1,6 +1,12 @@
 name = "abu-bakr-english"
 compatibility_date = "2026-01-01"
+main = "worker.js"
 
 [assets]
 directory = "."
 not_found_handling = "404-page"
+
+[[d1_databases]]
+binding = "DB"
+database_name = "abu-bakr-blog"
+database_id = "676ef91e-7cf1-4d5c-8056-c7f9fe9c6df9"
