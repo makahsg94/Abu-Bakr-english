@@ -294,6 +294,9 @@ html.dark .book-cta .btn-ghost{color:#FFFFFF; border-color:rgba(255,255,255,.35)
 <meta property="og:image:height" content="630">
 <meta property="og:image:alt" content="Abu Bakr Mukhtar, English teacher and language coach">
 <meta name="twitter:card" content="summary_large_image">
+<link rel="manifest" href="/manifest.webmanifest">
+<link rel="apple-touch-icon" href="/assets/favicon-180.png">
+<meta name="apple-mobile-web-app-title" content="Abu Bakr">
 </head>
 <body>
 
@@ -345,5 +348,6 @@ html.dark .book-cta .btn-ghost{color:#FFFFFF; border-color:rgba(255,255,255,.35)
 (function(){const t={"Available for new students": "متاح لاستقبال طلاب جدد", "English Teacher & Language Coach": "مدرس لغة إنجليزية ومدرب لغوي", "9+ years of experience": "أكثر من 9 سنوات من الخبرة", "helping learners worldwide build confident, practical English.": "يساعد المتعلمين حول العالم على بناء إنجليزية عملية وثقة في التحدث.", "professionals, travellers, and students": "المحترفين والمسافرين والطلاب", "Business English, everyday communication, and international exam preparation.": "الإنجليزية للأعمال، والتواصل اليومي، والاستعداد للامتحانات الدولية.", "Cambridge DELTA training, IELTS authorship, and former IELTS Speaking Examiner": "تدريب Cambridge DELTA، وتأليف كتب IELTS، وخبرة سابقة كممتحن IELTS Speaking", "9+ years of teaching experience": "أكثر من 9 سنوات من الخبرة في التدريس", "Students from 8 countries worldwide": "طلاب من 8 دول حول العالم", "Flaingo · Tyro · Companies & Universities": "Flaingo · Tyro · شركات وجامعات", "Message on WhatsApp": "راسل عبر واتساب", "Connect on LinkedIn": "تواصل عبر لينكد إن", "Back to Website": "العودة إلى الموقع", "Online Lessons · Worldwide": "دروس أونلاين · حول العالم", "and hundreds of students taught online worldwide.": "ومئات الطلاب الذين درّبتهم أونلاين حول العالم", "I help": "أساعد", "professionals": "المحترفين", "master Business English,": "على إتقان الإنجليزية للأعمال،", "travellers": "المسافرين", "speak with confidence, and": "على التحدث بثقة، و", "students": "الطلاب", "ace their IELTS, TOEFL, SAT, ACT, and EST exams.": "على تحقيق أعلى الدرجات في امتحانات IELTS وTOEFL وSAT وACT وEST.", "Cambridge DELTA certified · Published IELTS author · Former IELTS Speaking Examiner.": "معتمد Cambridge DELTA · مؤلف كتب IELTS · ممتحن سابق لمحادثة IELTS"};const original=new WeakMap();const btns=document.querySelectorAll('[data-lang]');function apply(l){document.documentElement.lang=l;document.documentElement.dir=l==='ar'?'rtl':'ltr';btns.forEach(b=>b.classList.toggle('active',b.dataset.lang===l));const w=document.createTreeWalker(document.body,NodeFilter.SHOW_TEXT),nodes=[];let n;while(n=w.nextNode())nodes.push(n);nodes.forEach(x=>{if(!original.has(x))original.set(x,x.nodeValue);const en=original.get(x).trim();if(!en)return;if(l==='ar'&&t[en])x.nodeValue=x.nodeValue.replace(en,t[en]);else if(l==='en')x.nodeValue=original.get(x)});try{localStorage.setItem('siteLanguage',l)}catch(e){}}btns.forEach(b=>b.addEventListener('click',()=>apply(b.dataset.lang)));let s='en';try{s=localStorage.getItem('siteLanguage')||'en'}catch(e){}apply(s)})();
 </script>
 <script src="assets/theme.js"></script><script src="assets/visitor-tracker.js" defer></script>
+<script src="/assets/pwa-register-v1.js" defer></script>
 </body>
 </html>
