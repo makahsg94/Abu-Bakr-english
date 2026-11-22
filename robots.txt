@@ -1,5 +1,7 @@
 User-agent: *
 Allow: /
+Disallow: /admin
 Disallow: /admin.html
+Disallow: /api/
 
-Sitemap: https://abubakrmukhtar.com/sitemap.xml
+Sitemap: https://abubakr-english.pages.dev/sitemap.xml
