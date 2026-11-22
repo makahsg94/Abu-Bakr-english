@@ -2032,7 +2032,10 @@ html.dark .featured .plan-cta{color:#1A1206 !important;}
 html.dark .theme-toggle{background:rgba(18,23,31,.88);}
 html.dark .skip-link{color:#FFFFFF;}
 </style>
-<script>(function(){var t=null;try{t=localStorage.getItem('siteTheme')}catch(e){}if(!t){try{t=window.matchMedia&&window.matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light'}catch(e){t='light'}}if(t==='dark')document.documentElement.classList.add('dark')})();</script></head>
+<script>(function(){var t=null;try{t=localStorage.getItem('siteTheme')}catch(e){}if(!t){try{t=window.matchMedia&&window.matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light'}catch(e){t='light'}}if(t==='dark')document.documentElement.classList.add('dark')})();</script><link rel="manifest" href="/manifest.webmanifest">
+<link rel="apple-touch-icon" href="/assets/favicon-180.png">
+<meta name="apple-mobile-web-app-title" content="Abu Bakr">
+</head>
 <body>
 
 <a href="#main" class="skip-link">Skip to main content</a>
@@ -3936,5 +3939,6 @@ document.querySelectorAll('.faq-item').forEach(item => {
 })();
 </script>
 <script src="assets/visitor-tracker.js" defer></script>
+<script src="/assets/pwa-register-v1.js" defer></script>
 </body>
 </html>
