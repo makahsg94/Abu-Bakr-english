@@ -93,6 +93,19 @@ html.dark .featured .plan-cta{color:#1A1206 !important;}
 html.dark .theme-toggle{background:rgba(18,23,31,.88);}
 html.dark .skip-link{color:#FFFFFF;}
 </style>
+<meta name="description" content="English learning articles and practical advice from Abu Bakr Mukhtar, English teacher and language coach.">
+
+<link rel="canonical" href="https://abubakr-english.pages.dev/post">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Abu Bakr Mukhtar">
+<meta property="og:title" content="Post | Abu Bakr Mukhtar">
+<meta property="og:description" content="English learning articles and practical advice from Abu Bakr Mukhtar, English teacher and language coach.">
+<meta property="og:url" content="https://abubakr-english.pages.dev/post">
+<meta property="og:image" content="https://abubakr-english.pages.dev/assets/branding/poster.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Abu Bakr Mukhtar, English teacher and language coach">
+<meta name="twitter:card" content="summary_large_image">
 <link rel="manifest" href="/manifest.webmanifest">
 <link rel="apple-touch-icon" href="/assets/favicon-180.png">
 <meta name="apple-mobile-web-app-title" content="Abu Bakr">
@@ -284,6 +297,15 @@ html.dark .skip-link{color:#FFFFFF;}
     const p = data.post;
     if(!p){ status.textContent='Post not found.'; retranslate(); return; }
     document.title = p.title + ' | Abu Bakr Mukhtar';
+    const articleUrl = 'https://abubakr-english.pages.dev/post?slug=' + encodeURIComponent(p.slug);
+    const articleDescription = String(p.excerpt || p.title || '').slice(0, 180);
+    document.querySelector('link[rel="canonical"]').href = articleUrl;
+    document.querySelector('meta[name="description"]').content = articleDescription;
+    document.querySelector('meta[property="og:title"]').content = document.title;
+    document.querySelector('meta[property="og:description"]').content = articleDescription;
+    document.querySelector('meta[property="og:url"]').content = articleUrl;
+    document.querySelector('meta[property="og:type"]').content = 'article';
+
     document.getElementById('title').textContent = p.title;
     document.getElementById('meta').innerHTML = fmtDate(p.created_at) + (p.author?' · '+esc(p.author):'');
     if(p.cover_image){ const c=document.getElementById('cover'); c.style.display='block'; c.innerHTML='<img src="'+esc(p.cover_image)+'" alt="'+esc(p.title)+'">'; }

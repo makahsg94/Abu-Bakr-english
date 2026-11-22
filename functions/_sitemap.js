@@ -1,17 +1,25 @@
-const SITE = 'https://abubakrmukhtar.com';
+const SITE = 'https://abubakr-english.pages.dev';
 
 const STATIC_PAGES = [
   { loc: '/', priority: '1.0', freq: 'weekly' },
-  { loc: '/blog.html', priority: '0.8', freq: 'daily' },
-  { loc: '/contact.html', priority: '0.7', freq: 'monthly' },
-  { loc: '/flashcards.html', priority: '0.7', freq: 'weekly' },
-  { loc: '/tools.html', priority: '0.7', freq: 'weekly' },
-  { loc: '/course-general.html', priority: '0.8', freq: 'monthly' },
-  { loc: '/course-business.html', priority: '0.8', freq: 'monthly' },
-  { loc: '/course-academic.html', priority: '0.8', freq: 'monthly' },
-  { loc: '/course-ielts.html', priority: '0.8', freq: 'monthly' },
-  { loc: '/course-sat.html', priority: '0.8', freq: 'monthly' },
-  { loc: '/ilac-conference.html', priority: '0.6', freq: 'yearly' }
+  { loc: '/blog', priority: '0.8', freq: 'daily' },
+  { loc: '/contact', priority: '0.7', freq: 'monthly' },
+  { loc: '/flashcards', priority: '0.7', freq: 'weekly' },
+  { loc: '/tools', priority: '0.7', freq: 'weekly' },
+  { loc: '/course-general', priority: '0.8', freq: 'monthly' },
+  { loc: '/course-business', priority: '0.8', freq: 'monthly' },
+  { loc: '/course-academic', priority: '0.8', freq: 'monthly' },
+  { loc: '/course-ielts', priority: '0.8', freq: 'monthly' },
+  { loc: '/course-sat', priority: '0.8', freq: 'monthly' },
+  { loc: '/ilac-conference', priority: '0.6', freq: 'yearly' },
+  { loc: '/test-sat', priority: '0.6', freq: 'monthly' },
+  { loc: '/daily-challenge', priority: '0.6', freq: 'monthly' },
+  { loc: '/speaking', priority: '0.6', freq: 'monthly' },
+  { loc: '/test', priority: '0.6', freq: 'monthly' },
+  { loc: '/test-business', priority: '0.6', freq: 'monthly' },
+  { loc: '/test-ielts', priority: '0.6', freq: 'monthly' },
+  { loc: '/weekly-exam', priority: '0.6', freq: 'monthly' },
+  { loc: '/test-toefl', priority: '0.6', freq: 'monthly' }
 ];
 
 function today() {
@@ -35,13 +43,13 @@ async function buildSitemap(env) {
   const urls = [];
 
   for (const p of STATIC_PAGES) {
-    urls.push({ loc: SITE + p.loc, lastmod: now, priority: p.priority, freq: p.freq });
+    urls.push({ loc: SITE + p.loc, priority: p.priority, freq: p.freq });
   }
 
   for (const post of posts) {
     const lastmod = String(post.updated_at || post.created_at || '').slice(0, 10) || now;
     urls.push({
-      loc: SITE + '/post.html?slug=' + encodeURIComponent(post.slug),
+      loc: SITE + '/post?slug=' + encodeURIComponent(post.slug),
       lastmod: lastmod,
       priority: '0.7',
       freq: 'monthly'
@@ -51,11 +59,11 @@ async function buildSitemap(env) {
   const body = urls.map(u => [
     '  <url>',
     `    <loc>${escXml(u.loc)}</loc>`,
-    `    <lastmod>${escXml(u.lastmod)}</lastmod>`,
+    u.lastmod ? `    <lastmod>${escXml(u.lastmod)}</lastmod>` : null,
     `    <changefreq>${u.freq}</changefreq>`,
     `    <priority>${u.priority}</priority>`,
     '  </url>'
-  ].join('\n')).join('\n');
+  ].filter(Boolean).join('\n')).join('\n');
 
   return `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${body}\n</urlset>\n`;
 }
