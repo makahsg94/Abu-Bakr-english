@@ -1,3 +1,4 @@
+import { onRequestGet as visitorsGet, onRequestPost as visitorsPost } from './functions/api/visitors.js';
 import { onRequestPost as loginPost, onRequestGet as loginGet } from './functions/api/login.js';
 import { onRequestPost as logoutPost, onRequestGet as logoutGet } from './functions/api/logout.js';
 import { onRequest as postsHandler } from './functions/api/posts.js';
@@ -29,6 +30,13 @@ export default {
 
     if (BLOCKED.some(function (re) { return re.test(path); })) {
       return new Response('Not Found', { status: 404 });
+    }
+
+    if (path === '/api/visitors' || path === '/api/visitors/') {
+      const context = { request, env, ctx };
+      if (request.method === 'GET') return visitorsGet(context);
+      if (request.method === 'POST') return visitorsPost(context);
+      return methodNotAllowed();
     }
 
     // API routes

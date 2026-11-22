@@ -88,6 +88,14 @@ html.dark .btn-gold{color:#1A1206 !important;}
 html.dark .featured .plan-cta{color:#1A1206 !important;}
 html.dark .theme-toggle{background:rgba(18,23,31,.88);}
 html.dark .skip-link{color:#FFFFFF;}
+
+.visitor-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;margin:18px 0;}
+.visitor-metric{border:1px solid var(--line,#dedbd5);border-radius:14px;padding:20px;}
+.visitor-number{font-size:2.4rem;font-weight:700;margin:10px 0;color:var(--navy,#17212f);}
+html.dark .visitor-number{color:#fff;}
+.visitor-label{font-size:1rem;font-weight:600;}
+.visitor-help{font-size:.82rem;line-height:1.6;}
+@media(max-width:600px){.visitor-grid{grid-template-columns:1fr;}.visitor-number{font-size:2rem;}}
 </style>
 </head>
 <body>
@@ -104,6 +112,21 @@ html.dark .skip-link{color:#FFFFFF;}
     </div>
     <div id="loginStatus"></div>
   </div>
+
+  <section id="visitorStats" class="card hidden" aria-labelledby="visitors-heading">
+    <div class="row" style="justify-content:space-between;gap:12px;">
+      <div><h2 id="visitors-heading">Visitor overview · إحصائيات الزيارات</h2>
+      <p class="muted">Approximate unique browsers, not page views.</p></div>
+      <button type="button" class="btn btn-ghost btn-sm" id="visitors-refresh">Refresh</button>
+    </div>
+    <div class="visitor-grid">
+      <div class="visitor-metric"><div class="visitor-label">Today · النهارده</div><div class="visitor-number" id="visitors-today">—</div><div class="muted visitor-help">Since midnight in Cairo</div></div>
+      <div class="visitor-metric"><div class="visitor-label">Last 7 days · آخر ٧ أيام</div><div class="visitor-number" id="visitors-week">—</div><div class="muted visitor-help">Today + 6 previous days, Cairo time</div></div>
+      <div class="visitor-metric"><div class="visitor-label">Online now · موجودين دلوقتي</div><div class="visitor-number" id="visitors-online">—</div><div class="muted visitor-help">Visible page seen in the last 2 minutes</div></div>
+    </div>
+    <p id="visitors-status" class="muted visitor-help" role="status">Counts start when this feature is published, no past visits imported.</p>
+    <p class="muted visitor-help">Same browser is counted once per period. Different devices or cleared storage count separately. Privacy opt-outs and blocked JavaScript are excluded. No IPs, names or page history stored. IDs rotate after 7 days. Records outside the 8-day window are cleared on the next tracked visit.</p>
+  </section>
 
   <div id="dashView" class="hidden">
     <div class="row" style="justify-content:space-between;margin-bottom:16px;">
@@ -165,6 +188,7 @@ html.dark .skip-link{color:#FFFFFF;}
   </div>
 </div>
 
+<script src="assets/admin-visitors.js"></script>
 <script>
 (function(){
   const $=id=>document.getElementById(id);
@@ -172,13 +196,20 @@ html.dark .skip-link{color:#FFFFFF;}
   function showStatus(el,msg,err){el.innerHTML='<div class="status '+(err?'err':'ok')+'">'+esc(msg)+'</div>';}
   async function api(path,opts){opts=opts||{};opts.credentials='same-origin';if(opts.body&&typeof opts.body!=='string')opts.body=JSON.stringify(opts.body);opts.headers=Object.assign({'Content-Type':'application/json'},opts.headers||{});const r=await fetch(path,opts);let data=null;try{data=await r.json();}catch(e){}return {r,data};}
 
+  if(window.VisitorStats.demo){
+    $('loginView').classList.add('hidden');
+    document.querySelector('h1').textContent='Visitor stats preview (sample data)';
+    window.VisitorStats.start();
+    return;
+  }
+
   async function checkAuth(){
     const {r,data}=await api('/api/login');
     if(r.ok && data && data.authed){ showDash(data.name); loadPosts(); }
     else showLogin();
   }
-  function showLogin(){$('loginView').classList.remove('hidden');$('dashView').classList.add('hidden');$('whoami').textContent='';}
-  function showDash(name){$('loginView').classList.add('hidden');$('dashView').classList.remove('hidden');$('whoami').textContent = name ? ('Signed in as ' + name) : '';}
+  function showLogin(){window.VisitorStats.stop();$('loginView').classList.remove('hidden');$('dashView').classList.add('hidden');$('whoami').textContent='';}
+  function showDash(name){window.VisitorStats.start();$('loginView').classList.add('hidden');$('dashView').classList.remove('hidden');$('whoami').textContent = name ? ('Signed in as ' + name) : '';}
 
   $('loginBtn').addEventListener('click',async()=>{
     const pw=$('password').value;
