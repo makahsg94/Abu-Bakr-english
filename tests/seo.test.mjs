@@ -25,3 +25,16 @@ test('all literal image sources exist, have dimensions and originals preserved',
  }
  assert.ok(read('index.html').includes('fetchpriority="high"'));assert.ok(read('assets/fireworks-v2.js').includes('prefers-reduced-motion'));
 });
+test('teacher identity is visible in initial HTML in both languages and schema names agree',()=>{
+ const s=read('index.html'), title=/<title>(.*?)<\/title>/.exec(s)[1];
+ assert.ok(title.includes('Abu Bakr Mukhtar')&&title.includes('أبو بكر مختار'));
+ assert.match(s,/<h1>Learn English with<br><em>Abu Bakr Mukhtar<\/em><\/h1>/);
+ assert.match(s,/<p class="teacher-name-ar" lang="ar" dir="rtl" translate="no">أبو بكر مختار، مدرس لغة إنجليزية أونلاين<\/p>/);
+ const data=[...s.matchAll(/<script type="application\/ld\+json">(.*?)<\/script>/gs)].map(x=>JSON.parse(x[1]));
+ const person=data.find(x=>x['@type']==='Person'),site=data.find(x=>x['@type']==='WebSite');
+ assert.equal(site.name,person.name);assert.equal(site.url,person.url);
+ assert.ok(person.alternateName.includes('أبو بكر مختار'));assert.ok(site.alternateName.includes('ابو بكر مختار'));
+ assert.equal(site.publisher['@id'],person['@id']);
+ assert.ok(s.includes('"Learn English with": "تعلم الإنجليزية مع"'));
+ assert.ok(!s.includes('hreflang='));
+});

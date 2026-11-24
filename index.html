@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Abu Bakr Mukhtar | English Teacher &amp; Language Coach</title>
-<meta name="description" content="Learn English with Abu Bakr Mukhtar — an English coach with 9+ years of experience. Business English, everyday English, and exam preparation for IELTS, TOEFL, SAT, ACT &amp; EST. Cambridge DELTA certified.">
+<title>Abu Bakr Mukhtar | أبو بكر مختار | English Teacher</title>
+<meta name="description" content="Learn English online with Abu Bakr Mukhtar (أبو بكر مختار). Personalized English lessons, Business English, and IELTS, TOEFL &amp; SAT preparation.">
 <meta name="robots" content="index, follow">
 <!-- Open Graph -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -288,6 +288,7 @@ header.scrolled{
   gap:60px;
   align-items:center;
 }
+.hero-copy .teacher-name-ar{font-size:1.05rem;color:var(--gold-deep);margin:18px 0 0;line-height:1.8;}
 .hero-copy h1{
   font-size:clamp(2.6rem, 5vw, 4.1rem);
   margin-top:20px;
@@ -2035,15 +2036,17 @@ html.dark .skip-link{color:#FFFFFF;}
 <link rel="canonical" href="https://abubakr-english.pages.dev/">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Abu Bakr Mukhtar">
-<meta property="og:title" content="Abu Bakr Mukhtar | English Teacher &amp; Language Coach">
-<meta property="og:description" content="Learn English with Abu Bakr Mukhtar — an English coach with 9+ years of experience. Business English, everyday English, and exam preparation for IELTS, TOEFL, SAT, ACT &amp; EST. Cambridge DELTA certified.">
+<meta property="og:title" content="Abu Bakr Mukhtar | أبو بكر مختار | English Teacher">
+<meta property="og:description" content="Learn English online with Abu Bakr Mukhtar (أبو بكر مختار). Personalized English lessons, Business English, and IELTS, TOEFL &amp; SAT preparation.">
 <meta property="og:url" content="https://abubakr-english.pages.dev/">
 <meta property="og:image" content="https://abubakr-english.pages.dev/assets/branding/poster.png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta property="og:image:alt" content="Abu Bakr Mukhtar, English teacher and language coach">
 <meta name="twitter:card" content="summary_large_image">
-<script type="application/ld+json">{"@context": "https://schema.org", "@type": "Person", "@id": "https://abubakr-english.pages.dev/#teacher", "name": "Abu Bakr Mukhtar", "url": "https://abubakr-english.pages.dev/", "image": "https://abubakr-english.pages.dev/assets/abubakr.webp", "jobTitle": "English Teacher and Language Coach", "knowsLanguage": ["en", "ar"], "sameAs": ["https://www.linkedin.com/in/abubakerghazaly/"]}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "Person", "@id": "https://abubakr-english.pages.dev/#teacher", "name": "Abu Bakr Mukhtar", "url": "https://abubakr-english.pages.dev/", "image": "https://abubakr-english.pages.dev/assets/abubakr.webp", "jobTitle": "English Teacher and Language Coach", "knowsLanguage": ["en", "ar"], "sameAs": ["https://www.linkedin.com/in/abubakerghazaly/"], "alternateName": ["أبو بكر مختار", "ابو بكر مختار"]}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "WebSite", "@id": "https://abubakr-english.pages.dev/#website", "url": "https://abubakr-english.pages.dev/", "name": "Abu Bakr Mukhtar", "alternateName": ["أبو بكر مختار", "ابو بكر مختار"], "publisher": {"@id": "https://abubakr-english.pages.dev/#teacher"}}</script>
+
 <link rel="manifest" href="/manifest.webmanifest">
 <link rel="apple-touch-icon" href="/assets/favicon-180.png">
 <meta name="apple-mobile-web-app-title" content="Abu Bakr">
@@ -2117,7 +2120,8 @@ html.dark .skip-link{color:#FFFFFF;}
   <div class="container hero-grid">
     <div class="hero-copy">
       <span class="eyebrow">English Teacher &amp; Language Coach</span>
-      <h1>Improve your English.<br>Build your <em>confidence.</em></h1>
+      <h1>Learn English with<br><em>Abu Bakr Mukhtar</em></h1>
+      <p class="teacher-name-ar" lang="ar" dir="rtl" translate="no">أبو بكر مختار، مدرس لغة إنجليزية أونلاين</p>
       <p>Practical, personalized English coaching for confident communication, professional goals, travel, and international exams.</p>
       <div class="hero-actions">
         <a href="#book" class="btn btn-primary">Book a Trial Lesson
@@ -3327,6 +3331,7 @@ document.querySelectorAll('.faq-item').forEach(item => {
     "See all tools": "شاهد كل الأدوات",
 
     "Skip to main content": "تخطَّ إلى المحتوى الرئيسي",
+    "Learn English with": "تعلم الإنجليزية مع",
     "Home": "الرئيسية",
     "About": "نبذة عن أبو بكر",
     "Courses": "الدورات",
@@ -3736,7 +3741,7 @@ document.querySelectorAll('.faq-item').forEach(item => {
     nodes.forEach(x => {
       const p = x.parentElement;
       if (!p || ['SCRIPT', 'STYLE'].includes(p.tagName)) return;
-      if (p.closest && p.closest('#wotdRoot')) return;
+      if (p.closest && p.closest('#wotdRoot, [translate="no"]')) return;
       if (!original.has(x)) original.set(x, x.nodeValue);
       const en = original.get(x).trim();
       if (!en) return;
