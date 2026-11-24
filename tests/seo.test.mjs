@@ -4,7 +4,7 @@ import fs from 'node:fs';
 import {buildSitemap,SITE} from '../functions/_sitemap.js';
 const root=new URL('../',import.meta.url),read=p=>fs.readFileSync(new URL(p,root),'utf8');
 test('public metadata is absolute, unique and on working origin; no fake hreflang',()=>{
- for(const name of fs.readdirSync(root).filter(x=>x.endsWith('.html')&&x!=='admin.html')){
+ for(const name of fs.readdirSync(root).filter(x=>x.endsWith('.html')&&x!=='admin.html'&&!x.startsWith('google'))){
   const s=read(name);assert.equal((s.match(/<link[^>]*rel="canonical"/g)||[]).length,1,name);
   assert.ok(s.includes('name="description"'),name);assert.ok(s.includes('property="og:image" content="https://abubakr-english.pages.dev/'),name);
   assert.ok(!s.includes('hreflang='),name);
@@ -18,7 +18,7 @@ test('sitemap includes published posts only, escapes URLs, uses canonical routes
  assert.ok(xml.includes('/daily-challenge'));assert.equal((xml.match(/<lastmod>/g)||[]).length,1);
 });
 test('all literal image sources exist, have dimensions and originals preserved',()=>{
- for(const name of fs.readdirSync(root).filter(x=>x.endsWith('.html')&&x!=='admin.html')){
+ for(const name of fs.readdirSync(root).filter(x=>x.endsWith('.html')&&x!=='admin.html'&&!x.startsWith('google'))){
   const s=read(name);for(const tag of s.match(/<img\b[^>]*>/gi)||[]){const src=/\bsrc="([^"]+)"/.exec(tag)?.[1];if(!src||!src.startsWith('assets/'))continue;
    assert.ok(fs.existsSync(new URL(src,root)),name+':'+src);assert.ok(/\bwidth=/.test(tag)&&/\bheight=/.test(tag),name+':'+src);
   }

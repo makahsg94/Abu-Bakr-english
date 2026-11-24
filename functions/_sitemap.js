@@ -10,6 +10,7 @@ const STATIC_PAGES = [
   { loc: '/course-business', priority: '0.8', freq: 'monthly' },
   { loc: '/course-academic', priority: '0.8', freq: 'monthly' },
   { loc: '/course-ielts', priority: '0.8', freq: 'monthly' },
+  { loc: '/course-toefl', priority: '0.8', freq: 'monthly' },
   { loc: '/course-sat', priority: '0.8', freq: 'monthly' },
   { loc: '/ilac-conference', priority: '0.6', freq: 'yearly' },
   { loc: '/test-sat', priority: '0.6', freq: 'monthly' },
@@ -47,6 +48,7 @@ async function buildSitemap(env) {
   }
 
   for (const post of posts) {
+    if (post.slug === 'test') continue;
     const lastmod = String(post.updated_at || post.created_at || '').slice(0, 10) || now;
     urls.push({
       loc: SITE + '/post?slug=' + encodeURIComponent(post.slug),

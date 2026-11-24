@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TOEFL Preparation Online | 1-to-1 TOEFL Coach | Abu Bakr Mukhtar</title>
+<meta name="description" content="Online TOEFL preparation, 1-to-1 via Zoom with Abu Bakr Mukhtar, Cambridge DELTA-certified trainer: exam strategy, timing and the skills the test rewards. كورس TOEFL أونلاين.">
+<meta name="robots" content="index, follow">
+<meta name="theme-color" content="#0F1B2E">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,500&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+:root{
+  --navy: #0F1B2E;
+  --paper: #FBF9F5;
+  --line: #E4E0D6;
+  --ink: #17212F;
+  --muted: #5B6472;
+  --gold: #B8873F;
+  --white: #ffffff;
+  --ease: cubic-bezier(.25,.8,.35,1);
+}
+
+*{margin:0;padding:0;box-sizing:border-box;}
+
+body{
+  min-height:100vh;
+  display:flex;
+  flex-direction:column;
+  font-family:'Inter', sans-serif;
+  color:var(--ink);
+  line-height:1.6;
+  -webkit-font-smoothing:antialiased;
+  background:
+    radial-gradient(900px 520px at 85% -10%, rgba(184,135,63,0.12), transparent 60%),
+    radial-gradient(700px 480px at 0% 110%, rgba(15,27,46,0.06), transparent 55%),
+    var(--paper);
+}
+
+/* ===== TOP BAR ===== */
+.topbar{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:16px;
+  padding:18px clamp(20px, 5vw, 48px);
+}
+.logo{
+  font-family:'Fraunces', serif;
+  font-weight:600;
+  font-size:1.15rem;
+  color:var(--navy);
+  text-decoration:none;
+  letter-spacing:-0.01em;
+}
+.logo em{color:var(--gold); font-style:normal;}
+.top-actions{display:flex; align-items:center; gap:14px;}
+.home-link{
+  font-size:.85rem;
+  font-weight:600;
+  color:var(--navy);
+  text-decoration:none;
+  border-bottom:2px solid rgba(184,135,63,.5);
+  padding-bottom:2px;
+}
+.home-link:hover{border-color:var(--gold);}
+
+/* ===== LANGUAGE SWITCHER ===== */
+.lang-switcher{
+  display:inline-flex;
+  background:var(--white);
+  border:1px solid var(--line);
+  border-radius:999px;
+  padding:4px;
+  gap:2px;
+}
+.lang-switcher button{
+  border:0;
+  background:transparent;
+  font-family:'Inter', sans-serif;
+  font-weight:600;
+  font-size:.78rem;
+  padding:7px 14px;
+  border-radius:999px;
+  cursor:pointer;
+  color:var(--muted);
+  transition:all .25s var(--ease);
+}
+.lang-switcher button.active{background:var(--navy); color:var(--white);}
+.lang-switcher button:not(.active):hover{color:var(--navy);}
+
+/* ===== PAGE ===== */
+main{
+  flex:1;
+  width:100%;
+  max-width:820px;
+  margin:0 auto;
+  padding:12px clamp(20px, 5vw, 32px) 64px;
+}
+.card{
+  background:var(--white);
+  border:1px solid var(--line);
+  border-radius:26px;
+  padding:clamp(28px, 6vw, 52px);
+  box-shadow:0 30px 70px -35px rgba(15,27,46,0.35);
+  animation:cardIn .6s var(--ease) both;
+}
+@keyframes cardIn{
+  from{opacity:0; transform:translateY(16px);}
+  to{opacity:1; transform:none;}
+}
+
+.eyebrow{
+  display:inline-block;
+  font-size:.75rem;
+  font-weight:700;
+  letter-spacing:.14em;
+  text-transform:uppercase;
+  color:var(--gold);
+  margin-bottom:14px;
+}
+h1{
+  font-family:'Fraunces', serif;
+  font-weight:600;
+  color:var(--navy);
+  font-size:clamp(1.9rem, 5vw, 2.6rem);
+  letter-spacing:-0.01em;
+  line-height:1.12;
+  margin-bottom:16px;
+}
+.intro-text{
+  color:var(--muted);
+  font-size:1.02rem;
+  margin-bottom:26px;
+}
+.meta-chips{
+  display:flex;
+  flex-wrap:wrap;
+  gap:10px;
+  margin-bottom:32px;
+}
+.chip{
+  font-size:.78rem;
+  font-weight:600;
+  color:var(--navy);
+  background:rgba(184,135,63,0.09);
+  border:1px solid rgba(184,135,63,0.25);
+  padding:7px 15px;
+  border-radius:999px;
+}
+
+.learn-title{
+  font-family:'Fraunces', serif;
+  font-weight:600;
+  color:var(--navy);
+  font-size:1.3rem;
+  margin-bottom:18px;
+}
+.learn-list{list-style:none; display:grid; gap:12px; margin-bottom:36px;}
+.learn-list li{
+  display:flex;
+  align-items:flex-start;
+  gap:12px;
+  font-size:.97rem;
+  color:var(--ink);
+  background:var(--paper);
+  border:1px solid var(--line);
+  border-radius:14px;
+  padding:13px 16px;
+}
+.learn-list li::before{
+  content:"✓";
+  flex-shrink:0;
+  width:24px; height:24px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  border-radius:50%;
+  background:var(--gold);
+  color:var(--white);
+  font-size:.75rem;
+  font-weight:700;
+}
+
+/* ===== BUTTONS ===== */
+.btn{
+  display:inline-flex;
+  align-items:center;
+  gap:10px;
+  font-family:'Inter', sans-serif;
+  font-size:.95rem;
+  font-weight:600;
+  padding:15px 30px;
+  border-radius:999px;
+  cursor:pointer;
+  text-decoration:none;
+  border:1px solid transparent;
+  transition:all .3s var(--ease);
+}
+.btn-gold{
+  background:linear-gradient(135deg, #C99547, var(--gold));
+  color:var(--white);
+  box-shadow:0 14px 28px -12px rgba(184,135,63,.65);
+}
+.btn-gold:hover{transform:translateY(-2px); box-shadow:0 20px 34px -12px rgba(184,135,63,.75);}
+.btn-ghost{background:transparent; color:var(--navy); border-color:var(--line);}
+.btn-ghost:hover{border-color:var(--gold); color:var(--gold);}
+.cta{display:flex; gap:14px; flex-wrap:wrap; align-items:center;}
+.back{margin-top:34px; display:inline-block; font-size:.88rem; color:var(--muted); text-decoration:none;}
+.back:hover{color:var(--gold);}
+
+/* ===== FOOTER ===== */
+footer{
+  text-align:center;
+  padding:26px 20px 34px;
+  color:var(--muted);
+  font-size:.82rem;
+}
+footer a{color:var(--navy); font-weight:600; text-decoration:none; border-bottom:1px solid rgba(184,135,63,.5);}
+
+.video-frame{margin:28px auto 4px; max-width:720px;}
+.video-frame video{width:100%; display:block; border-radius:14px; background:#000; box-shadow:0 16px 40px rgba(15,27,46,.16);}
+
+@media (max-width:480px){
+  .logo{font-size:1rem;}
+  .home-link{font-size:.8rem;}
+  .cta .btn{width:100%; justify-content:center;}
+}
+
+/* ===== DARK MODE ===== */
+html.dark{
+  --paper:#0D1117;
+  --paper-2:#151B24;
+  --line:#2A323F;
+  --ink:#E6E9EE;
+  --muted:#9AA6B5;
+  --muted-light:#6E7A8C;
+  --white:#12171F;
+  --gold:#D6A65C;
+  --gold-light:#E4BE7E;
+  --navy-2:#1B2433;
+  --navy-soft:#26364E;
+  --shadow-soft:0 20px 50px -25px rgba(0,0,0,.6);
+  --shadow-card:0 10px 30px -15px rgba(0,0,0,.55);
+}
+html.dark body{color:var(--ink);}
+html.dark h1,html.dark h2,html.dark h3,html.dark h4,
+html.dark .logo,html.dark .learn-title,html.dark .photo-cap,
+html.dark .testi-person b,html.dark .contact-row div b,html.dark .contact-row,
+html.dark .about-focus strong,html.dark .hero-badge b,html.dark .about-copy p strong,
+html.dark .btn-ghost,html.dark .btn-ghost:hover,
+html.dark footer a,html.dark .home-link,.theme-toggle,
+html.dark .lang-switcher button:not(.active){
+  color:var(--ink);
+}
+.theme-toggle{display:inline-flex;align-items:center;justify-content:center;width:36px;height:36px;flex:0 0 36px;border:1px solid var(--line);border-radius:50%;color:var(--ink);background:transparent;transition:border-color .3s var(--ease),color .3s var(--ease);text-decoration:none;}
+.theme-toggle:hover{border-color:var(--gold);color:var(--gold);}
+.theme-toggle svg{display:block;}
+.theme-toggle .icon-sun{display:none;}
+html.dark .theme-toggle .icon-moon{display:none;}
+html.dark .theme-toggle .icon-sun{display:block;}
+html.dark .btn-ghost:hover{background:rgba(230,233,238,.06);}
+html.dark .lang-switcher button.active,
+html.dark .btn-primary,
+html.dark .btn-navy,
+html.dark .method-step:hover .method-dot{color:#F5F6F8;background:var(--navy);}
+html.dark .read-passage{background:#151B24;}
+html.dark .figure-box{background:#0F141B;}
+html.dark .cert-card,html.dark .photo-card img{background:#151B24;}
+html.dark input,html.dark select,html.dark textarea{background:#151B24;color:var(--ink);border-color:var(--line);}
+html.dark input::placeholder,html.dark textarea::placeholder{color:var(--muted-light);}
+
+/* ===== DARK MODE: light text on dark surfaces ===== */
+html.dark .btn-primary,
+html.dark .btn-gold,
+html.dark .btn-navy,
+html.dark .mobile-menu a,
+html.dark .trust-item,
+html.dark .course-card h3,
+html.dark .plan-card.featured,
+html.dark .plan-cta,
+html.dark .contact-photo-caption,
+html.dark .footer-brand .logo,
+html.dark .footer-col h4,
+html.dark .footer-social a,
+html.dark .skip-link,
+html.dark .learn-list li::before,
+html.dark .option.selected,
+html.dark .option.selected .letter,
+html.dark .score-circle b,
+html.dark .level-badge,
+html.dark .flash-def,
+html.dark .featured h3,
+html.dark .featured .plan-price strong{color:#FFFFFF;}
+html.dark .courses-wrap .section-head h2{color:#FFFFFF;}
+html.dark .courses-wrap .section-head p{color:rgba(255,255,255,.78);}
+html.dark .book-head h2{color:#FFFFFF;}
+html.dark .book-cta .btn-ghost{color:#FFFFFF; border-color:rgba(255,255,255,.35);}
+
+</style>
+<script>(function(){var t=null;try{t=localStorage.getItem('siteTheme')}catch(e){}if(!t){try{t=window.matchMedia&&window.matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light'}catch(e){t='light'}}if(t==='dark')document.documentElement.classList.add('dark')})();</script>
+<link rel="canonical" href="https://abubakr-english.pages.dev/course-toefl">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Abu Bakr Mukhtar">
+<meta property="og:title" content="TOEFL Preparation Online | 1-to-1 TOEFL Coach | Abu Bakr Mukhtar">
+<meta property="og:description" content="Online TOEFL preparation, 1-to-1 via Zoom with Abu Bakr Mukhtar, Cambridge DELTA-certified trainer: exam strategy, timing and the skills the test rewards. كورس TOEFL أونلاين.">
+<meta property="og:url" content="https://abubakr-english.pages.dev/course-toefl">
+<meta property="og:image" content="https://abubakr-english.pages.dev/assets/branding/poster.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Abu Bakr Mukhtar, English teacher and language coach">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="manifest" href="/manifest.webmanifest">
+<link rel="apple-touch-icon" href="/assets/favicon-180.png">
+<meta name="apple-mobile-web-app-title" content="Abu Bakr">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "Course", "name": "TOEFL Preparation Online", "description": "Online TOEFL preparation, 1-to-1 via Zoom with Abu Bakr Mukhtar, Cambridge DELTA-certified trainer: exam strategy, timing and the skills the test rewards. كورس TOEFL أونلاين.", "url": "https://abubakr-english.pages.dev/course-toefl", "inLanguage": ["en", "ar"], "provider": {"@id": "https://abubakr-english.pages.dev/#teacher"}, "courseMode": "online"}</script>
+</head>
+<body>
+
+<header class="topbar">
+  <a class="logo" href="index.html">Abu Bakr <em>Mukhtar</em></a>
+  <div class="top-actions">
+    <button type="button" class="theme-toggle" aria-label="Toggle dark mode" title="Dark mode">
+      <svg class="icon-moon" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>
+      <svg class="icon-sun" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="4"/><path d="M12 2v2m0 16v2M4.9 4.9l1.4 1.4m11.4 11.4 1.4 1.4M2 12h2m16 0h2M4.9 19.1l1.4-1.4m11.4-11.4 1.4-1.4"/></svg>
+    </button>
+    <div class="lang-switcher" id="langSwitcher" aria-label="Language switcher">
+      <button type="button" data-lang="en" class="active">EN</button>
+      <button type="button" data-lang="ar">AR</button>
+    </div>
+    <a class="home-link" href="index.html">Back to Home</a>
+  </div>
+</header>
+
+<main>
+  <div class="card">
+    <span class="eyebrow">TOEFL Preparation</span>
+    <h1>TOEFL</h1>
+    <p class="intro-text">Targeted TOEFL preparation with Abu Bakr Mukhtar, a Cambridge DELTA-certified trainer. You learn the strategy, the timing, and the exact skills the exam rewards.</p>
+    <div class="meta-chips">
+      <span class="chip">DELTA-Certified Trainer</span>
+      <span class="chip">1-to-1 Coaching</span>
+      <span class="chip">Live via Zoom</span>
+    </div>
+    <h2 class="learn-title">What You'll Learn</h2>
+    <ul class="learn-list">
+      <li>Speaking: fluency, clear structure, and confident answers under time pressure</li>
+      <li>Writing: organizing and supporting your ideas clearly and on time</li>
+      <li>Listening: prediction and attention to detail</li>
+      <li>Reading: skimming, scanning, and smart time management</li>
+      <li>Know your current level and exactly how to raise it</li>
+      <li>A personal study plan built around your target score and test date</li>
+    </ul>
+    <div class="cta">
+      <a class="btn btn-gold" href="https://wa.me/201014416415?text=Hello%20Abu%20Bakr%2C%20I%27m%20interested%20in%20TOEFL%20preparation." target="_blank" rel="noopener">Book via WhatsApp</a>
+      <a class="btn btn-ghost" href="test-toefl.html">TOEFL Mini Test</a>
+      <a class="btn btn-ghost" href="course-ielts.html">IELTS Preparation</a>
+    </div>
+    <section class="ar-note" lang="ar" dir="rtl" style="margin-top:28px;padding-top:20px;border-top:1px solid var(--line)"><h2 class="learn-title">كورس TOEFL أونلاين مع أبو بكر مختار</h2><p class="intro-text">تحضير لامتحان التوفل أونلاين وبشكل فردي مع أبو بكر مختار، مدرب حاصل على شهادة Cambridge DELTA. تدريب على استراتيجية الامتحان وإدارة الوقت والمهارات التي يقيسها الاختبار. للحجز تواصل عبر واتساب.</p></section>
+    <a class="back" href="index.html">&larr; Back to Home</a>
+  </div>
+</main>
+
+<footer><a href="index.html">© 2026 Abu Bakr Mukhtar</a> · Online English Lessons</footer>
+
+<script>
+(function(){
+  const dict = {
+
+    "Back to Home": "العودة للرئيسية",
+    "TOEFL Preparation": "التحضير لامتحان TOEFL",
+    "Targeted TOEFL preparation with Abu Bakr Mukhtar, a Cambridge DELTA-certified trainer. You learn the strategy, the timing, and the exact skills the exam rewards.": "تحضير مستهدف لامتحان TOEFL مع أبو بكر مختار، مدرب حاصل على شهادة Cambridge DELTA. تتعلم الاستراتيجية وإدارة الوقت والمهارات التي يكافئها الامتحان.",
+    "DELTA-Certified Trainer": "مدرب حاصل على DELTA",
+    "1-to-1 Coaching": "تدريب فردي",
+    "Live via Zoom": "مباشرة عبر Zoom",
+    "What You'll Learn": "ماذا ستتعلم؟",
+    "Speaking: fluency, clear structure, and confident answers under time pressure": "المحادثة: الطلاقة والتنظيم الواضح وإجابات واثقة تحت ضغط الوقت",
+    "Writing: organizing and supporting your ideas clearly and on time": "الكتابة: تنظيم أفكارك ودعمها بوضوح وفي الوقت المحدد",
+    "Listening: prediction and attention to detail": "الاستماع: التوقع والانتباه للتفاصيل",
+    "Reading: skimming, scanning, and smart time management": "القراءة: التصفح والمسح والإدارة الذكية للوقت",
+    "Know your current level and exactly how to raise it": "اعرف مستواك الحالي وكيف ترفعه بالضبط",
+    "A personal study plan built around your target score and test date": "خطة مذاكرة شخصية حسب درجتك المستهدفة وموعد امتحانك",
+    "Book via WhatsApp": "احجز عبر واتساب",
+    "TOEFL Mini Test": "اختبار TOEFL المصغر",
+    "IELTS Preparation": "التحضير لامتحان IELTS",
+    "© 2026 Abu Bakr Mukhtar": "© 2026 أبو بكر مختار",
+    "Online English Lessons": "دروس إنجليزية أونلاين"
+  
+  };
+  const original = new WeakMap();
+  const btns = document.querySelectorAll('#langSwitcher button');
+
+  function apply(l){
+    document.documentElement.lang = l;
+    document.documentElement.dir = l === 'ar' ? 'rtl' : 'ltr';
+    btns.forEach(b => b.classList.toggle('active', b.dataset.lang === l));
+    const w = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT);
+    const nodes = [];
+    let n;
+    while ((n = w.nextNode())) nodes.push(n);
+    nodes.forEach(x => {
+      const p = x.parentElement;
+      if (!p || ['SCRIPT', 'STYLE'].includes(p.tagName)) return;
+      if (!original.has(x)) original.set(x, x.nodeValue);
+      const en = original.get(x).trim();
+      if (!en) return;
+      if (l === 'ar' && dict[en]) {
+        x.nodeValue = x.nodeValue.replace(en, dict[en]);
+      } else if (l === 'en') {
+        x.nodeValue = original.get(x);
+      }
+    });
+    try { localStorage.setItem('siteLanguage', l); } catch(e) {}
+  }
+
+  btns.forEach(b => b.addEventListener('click', () => apply(b.dataset.lang)));
+
+  let s = null;
+  try { s = localStorage.getItem('siteLanguage'); } catch(e) {}
+  if (!s) {
+    const nav = (navigator.language || navigator.userLanguage || '').toLowerCase();
+    s = nav.startsWith('ar') ? 'ar' : 'en';
+  }
+  apply(s);
+})();
+</script>
+
+<script src="assets/theme.js"></script><script src="assets/visitor-tracker.js" defer></script>
+<script src="/assets/pwa-register-v1.js" defer></script>
+</body>
+</html>
