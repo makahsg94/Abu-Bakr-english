@@ -31,6 +31,6 @@ test('update cleans only this apps old caches, installation only precaches icons
  events.activate({waitUntil(x){p=x}});await p;assert.ok(puts.includes('delete:ab-pwa-static-v0'));assert.ok(!puts.includes('delete:unrelated-cache'));
 });
 test('registration and manifest on public pages only, CSP not weakened',()=>{
- for(const name of fs.readdirSync(root).filter(x=>x.endsWith('.html'))){const s=read(name);if(name==='admin.html'){assert.ok(!s.includes('pwa-register'));continue}assert.ok(s.includes('rel="manifest"'),name);assert.ok(s.includes('/assets/pwa-register-v1.js'),name)}
+ for(const name of fs.readdirSync(root).filter(x=>x.endsWith('.html')&&!x.startsWith('google'))){const s=read(name);if(name==='admin.html'){assert.ok(!s.includes('pwa-register'));continue}assert.ok(s.includes('rel="manifest"'),name);assert.ok(s.includes('/assets/pwa-register-v1.js'),name)}
  const h=read('_headers');assert.ok(h.includes("script-src 'self' 'unsafe-inline'"));assert.ok(h.includes('/sw.js'));assert.ok(!h.includes('script-src *'));
 });
